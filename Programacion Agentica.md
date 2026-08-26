@@ -1248,7 +1248,7 @@ consumo de contexto
 
 ---
 
-# 24. Filesystem Retrieval
+# 24. Una implementación de Tool Retrieval: Filesystem Retrieval
 
 **Filesystem Retrieval** es una posible implementación de Retrieval utilizando archivos.
 
@@ -1896,3 +1896,213 @@ Tools especializadas
 ```
 
 Esta estrategia híbrida puede ser especialmente útil cuando un agente dispone de un gran número de herramientas.
+
+# Ejemplo simple en Power BI: Upfront vs Tool Retrieval
+
+Supongamos que nuestro agente de Power BI tiene disponibles estas Tools:
+
+```text
+get_tables()
+get_measures()
+execute_dax()
+create_measure()
+update_measure()
+```
+
+---
+
+## Estrategia A — Tool Definitions Upfront
+
+El LLM recibe **desde el inicio las definiciones completas de todas las Tools**:
+
+```text
+get_tables
+├── descripción
+└── JSON Schema
+
+get_measures
+├── descripción
+└── JSON Schema
+
+execute_dax
+├── descripción
+└── JSON Schema
+
+create_measure
+├── descripción
+└── JSON Schema
+
+update_measure
+├── descripción
+└── JSON Schema
+```
+
+El usuario pregunta:
+
+```text
+"¿Cuáles son las ventas de este año?"
+```
+
+Como el LLM ya conoce completamente `execute_dax`, puede solicitar directamente:
+
+```text
+LLM
+ ↓
+execute_dax(...)
+ ↓
+Agente / Orquestador
+ ↓
+Power BI
+ ↓
+Resultado
+```
+
+**Ventaja:** es simple y el LLM conoce inmediatamente todas las Tools.
+
+**Problema:** todas las definiciones consumen contexto aunque para esta tarea sólo necesitemos una.
+
+---
+
+## Estrategia B — Tool Retrieval
+
+Es una **alternativa a Upfront**.
+
+El LLM no recibe inicialmente los schemas completos de todas las Tools.
+
+Ante:
+
+```text
+"¿Cuáles son las ventas de este año?"
+```
+
+el agente/modelo determina que necesita una capacidad relacionada con ejecutar DAX:
+
+```text
+Necesidad:
+"ejecutar una consulta DAX"
+        ↓
+Tool Retrieval
+        ↓
+encuentra:
+execute_dax
+        ↓
+carga su definición completa
+        ↓
+LLM conoce ahora su schema
+        ↓
+execute_dax(...)
+        ↓
+Agente / Orquestador
+        ↓
+Power BI
+```
+
+De esta forma, sólo cargamos la definición detallada de la Tool cuando es necesaria.
+
+---
+
+## Filesystem Retrieval
+
+**Filesystem Retrieval es una forma concreta de implementar Tool Retrieval.**
+
+No es una tercera estrategia al mismo nivel que Upfront y Tool Retrieval.
+
+Por ejemplo, podemos guardar las definiciones de las Tools en archivos:
+
+```text
+tools/
+├── execute-dax.md
+├── get-measures.md
+├── get-tables.md
+├── create-measure.md
+└── update-measure.md
+```
+
+Ante:
+
+```text
+"¿Cuáles son las ventas de este año?"
+```
+
+el flujo podría ser:
+
+```text
+LLM
+ ↓
+"Necesito ejecutar DAX"
+ ↓
+buscar Tool relevante
+ ↓
+encuenttra:
+tools/execute-dax.md
+ ↓
+leer execute-dax.md
+ ↓
+obtener descripción + argumentos + schema
+ ↓
+LLM
+ ↓
+execute_dax(...)
+ ↓
+Agente / Orquestador
+ ↓
+Power BI
+```
+
+Así evitamos cargar desde el principio:
+
+```text
+get_tables      + schema
+get_measures    + schema
+execute_dax     + schema
+create_measure  + schema
+update_measure  + schema
+```
+
+y cargamos únicamente:
+
+```text
+execute_dax + schema
+```
+
+cuando realmente lo necesitamos.
+
+---
+
+## Relación entre los tres conceptos
+
+```text
+              ¿Cómo conoce el LLM las Tools?
+                         │
+             ┌───────────┴───────────┐
+             │                       │
+             ▼                       ▼
+          UPFRONT               TOOL RETRIEVAL
+             │                       │
+     todas completas          sólo las relevantes
+     desde el inicio             bajo demanda
+                                     │
+                                     ▼
+                           FILESYSTEM RETRIEVAL
+                           puede ser una forma
+                           de implementarlo
+```
+
+Por tanto:
+
+```text
+Upfront
+= cargar las definiciones completas de las Tools desde el inicio.
+
+Tool Retrieval
+= descubrir y cargar sólo las Tools relevantes cuando sean necesarias.
+
+Filesystem Retrieval
+= una posible implementación de Tool Retrieval utilizando archivos.
+```
+
+### Regla mental
+
+> **Upfront vs Retrieval son estrategias alternativas.**
+>
+> **Filesystem Retrieval es una posible implementación de Retrieval.**
