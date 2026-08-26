@@ -28,7 +28,7 @@ Respuesta final
 
 El **LLM no ejecuta directamente las herramientas**.
 
-El LLM solicita una acción mediante una **tool call** y es el agente/orquestador quien:
+El LLM puede solicitar una acción mediante una **Tool Call** y es el agente/orquestador quien:
 
 1. Recibe la solicitud del LLM.
 2. Valida la llamada.
@@ -41,16 +41,78 @@ A este proceso iterativo se le suele llamar **Agent Loop**.
 
 ---
 
-# 2. System Prompt
+# 2. Agent Loop
 
-El **System Prompt** contiene las instrucciones de más alto nivel que definen cómo debe comportarse el agente.
+El **Agent Loop** es el ciclo mediante el cual el agente intenta conseguir un objetivo.
 
-Ejemplos:
+Conceptualmente:
 
-* Qué rol tiene.
-* Qué restricciones debe respetar.
-* Qué comportamiento general debe seguir.
-* Qué prioridades tiene.
+```text
+        ┌─────────────────────┐
+        │                     │
+        ▼                     │
+     OBSERVAR                 │
+        ↓                     │
+     RAZONAR                  │
+        ↓                     │
+     DECIDIR                  │
+        ↓                     │
+      ACTUAR                  │
+        ↓                     │
+     RESULTADO ───────────────┘
+```
+
+Por ejemplo:
+
+```text
+Usuario:
+"¿Cuántas ventas tuvimos este año?"
+
+        ↓
+
+LLM:
+"Necesito consultar el modelo."
+
+        ↓
+
+Tool Call:
+execute_dax(...)
+
+        ↓
+
+Agente ejecuta Tool
+
+        ↓
+
+Resultado:
+12.543.221 €
+
+        ↓
+
+LLM:
+"Ya tengo suficiente información."
+
+        ↓
+
+Respuesta al usuario
+```
+
+Si el resultado de una Tool no es suficiente, el LLM puede solicitar otra Tool y continuar el ciclo.
+
+---
+
+# 3. System Prompt
+
+El **System Prompt** contiene instrucciones de alto nivel que definen cómo debe comportarse el agente.
+
+Puede definir:
+
+- Rol.
+- Restricciones.
+- Comportamiento general.
+- Prioridades.
+- Reglas de seguridad.
+- Forma general de trabajar.
 
 Ejemplo conceptual:
 
@@ -62,32 +124,43 @@ Prefer inspecting the existing semantic model before making changes.
 Never perform destructive operations without explicit approval.
 ```
 
-El system prompt ayuda a **moldear el comportamiento del agente**, pero no contiene necesariamente todas las tools.
+El System Prompt ayuda a **moldear el comportamiento del agente**.
+
+IMPORTANTE:
+
+Las definiciones de las Tools **no tienen por qué estar literalmente dentro del System Prompt**.
+
+Dependiendo del runtime/API, las Tools pueden proporcionarse al modelo mediante un campo estructurado específico.
 
 ---
 
-# 3. Tools / Herramientas
+# 4. Tools / Herramientas
 
-Las **tools** son capacidades que el agente puede utilizar para interactuar con sistemas externos.
+Las **Tools** son capacidades que el agente puede utilizar para interactuar con su entorno.
 
 Ejemplos:
 
 ```text
 read_file()
 write_file()
+
 execute_sql()
+
 list_measures()
+get_measure()
 create_measure()
+update_measure()
+
 execute_dax()
 ```
 
-Cada tool suele tener:
+Una Tool suele tener:
 
-* Nombre.
-* Descripción.
-* Parámetros de entrada.
-* Schema de dichos parámetros.
-* Opcionalmente, descripción de su resultado.
+- Nombre.
+- Descripción.
+- Parámetros de entrada.
+- Schema de dichos parámetros.
+- Opcionalmente, descripción de su resultado.
 
 Ejemplo conceptual:
 
@@ -102,27 +175,26 @@ Ejemplo conceptual:
 }
 ```
 
-Estas definiciones **no tienen por qué estar literalmente dentro del System Prompt**.
-
-Normalmente el runtime/API del agente las proporciona al modelo como una sección estructurada de herramientas disponibles.
+El LLM necesita conocer suficiente información sobre una Tool para poder solicitar correctamente su ejecución.
 
 ---
 
-# 4. Tool Call
+# 5. Tool Call
 
-Una **tool call** es una solicitud del LLM para utilizar una herramienta.
+Una **Tool Call** es una solicitud del LLM para utilizar una herramienta.
 
 Ejemplo:
 
 ```text
 Usuario:
-"¿Cuántas ventas hubo este año?"
+
+"¿Cuántas ventas tuvimos este año?"
 ```
 
-El LLM podría decidir:
+El LLM puede razonar:
 
 ```text
-Necesito consultar el modelo.
+Necesito consultar el modelo semántico.
 ```
 
 Y solicitar:
@@ -134,109 +206,201 @@ execute_dax(
 )
 ```
 
-El flujo sería:
+Pero el LLM **no ejecuta realmente `execute_dax()`**.
+
+El flujo es:
 
 ```text
 LLM
- ↓
-solicita tool call
- ↓
-Agente
- ↓
-ejecuta la tool
- ↓
+ │
+ │ solicita Tool Call
+ ▼
+Agente / Orquestador
+ │
+ │ valida y ejecuta
+ ▼
+Tool
+ │
+ ▼
 Power BI / Fabric
- ↓
-resultado
- ↓
+ │
+ │ resultado
+ ▼
+Tool
+ │
+ ▼
 Agente
- ↓
+ │
+ │ añade resultado al contexto
+ ▼
 LLM
 ```
+
+Por tanto:
+
+> El LLM decide qué Tool quiere utilizar.
+>
+> El agente/orquestador ejecuta realmente la Tool.
 
 ---
 
-# 5. Contexto estático
+# 6. Static Context
 
-El **Static Context** es la información que el agente carga de forma habitual o desde el inicio de una interacción.
+El **Static Context** es la información que se proporciona de forma habitual o desde el inicio de la interacción.
 
 Puede incluir:
 
-* System Prompt.
-* Instrucciones generales.
-* `AGENTS.md`.
-* Memoria persistente que se cargue siempre.
-* Definiciones de tools, si el runtime las carga de forma eager/upfront.
-* Metadata de Skills disponible desde el principio.
+- System Prompt.
+- Instrucciones generales.
+- `AGENTS.md`.
+- Memoria persistente cargada siempre.
+- Definiciones de Tools si se cargan upfront.
+- Metadata de Skills.
+- Otra información permanente necesaria para el agente.
 
-Importante:
+Ejemplo:
 
 ```text
-Configuración MCP ≠ necesariamente contexto del LLM
+Petición al LLM
+│
+├── System Prompt
+├── AGENTS.md
+├── Tool definitions
+├── Skill metadata
+├── Memory
+└── User Prompt
 ```
 
-Por ejemplo:
+Cuanto mayor sea el Static Context:
+
+```text
+más tokens
++
+más información
++
+potencialmente más ruido
+```
+
+Por eso interesa mantenerlo pequeño y relevante.
+
+IMPORTANTE:
+
+```text
+Configuración MCP
+≠
+necesariamente contexto del LLM
+```
+
+Por ejemplo, un:
 
 ```text
 config.toml
 ```
 
-puede decirle a Codex:
+puede indicarle a Codex:
 
 ```text
 "Conéctate al MCP de Power BI"
 ```
 
-pero eso no significa que el contenido de `config.toml` se envíe entero al LLM.
+pero eso no significa que el contenido completo de `config.toml` se envíe al LLM.
 
 ---
 
-# 6. Contexto dinámico
+# 7. Dynamic Context
 
-El **Dynamic Context** es la información que se va incorporando conforme avanza la interacción.
+El **Dynamic Context** es la información que se incorpora conforme avanza la interacción.
 
 Ejemplos:
 
-### Messages
+## Messages
 
 Mensajes de la conversación:
 
 ```text
-Usuario → agente
-Agente → usuario
+Usuario → Agente
+Agente → Usuario
+Usuario → Agente
+...
 ```
 
-### Tool results
+---
+
+## Tool Results
 
 Resultados obtenidos mediante herramientas:
 
 ```text
-get_measures()
-    ↓
-[Sales, Sales YTD, Margin, ...]
+list_measures()
+      ↓
+Sales
+Sales YTD
+Margin
+Margin %
 ```
 
-### MCP calls
+Estos resultados pueden añadirse al contexto para que el LLM pueda razonar sobre ellos.
 
-Resultados recuperados mediante herramientas proporcionadas por servidores MCP.
+---
 
-### Skills loading
+## MCP Tool Results
 
-Una Skill puede detectarse inicialmente mediante metadata mínima y cargarse completamente sólo cuando sea relevante.
+Resultados obtenidos mediante Tools proporcionadas por servidores MCP.
 
-### Filesystem retrieval
+Por ejemplo:
 
-El agente puede buscar y leer archivos sólo cuando los necesita.
+```text
+LLM
+ ↓
+get_semantic_model_schema()
+ ↓
+MCP Power BI
+ ↓
+resultado
+ ↓
+LLM
+```
 
-Ejemplo:
+---
+
+## Skills Loading
+
+Una Skill puede descubrirse inicialmente mediante metadata mínima y cargarse completamente sólo cuando sea relevante.
+
+```text
+Usuario:
+"Optimiza esta medida DAX"
+
+        ↓
+
+Agente detecta:
+"Esto es DAX"
+
+        ↓
+
+Carga:
+skills/dax/SKILL.md
+```
+
+---
+
+## Filesystem Retrieval
+
+El agente puede buscar y leer archivos únicamente cuando son necesarios.
+
+Por ejemplo:
 
 ```text
 AGENTS.md
-   ↓
-"Para DAX consultar docs/dax.md"
-   ↓
-tarea DAX
-   ↓
+
+"Para tareas DAX consultar docs/dax.md"
+
+        ↓
+
+Tarea DAX
+
+        ↓
+
 read_file("docs/dax.md")
 ```
 
@@ -244,7 +408,7 @@ Esto es un ejemplo de **Progressive Disclosure**.
 
 ---
 
-# 7. Progressive Disclosure
+# 8. Progressive Disclosure
 
 **Progressive Disclosure** consiste en no cargar toda la información desde el principio.
 
@@ -262,36 +426,68 @@ Carga sólo lo relevante
 Continúa trabajando
 ```
 
-Objetivo:
+Objetivos:
 
 ```text
-menos ruido
-+
 menos tokens
 +
+menos ruido
++
 contexto más relevante
++
+mejor atención
 ```
 
-No significa simplemente reducir tokens.
+No consiste únicamente en ahorrar tokens.
 
-También busca mejorar la **calidad de la atención del modelo**.
+También busca que el modelo tenga:
+
+> La información correcta, en el momento correcto.
+
+Ejemplo:
+
+```text
+❌ Cargar siempre:
+
+DAX
+Power Query
+SQL
+PySpark
+Deployment
+Testing
+Power BI
+Fabric
+Azure
+...
+
+────────────────────────
+
+✅ Progressive Disclosure:
+
+Tarea DAX
+   ↓
+cargar Skill DAX
+   ↓
+cargar documentación DAX
+   ↓
+continuar
+```
 
 ---
 
-# 8. AGENTS.md
+# 9. AGENTS.md
 
 `AGENTS.md` contiene instrucciones persistentes sobre **cómo trabajar dentro de un proyecto**.
 
-Ejemplos:
+Puede contener:
 
-```text
 - Cómo ejecutar tests.
 - Cómo ejecutar lint.
 - Convenciones de arquitectura.
 - Reglas para modificar código.
 - Documentación disponible.
 - Criterios de finalización.
-```
+- Comandos importantes.
 
 Ejemplo:
 
@@ -314,30 +510,37 @@ Do NOT read all docs upfront.
 Read only the documentation relevant to the current task.
 ```
 
-No debería convertirse en un enorme repositorio de conocimiento.
+`AGENTS.md` no debería convertirse en un enorme repositorio de conocimiento.
 
 Lo ideal es utilizarlo como **mapa de navegación**.
 
+Por ejemplo:
+
 ```text
 AGENTS.md
-   ↓
+   │
+   ▼
 docs/
-   ├── dax.md
-   ├── semantic-models.md
-   ├── testing.md
-   └── deployment.md
+├── dax.md
+├── semantic-models.md
+├── power-query.md
+├── testing.md
+└── deployment.md
 ```
 
-Esto favorece Progressive Disclosure.
+Esto permite aplicar **Progressive Disclosure**.
 
-### Jerarquía
+---
 
-Los `AGENTS.md` pueden existir en diferentes niveles del árbol del proyecto.
+# 10. AGENTS.md jerárquicos
+
+Los `AGENTS.md` pueden existir en diferentes niveles del árbol de un proyecto.
 
 Ejemplo:
 
 ```text
 project/
+│
 ├── AGENTS.md
 │
 ├── frontend/
@@ -347,21 +550,41 @@ project/
     └── AGENTS.md
 ```
 
-Las instrucciones más específicas pueden complementar o sobrescribir instrucciones más generales dependiendo del runtime.
+Esto permite tener:
 
-En Codex, `AGENTS.md` es un mecanismo soportado directamente.
+```text
+AGENTS.md raíz
+        ↓
+reglas generales
 
-Otros agentes pueden utilizar otros nombres o mecanismos equivalentes.
+frontend/AGENTS.md
+        ↓
+reglas específicas frontend
 
-Por ejemplo, Claude Code utiliza principalmente `CLAUDE.md`.
+backend/AGENTS.md
+        ↓
+reglas específicas backend
+```
+
+Las instrucciones más específicas pueden complementar o prevalecer sobre las generales dependiendo del runtime.
+
+En **Codex**, `AGENTS.md` es un mecanismo soportado.
+
+Otros agentes pueden utilizar otros mecanismos.
+
+Por ejemplo, Claude Code utiliza principalmente:
+
+```text
+CLAUDE.md
+```
 
 ---
 
-# 9. Context Window vs atención efectiva
+# 11. Context Window vs atención efectiva
 
 ## Context Window
 
-La **ventana de contexto** es la cantidad máxima de información que el modelo puede recibir durante una inferencia.
+La **ventana de contexto** representa cuánta información puede manejar el modelo dentro de una inferencia.
 
 Puede contener:
 
@@ -376,28 +599,46 @@ Tools
 +
 mensajes
 +
-resultados de tools
+resultados de Tools
 +
 archivos
++
+memoria
 +
 otros datos
 ```
 
-## Atención
+---
 
-Aunque determinada información quepa dentro de la ventana de contexto, no significa que toda tenga la misma relevancia.
+## Atención efectiva
 
-Un contexto enorme puede contener mucho ruido.
+Que algo quepa dentro de la ventana de contexto **no significa que todo sea igualmente relevante para el modelo**.
 
 Por ejemplo:
 
 ```text
-100.000 tokens
+100.000 tokens de contexto
 ```
 
-pueden caber técnicamente, pero si sólo 2.000 son relevantes para la tarea, los otros 98.000 pueden reducir la claridad del contexto.
+pueden caber técnicamente.
 
-Por eso en programación agéntica interesa:
+Pero si:
+
+```text
+2.000 tokens
+```
+
+son realmente relevantes para resolver la tarea, introducir enormes cantidades de información adicional puede generar ruido.
+
+Por eso:
+
+```text
+Más contexto
+≠
+Mejor resultado
+```
+
+Lo que buscamos es:
 
 ```text
 Context Engineering
@@ -409,23 +650,21 @@ Momento correcto
 Cantidad correcta
 ```
 
-Más contexto no siempre significa mejores resultados.
-
 ---
 
-# 10. Commands
+# 12. Commands
 
-Los **Commands** son atajos reutilizables que permiten ejecutar prompts o workflows predefinidos.
+Los **Commands** son atajos reutilizables que permiten lanzar prompts o workflows predefinidos.
 
 Son una funcionalidad dependiente del cliente/agente.
 
-Ejemplo conceptual:
+Por ejemplo:
 
 ```text
 /commit
 ```
 
-podría expandirse internamente a:
+podría expandirse conceptualmente a:
 
 ```text
 Review the current changes.
@@ -435,9 +674,7 @@ Create a commit following Conventional Commits.
 Do not include unrelated files.
 ```
 
-Permiten evitar escribir el mismo prompt repetidamente.
-
-Por ejemplo:
+Otros ejemplos:
 
 ```text
 /commit
@@ -446,89 +683,119 @@ Por ejemplo:
 /deploy
 ```
 
-Importante:
+Esto evita tener que escribir repetidamente el mismo prompt.
+
+IMPORTANTE:
 
 ```text
-Commands ≠ estándar universal de agentes
+Commands
+≠
+estándar universal
 ```
 
-Cada herramienta puede implementar commands de forma diferente.
+Cada agente o herramienta puede implementarlos de forma diferente.
 
 ---
 
-# 11. Skills
+# 13. Skills
 
 Las **Skills** encapsulan conocimiento, instrucciones y workflows especializados.
 
-Ejemplos:
+Ejemplo:
 
 ```text
 skills/
+│
 ├── dax/
 │   └── SKILL.md
 │
 ├── power-query/
 │   └── SKILL.md
 │
-└── semantic-model/
+├── semantic-model/
+│   └── SKILL.md
+│
+└── report-design/
     └── SKILL.md
 ```
 
 Una Skill puede indicar:
 
-```text
-- cuándo utilizarse
-- qué procedimiento seguir
-- qué tools utilizar
-- qué validaciones hacer
-- qué documentación consultar
-- cómo presentar el resultado
-```
+- Cuándo utilizarse.
+- Qué procedimiento seguir.
+- Qué reglas aplicar.
+- Qué Tools utilizar.
+- Qué validaciones realizar.
+- Qué documentación consultar.
+- Cómo presentar el resultado.
 
-Ejemplo:
+Por ejemplo:
 
 ```text
 Usuario:
+
 "Optimiza esta medida DAX"
-```
 
-El agente puede detectar:
+        ↓
 
-```text
-Esto es una tarea DAX.
-```
+Agente:
 
-Y cargar:
+"Esto es una tarea DAX"
 
-```text
+        ↓
+
+Carga:
+
 skills/dax/SKILL.md
 ```
 
-Las Skills son especialmente útiles para **empaquetar workflows reutilizables y conocimiento especializado**.
-
-También permiten Progressive Disclosure:
-
-```text
-Metadata de Skill
-       ↓
-¿Es relevante?
-   │
-   ├── NO → no cargar
-   │
-   └── SÍ
-        ↓
-     SKILL.md
-        ↓
-  references necesarias
-```
+Las Skills son una forma de **empaquetar conocimiento y workflows reutilizables**.
 
 ---
 
-# 12. MCP — Model Context Protocol
+# 14. Skills y Progressive Disclosure
 
-MCP es un protocolo que permite conectar agentes con herramientas y fuentes externas de forma estandarizada.
+No necesariamente queremos cargar todas las Skills completas desde el principio.
 
-Ejemplos:
+Podemos tener:
+
+```text
+Metadata de Skills
+        ↓
+LLM / Agente
+        ↓
+¿qué Skill necesito?
+        │
+        ├── DAX
+        ├── Power Query
+        ├── Semantic Model
+        └── Report Design
+```
+
+Si la tarea es DAX:
+
+```text
+Carga:
+skills/dax/SKILL.md
+```
+
+pero no:
+
+```text
+skills/power-query/SKILL.md
+skills/report-design/SKILL.md
+...
+```
+
+Esto es nuevamente **Progressive Disclosure**.
+
+---
+
+# 15. MCP — Model Context Protocol
+
+MCP es un protocolo que permite conectar agentes con herramientas y fuentes externas de una forma estandarizada.
+
+Por ejemplo:
 
 ```text
 Codex
@@ -540,14 +807,11 @@ Codex
   └── MCP filesystem
 ```
 
-Un **MCP Server** puede exponer:
+Un **MCP Server** puede exponer diferentes capacidades.
 
-* Tools.
-* Resources.
-* Prompts.
-* Otras capacidades definidas por el protocolo.
+Entre ellas, Tools.
 
-Ejemplo:
+Ejemplo conceptual:
 
 ```text
 Power BI MCP
@@ -555,12 +819,26 @@ Power BI MCP
      ├── get_measures
      ├── execute_dax
      ├── get_model_schema
+     ├── create_measure
      └── update_measure
 ```
 
-Tú normalmente configuras **el servidor MCP**, no cada herramienta individual.
+El desarrollador normalmente configura **el servidor MCP**, no cada una de sus Tools manualmente.
 
-Ejemplo conceptual en Codex:
+---
+
+# 16. Configuración de un MCP
+
+Dependiendo del cliente, la configuración puede vivir en:
+
+```text
+config.toml
+mcp.json
+settings.json
+...
+```
+
+Por ejemplo, conceptualmente en Codex:
 
 ```toml
 [mcp_servers.powerbi]
@@ -568,55 +846,49 @@ command = "..."
 args = ["..."]
 ```
 
-Después:
+Esto significa:
 
 ```text
 Codex
    ↓
-se conecta al MCP
+conéctate a este MCP
    ↓
-MCP anuncia sus tools
+Power BI MCP
    ↓
-Codex descubre las capacidades disponibles
+expone sus capacidades
 ```
+
+IMPORTANTE:
+
+```text
+MCP
+≠
+mcp.json
+```
+
+MCP es el **protocolo**.
+
+`mcp.json`, `config.toml`, etc. son mecanismos de configuración utilizados por diferentes clientes.
 
 ---
 
-# 13. Configuración MCP y credenciales
+# 17. MCP y credenciales
 
-La configuración de un MCP puede vivir en archivos como:
+Un MCP puede necesitar autenticarse contra servicios externos.
 
-```text
-config.toml
-mcp.json
-...
-```
-
-dependiendo del cliente.
-
-Pero:
+Por ejemplo:
 
 ```text
-NO asumir:
-MCP = mcp.json
+MCP
+ ↓
+Fabric API
+ ↓
+Azure / Entra ID
 ```
 
-MCP es el protocolo.
+No es recomendable almacenar secretos directamente en archivos versionados.
 
-`mcp.json`, `config.toml`, etc. son simplemente mecanismos de configuración de determinados clientes.
-
-Tampoco es recomendable guardar secretos directamente en estos archivos.
-
-Preferir:
-
-```text
-Environment Variables
-Secret Stores
-Credential Managers
-OAuth
-```
-
-frente a:
+Evitar:
 
 ```json
 {
@@ -624,390 +896,1003 @@ frente a:
 }
 ```
 
----
-
-# 14. Muchas tools y consumo de contexto
-
-Supongamos que tenemos:
+Preferir mecanismos como:
 
 ```text
-Power BI MCP → 30 tools
-Fabric MCP   → 40 tools
-GitHub MCP   → 30 tools
-
-Total: 100 tools
+Environment Variables
+Secret Stores
+Credential Managers
+OAuth
+Managed Identity
 ```
 
-Una implementación simple podría proporcionar al LLM las 100 definiciones completas:
+dependiendo del entorno.
+
+---
+
+# 18. MCP y Tools
+
+Una distinción fundamental:
 
 ```text
-Tool 1
-  nombre
-  descripción
-  JSON Schema
+MCP Server
+=
+servidor que expone capacidades
+```
 
-Tool 2
-  nombre
-  descripción
-  JSON Schema
+Mientras que:
 
+```text
+Tool
+=
+una capacidad concreta
+```
+
+Por ejemplo:
+
+```text
+Power BI MCP Server
+│
+├── Tool: get_tables
+├── Tool: get_measures
+├── Tool: execute_dax
+├── Tool: create_measure
+└── Tool: update_measure
+```
+
+Tú normalmente configuras:
+
+```text
+Power BI MCP Server
+```
+
+y el servidor anuncia las Tools que tiene disponibles.
+
+No necesitas escribir manualmente todas esas Tools en:
+
+```text
+AGENTS.md
+```
+
+ni necesariamente en:
+
+```text
+config.toml
+```
+
+---
+
+# 19. El problema de tener muchas Tools
+
+Supongamos:
+
+```text
+Power BI MCP → 30 Tools
+Fabric MCP   → 40 Tools
+GitHub MCP   → 30 Tools
+
+TOTAL        → 100 Tools
+```
+
+Para que el LLM pueda utilizar una Tool necesita conocer suficiente información sobre ella.
+
+Aquí aparecen diferentes estrategias.
+
+IMPORTANTE:
+
+Las siguientes estrategias **NO son etapas consecutivas**.
+
+Son formas alternativas de proporcionar Tools al LLM.
+
+---
+
+# 20. Estrategia A — Tool Definitions Upfront
+
+La estrategia más sencilla consiste en proporcionar al LLM las definiciones completas de todas las Tools desde el principio.
+
+```text
+Petición al LLM
+│
+├── System Prompt
+├── AGENTS.md
+│
+├── Tool: get_tables
+│   ├── description
+│   └── JSON Schema
+│
+├── Tool: get_measures
+│   ├── description
+│   └── JSON Schema
+│
+├── Tool: execute_dax
+│   ├── description
+│   └── JSON Schema
+│
+├── ...
+│
+└── User Prompt
+```
+
+El LLM conoce directamente cómo utilizar todas las Tools.
+
+Por ejemplo:
+
+```text
+Usuario:
+"Ejecuta esta consulta DAX"
+
+        ↓
+
+LLM ya conoce execute_dax
+
+        ↓
+
+Tool Call:
+
+execute_dax(...)
+```
+
+### Ventaja
+
+Es sencillo.
+
+El LLM tiene inmediatamente toda la información necesaria.
+
+### Problema
+
+Si tenemos muchas Tools:
+
+```text
+100 Tools
+×
+nombre
+×
+descripción
+×
+JSON Schema
+=
+muchos tokens
+```
+
+Además, estamos introduciendo información sobre Tools que probablemente no sean necesarias.
+
+Por tanto:
+
+```text
+Tool Definitions Upfront
+        ↓
+más Static Context
+```
+
+---
+
+# 21. Estrategia B — Tool Retrieval
+
+**Tool Retrieval es una alternativa a cargar todas las Tools completas upfront.**
+
+El objetivo es proporcionar inicialmente suficiente información para descubrir qué capacidades existen, pero sin cargar necesariamente todas sus definiciones completas.
+
+Conceptualmente:
+
+```text
+Petición inicial
+│
+├── System Prompt
+├── AGENTS.md
+├── índice ligero de capacidades
+└── User Prompt
+```
+
+Por ejemplo:
+
+```text
+Capacidades:
+
+- consultar modelos semánticos
+- consultar medidas
+- ejecutar DAX
+- modificar medidas
+- consultar relaciones
+- trabajar con tablas
+```
+
+El usuario pregunta:
+
+```text
+"¿Cuántas ventas tuvimos este año?"
+```
+
+El LLM determina:
+
+```text
+Necesito ejecutar una consulta DAX.
+```
+
+Entonces:
+
+```text
+Necesidad
+   ↓
+Tool Retrieval
+   ↓
+encuentra execute_dax
+   ↓
+recupera definición completa
+   ↓
+nombre
++
+descripción
++
+JSON Schema
+```
+
+Ahora el LLM conoce suficiente información para solicitar:
+
+```text
+execute_dax(...)
+```
+
+Esto permite pasar parte del contexto de:
+
+```text
+Static Context
+```
+
+a:
+
+```text
+Dynamic Context
+```
+
+---
+
+# 22. Upfront vs Retrieval
+
+Las dos estrategias son alternativas:
+
+```text
+              ¿Cómo conoce el LLM las Tools?
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+              ▼                     ▼
+       ESTRATEGIA A           ESTRATEGIA B
+
+          Upfront               Retrieval
+
+     todas completas        descubrir primero
+      desde inicio          y cargar después
+
+              │                     │
+              └──────────┬──────────┘
+                         │
+                         ▼
+                LLM conoce la Tool
+                         │
+                         ▼
+                     Tool Call
+                         │
+                         ▼
+                    Agent Loop
+```
+
+Por tanto:
+
+```text
+A → Tool Call
+```
+
+o:
+
+```text
+B → Tool Call
+```
+
+NO:
+
+```text
+A → B → Tool Call
+```
+
+---
+
+# 23. Estrategia híbrida
+
+Upfront y Retrieval tampoco tienen por qué ser 100 % excluyentes.
+
+Se pueden combinar.
+
+Por ejemplo:
+
+```text
+100 Tools disponibles
+        │
+        ├── 5 Tools fundamentales
+        │       ↓
+        │    Upfront
+        │
+        └── 95 Tools especializadas
+                ↓
+             Retrieval
+```
+
+El LLM podría tener siempre disponibles:
+
+```text
+read_file()
+search()
+list_directory()
+tool_search()
+get_help()
+```
+
+Y descubrir dinámicamente herramientas más específicas:
+
+```text
+execute_dax()
+create_measure()
+update_relationship()
+deploy_semantic_model()
 ...
-
-Tool 100
 ```
 
-Esto puede consumir muchos tokens y generar ruido.
-
----
-
-# 15. Tool Retrieval / Filesystem Retrieval
-
-Para evitar cargar todas las definiciones completas desde el principio se puede aplicar **Progressive Disclosure a las tools**.
-
-En lugar de:
+Esto permite equilibrar:
 
 ```text
-100 tools completas
-        ↓
-       LLM
-```
-
-podemos hacer:
-
-```text
-Índice ligero de capacidades
-        ↓
-       LLM
-        ↓
-"Necesito consultar DAX"
-        ↓
-Retrieval
-        ↓
-execute_dax
-get_model_schema
-        ↓
-cargar schemas completos
-        ↓
-LLM
+simplicidad
++
+flexibilidad
++
+consumo de contexto
 ```
 
 ---
 
-# 16. Filesystem Retrieval
+# 24. Filesystem Retrieval
 
-**Filesystem Retrieval** es una posible implementación del retrieval utilizando archivos.
+**Filesystem Retrieval** es una posible implementación de Retrieval utilizando archivos.
 
 Por ejemplo:
 
 ```text
 tools/
 ├── execute-dax.md
+├── get-measures.md
+├── get-tables.md
 ├── update-measure.md
-├── get-schema.md
 └── create-measure.md
 ```
 
-Inicialmente el agente podría tener únicamente información ligera que le permita descubrir capacidades.
+El agente no necesita cargar todos esos archivos desde el principio.
 
-Después:
+Podría tener un índice ligero.
+
+Por ejemplo:
 
 ```text
-Usuario:
+execute-dax      → execute DAX queries
+get-measures     → inspect semantic model measures
+get-tables       → inspect model tables
+update-measure   → modify an existing measure
+create-measure   → create a new measure
+```
+
+Ante:
+
+```text
 "¿Cuántas ventas tuvimos este año?"
 ```
 
-El agente/LLM determina:
+podría ocurrir:
 
 ```text
-"Necesito consultar el modelo."
-```
-
-Busca:
-
-```text
-semantic_search("execute dax query")
-```
-
-Obtiene:
-
-```text
+LLM
+ ↓
+"Necesito ejecutar DAX"
+ ↓
+semantic_search("execute DAX query")
+ ↓
 tools/execute-dax.md
-```
-
-Lee:
-
-```text
-read_file("tools/execute-dax.md")
-```
-
-Y sólo entonces obtiene:
-
-```text
-nombre
-+
-descripción
-+
-argumentos
-+
-schema
-```
-
-Ahora el LLM puede solicitar correctamente:
-
-```text
+ ↓
+read_file(...)
+ ↓
+definición completa
+ ↓
+LLM
+ ↓
 execute_dax(...)
 ```
 
 ---
 
-# 17. Filesystem Retrieval NO significa pasar sólo nombres
+# 25. Filesystem Retrieval NO significa pasar sólo nombres
 
 Una simplificación peligrosa sería:
 
 ```text
 Filesystem Retrieval
 =
-pasarle solamente los nombres de las tools
+pasar únicamente nombres de Tools
 ```
 
 No necesariamente.
 
-Puede utilizar:
+El índice ligero podría contener:
 
-* Nombre.
-* Descripción corta.
-* Categoría.
-* Keywords.
-* Embeddings.
-* Índices semánticos.
-* Metadata.
+- Nombre.
+- Descripción corta.
+- Categoría.
+- Keywords.
+- Metadata.
+- Embeddings.
+- Información semántica.
 
-La idea fundamental es:
+Por ejemplo:
 
-> No cargar inicialmente las definiciones completas de todas las herramientas.
+```text
+Tool: execute_dax
+Category: Power BI / DAX
+Description: Execute a DAX query against a semantic model
+```
 
-Primero se descubre qué capacidad es relevante.
+Sin proporcionar todavía todo:
 
-Después se carga su definición detallada.
+```text
+JSON Schema
+argumentos completos
+documentación
+ejemplos
+casos especiales
+```
+
+La idea importante es:
+
+> Descubrir primero qué Tool es relevante y cargar después la información detallada necesaria para utilizarla.
 
 ---
 
-# 18. Tool Retrieval vs MCP
+# 26. MCP vs Tool Retrieval
 
-Son conceptos distintos.
+MCP y Tool Retrieval **NO son lo mismo**.
+
+MCP responde principalmente a:
+
+> ¿Qué capacidades ofrece este servidor y cómo puedo invocarlas?
+
+Tool Retrieval responde a:
+
+> De todas las Tools disponibles, ¿qué definiciones necesito cargar en el contexto del LLM ahora?
+
+Por ejemplo:
 
 ```text
-MCP
-=
-¿Qué herramientas existen?
-¿Cómo puedo ejecutarlas?
-```
-
-Mientras que:
-
-```text
-Tool Retrieval
-=
-¿Cuáles de todas esas herramientas necesito cargar ahora?
+Power BI MCP
+      ↓
+expone 80 Tools
+      ↓
+¿Cómo se las proporcionamos al LLM?
+      │
+      ├──────────────┐
+      ▼              ▼
+   Upfront        Retrieval
+      │              │
+80 schemas      sólo relevantes
+      │              │
+      └──────┬───────┘
+             ▼
+            LLM
 ```
 
 Por tanto:
 
-```text
-MCP Server
-    ↓
-expone 80 tools
-    ↓
-Tool Retrieval
-    ↓
-selecciona 3 relevantes
-    ↓
-LLM
-```
+> MCP por sí solo no implica necesariamente Progressive Disclosure de Tools.
 
-MCP por sí solo **no implica necesariamente que las definiciones de todas las tools se carguen de forma progresiva**.
-
-Eso depende del runtime/agente.
+La estrategia utilizada para proporcionar esas Tools al LLM depende del runtime/agente.
 
 ---
 
-# 19. Las tres etapas del uso eficiente de Tools
+# 27. Tool Calling después de Upfront o Retrieval
 
-## Etapa 1 — Tool definitions upfront
+Independientemente de cómo haya conocido la Tool el LLM:
 
-Se proporcionan al modelo las definiciones completas de las tools desde el principio.
+```text
+             Upfront
+                │
+                │
+                ▼
+              TOOL
+                ▲
+                │
+                │
+            Retrieval
+```
+
+una vez dispone de suficiente información:
 
 ```text
 LLM
+ ↓
+Tool Call
+ ↓
+Agente / Orquestador
+ ↓
+valida
+ ↓
+ejecuta Tool
+ ↓
+resultado
+ ↓
+LLM
+```
+
+Si el LLM necesita más información:
+
+```text
+resultado
+   ↓
+LLM
+   ↓
+"Necesito otra Tool"
+   ↓
+Tool Call
+   ↓
+resultado
+   ↓
+LLM
+```
+
+Eso forma parte del **Agent Loop**.
+
+---
+
+# 28. Resumen del ciclo completo de Tools
+
+La representación correcta es:
+
+```text
+                    TOOLS DISPONIBLES
+                           │
+                           ▼
+                ¿Cómo las conoce el LLM?
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+           UPFRONT                  RETRIEVAL
+              │                         │
+     schemas completos        descubrir relevantes
+       desde inicio              y cargar schemas
+              │                         │
+              └────────────┬────────────┘
+                           │
+                           ▼
+                   LLM conoce la Tool
+                           │
+                           ▼
+                       TOOL CALL
+                           │
+                           ▼
+                  AGENTE / ORQUESTADOR
+                           │
+                           ▼
+                         TOOL
+                           │
+                           ▼
+                    SISTEMA EXTERNO
+                           │
+                           ▼
+                       RESULTADO
+                           │
+                           ▼
+                          LLM
+                           │
+                   ¿Objetivo cumplido?
+                      │          │
+                     SÍ         NO
+                      │          │
+                      ▼          └──────┐
+                  RESPUESTA             │
+                                       ▼
+                                  NUEVA TOOL CALL
+```
+
+---
+
+# 29. Ejemplo Power BI / Fabric
+
+Supongamos que estamos creando un agente propio para trabajar con proyectos `.pbip`.
+
+Tenemos:
+
+```text
+Power BI Agent
 │
-├── Tool A + schema
-├── Tool B + schema
-├── Tool C + schema
-├── ...
-└── Tool Z + schema
+├── AGENTS.md
+│
+├── Skills
+│   ├── DAX
+│   ├── Power Query
+│   ├── Semantic Models
+│   └── Report Design
+│
+└── Power BI MCP
+    ├── list_tables
+    ├── list_measures
+    ├── get_measure
+    ├── execute_dax
+    ├── create_measure
+    ├── update_measure
+    ├── get_relationships
+    └── ...
 ```
 
-Ventaja:
+El usuario solicita:
 
 ```text
-Simple
+"Optimiza la medida Sales YTD."
 ```
 
-Problema:
-
-```text
-Muchas tools
-    ↓
-Muchos tokens
-    ↓
-Más ruido contextual
-```
-
----
-
-## Etapa 2 — Tool Retrieval
-
-Se proporciona al modelo un mecanismo ligero para descubrir capacidades.
+El flujo podría ser:
 
 ```text
 Usuario
    ↓
+Agente
+   ↓
+AGENTS.md
+   ↓
+detecta tarea DAX
+   ↓
+carga Skill DAX
+   ↓
 LLM
    ↓
-"Necesito ejecutar DAX"
+necesita inspeccionar Sales YTD
    ↓
-semantic_search(...)
+Tool Retrieval
    ↓
-encuentra execute_dax
+get_measure
    ↓
-read_file(...)
+Tool Call
    ↓
-carga schema
-```
-
-Sólo se incorpora al contexto la definición necesaria.
-
-Esto transforma:
-
-```text
-Static Context
-```
-
-en:
-
-```text
-Dynamic Context
-```
-
-mediante Progressive Disclosure.
-
----
-
-## Etapa 3 — Ejecución y Agent Loop
-
-Una vez cargada la definición:
-
-```text
-LLM
+Power BI MCP
    ↓
-solicita execute_dax(...)
+devuelve medida
    ↓
-Agente / Orquestador
+LLM analiza DAX
    ↓
-valida
+necesita comprobar modelo
    ↓
-ejecuta tool
+Tool Retrieval
    ↓
-MCP Server
+get_model_schema
    ↓
-Power BI
+Tool Call
+   ↓
+Power BI MCP
    ↓
 resultado
    ↓
-Agente
-   ↓
 LLM
+   ↓
+propone optimización
 ```
 
-El LLM evalúa el resultado y puede:
+Aquí tenemos **Progressive Disclosure en varios niveles**:
 
 ```text
-Responder
+AGENTS.md
+   │
+   ├── Skill Retrieval
+   │       ↓
+   │     DAX Skill
+   │
+   ├── Documentation Retrieval
+   │       ↓
+   │     docs/dax.md
+   │
+   └── Tool Retrieval
+           ↓
+       get_measure
+       get_model_schema
 ```
 
-o decidir:
-
-```text
-Necesito otra tool
-       ↓
-nuevo ciclo
-```
-
-Ese ciclo constituye el **Agent Loop**.
+No cargamos todo desde el principio.
 
 ---
 
-# 20. Mapa mental final
+# 30. Context Engineering
+
+Todos estos conceptos forman parte de algo más amplio:
+
+**Context Engineering**.
+
+El objetivo no es:
 
 ```text
-                     AGENTE
-                       │
-        ┌──────────────┼───────────────┐
-        │              │               │
-        ▼              ▼               ▼
-   AGENTS.md         Skills           MCP
-   reglas          conocimiento     capacidades
-                      │               │
-                      │               └── Tools
-                      │
-                      ▼
+Darle al LLM toda la información posible.
+```
+
+El objetivo es:
+
+```text
+Darle al LLM
+la información correcta
+en el momento correcto
+y en la cantidad correcta.
+```
+
+Podemos aplicar Progressive Disclosure sobre:
+
+```text
+Documentación
+      ↓
+Filesystem Retrieval
+
+Skills
+      ↓
+Skill Loading
+
+Tools
+      ↓
+Tool Retrieval
+
+Datos
+      ↓
+MCP / APIs / Database
+
+Memoria
+      ↓
+Memory Retrieval
+```
+
+Todo converge en:
+
+```text
+                 CONTEXT ENGINEERING
+                         │
+                         ▼
               Progressive Disclosure
-                      │
-             ┌────────┴─────────┐
-             ▼                  ▼
-        Skill Loading      Tool Retrieval
-             │                  │
-             └────────┬─────────┘
-                      ▼
-                     LLM
-                      │
-                 Tool Call
-                      │
-                      ▼
-              Agente/Orquestador
-                      │
-                      ▼
-                    Tool
-                      │
-                      ▼
-                  Resultado
-                      │
-                      ▼
-                     LLM
-                      │
-                siguiente paso
+                         │
+       ┌─────────────────┼─────────────────┐
+       │                 │                 │
+       ▼                 ▼                 ▼
+     Skills          Documents           Tools
+       │                 │                 │
+       ▼                 ▼                 ▼
+   Retrieval         Retrieval         Retrieval
+       │                 │                 │
+       └─────────────────┼─────────────────┘
+                         ▼
+                        LLM
+                         │
+                         ▼
+                    Agent Loop
 ```
 
-# 21. Resumen en una frase
+---
+
+# 31. Mapa mental final
 
 ```text
-System Prompt → cómo debe comportarse
-
-AGENTS.md → cómo trabajar en este proyecto
-
-Skills → cómo resolver tareas especializadas
-
-MCP → qué capacidades externas están disponibles
-
-Tools → acciones concretas
-
-Retrieval → qué información cargar ahora
-
-Tool Call → qué acción solicita el LLM
-
-Agent Loop → observar → decidir → actuar → observar → repetir
-
-Progressive Disclosure → cargar información sólo cuando sea necesaria
-
-Context Engineering → conseguir que el modelo tenga el contexto adecuado en el momento adecuado
+                         AGENTE
+                           │
+         ┌─────────────────┼─────────────────┐
+         │                 │                 │
+         ▼                 ▼                 ▼
+    AGENTS.md           Skills             MCP
+    reglas              conocimiento       capacidades
+                           │                 │
+                           │                 ▼
+                           │               Tools
+                           │                 │
+                           ▼                 ▼
+                    Progressive Disclosure
+                           │
+                  ┌────────┴────────┐
+                  ▼                 ▼
+             Skill Loading     Tool Retrieval
+                  │                 │
+                  └────────┬────────┘
+                           ▼
+                          LLM
+                           │
+                      Tool Call
+                           │
+                           ▼
+                 Agente / Orquestador
+                           │
+                           ▼
+                         Tool
+                           │
+                           ▼
+                   Sistema externo
+                           │
+                           ▼
+                       Resultado
+                           │
+                           ▼
+                          LLM
+                           │
+                    siguiente paso
+                           │
+                           └──→ Agent Loop
 ```
+
+---
+
+# 32. Reglas mentales rápidas
+
+## System Prompt
+
+```text
+¿Cómo debe comportarse el agente?
+```
+
+## AGENTS.md
+
+```text
+¿Cómo debe trabajar en este proyecto?
+```
+
+## Skill
+
+```text
+¿Cómo debe resolver este tipo concreto de tarea?
+```
+
+## MCP
+
+```text
+¿Qué capacidades externas puede tener disponibles?
+```
+
+## Tool
+
+```text
+¿Qué acción concreta puede realizar?
+```
+
+## Tool Call
+
+```text
+¿Qué acción está solicitando ejecutar el LLM?
+```
+
+## Tool Retrieval
+
+```text
+¿Qué Tool necesito conocer ahora?
+```
+
+## Filesystem Retrieval
+
+```text
+¿Qué información necesito recuperar ahora desde archivos?
+```
+
+## Progressive Disclosure
+
+```text
+No cargar todo desde el principio.
+Descubrir y cargar información cuando sea necesaria.
+```
+
+## Agent Loop
+
+```text
+Observar
+   ↓
+Razonar
+   ↓
+Decidir
+   ↓
+Actuar
+   ↓
+Observar resultado
+   ↓
+Repetir
+```
+
+## Context Engineering
+
+```text
+Información correcta
++
+momento correcto
++
+cantidad correcta
+```
+
+---
+
+# 33. Resumen definitivo
+
+```text
+System Prompt
+→ comportamiento general
+
+AGENTS.md
+→ reglas del proyecto
+
+Skills
+→ conocimiento y workflows especializados
+
+MCP
+→ conexión estandarizada con capacidades externas
+
+Tools
+→ acciones concretas
+
+Upfront
+→ cargar definiciones de Tools desde el principio
+
+Tool Retrieval
+→ descubrir/cargar sólo Tools relevantes
+
+Filesystem Retrieval
+→ recuperar información bajo demanda desde archivos
+
+Tool Call
+→ solicitud del LLM para ejecutar una Tool
+
+Agent / Orchestrator
+→ ejecuta realmente la Tool
+
+Agent Loop
+→ observar → razonar → actuar → observar → repetir
+
+Progressive Disclosure
+→ cargar información sólo cuando sea necesaria
+
+Context Engineering
+→ gestionar qué contexto recibe el LLM, cuándo y cuánto
+```
+
+---
+
+# 34. Idea clave sobre Tools
+
+NO pensar:
+
+```text
+Etapa 1
+   ↓
+Etapa 2
+   ↓
+Etapa 3
+```
+
+Pensar:
+
+```text
+             TOOLS
+               │
+      ¿Cómo las expongo?
+               │
+      ┌────────┴────────┐
+      ▼                 ▼
+   UPFRONT          RETRIEVAL
+      │                 │
+Static Context     Dynamic Context
+      │                 │
+      └────────┬────────┘
+               ▼
+           TOOL CALL
+               ▼
+           AGENT LOOP
+```
+
+Además, ambas estrategias pueden combinarse:
+
+```text
+Tools frecuentes
+      ↓
+   Upfront
+
+Tools especializadas
+      ↓
+   Retrieval
+```
+
+Esta estrategia híbrida puede ser especialmente útil cuando un agente dispone de un gran número de herramientas.
