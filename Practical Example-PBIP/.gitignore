@@ -1,0 +1,12 @@
+# Power BI local state and cache
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/unappliedChanges.json
+
+# Local editor and operating-system files
+.vscode/*.local.json
+.DS_Store
+Thumbs.db
+
+# Local agent output
+.agent-work/
