@@ -2,9 +2,11 @@
 
 Estrategia para descubrir y cargar únicamente las herramientas relevantes.
 
-# 21. Estrategia B — Tool Retrieval
+## Estrategia B — Tool Retrieval
 
 **Tool Retrieval es una alternativa a cargar todas las Tools completas upfront.**
+
+Es una estrategia de presentación de Tools al modelo, no un protocolo de conexión. Puede aplicarse a Tools locales, APIs o Tools expuestas por un servidor MCP.
 
 El objetivo es proporcionar inicialmente suficiente información para descubrir qué capacidades existen, pero sin cargar necesariamente todas sus definiciones completas.
 
@@ -84,7 +86,7 @@ Dynamic Context
 
 ---
 
-# 22. Upfront vs Retrieval
+## Upfront vs Retrieval
 
 Las dos estrategias son alternativas:
 

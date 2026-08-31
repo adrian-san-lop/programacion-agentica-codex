@@ -1,57 +1,59 @@
-﻿# Programación agéntica
+# Programación agéntica
 
 Documentación sobre los conceptos, componentes y patrones utilizados para diseñar agentes basados en modelos de lenguaje.
 
 ## Ruta recomendada
 
-1. [Agentes](docs/01-fundamentos/agentes.md)
-2. [Tool Calling](docs/01-fundamentos/tool-calling.md)
-3. [Static Context](docs/02-context-engineering/static-context.md)
-4. [Progressive Disclosure](docs/02-context-engineering/progressive-disclosure.md)
-5. [Componentes del agente](docs/03-componentes-del-agente/system-prompt.md)
-6. [Tools y Tool Retrieval](docs/04-tools/tools.md)
-7. [MCP](docs/05-mcp/introduccion.md)
-8. [Ejemplo de Power BI y Fabric](docs/06-ejemplos/power-bi-fabric.md)
+1. [Qué es un agente](docs/00-introduccion/que-es-un-agente.md)
+2. [Actores y responsabilidades](docs/00-introduccion/actores-y-responsabilidades.md)
+3. [Context Engineering](docs/01-context-engineering/introduccion.md)
+4. [Componentes del agente](docs/02-componentes/system-prompt.md)
+5. [Tools y Tool Calling](docs/03-tools/que-es-una-tool.md)
+6. [Upfront, Retrieval y estrategia híbrida](docs/03-tools/tool-retrieval.md)
+7. [MCP e integraciones](docs/04-integraciones/mcp-introduccion.md)
+8. [Ejemplo Power BI / Fabric](docs/05-ejemplos/power-bi-fabric.md)
 
-## Contenidos
+## Índice completo
 
-### Fundamentos
+### Introducción
 
-- [Agentes y Agent Loop](docs/01-fundamentos/agentes.md)
-- [Tools y Tool Calling](docs/01-fundamentos/tool-calling.md)
+- [Qué es un agente y Agent Loop](docs/00-introduccion/que-es-un-agente.md)
+- [Actores y responsabilidades](docs/00-introduccion/actores-y-responsabilidades.md)
 
 ### Context Engineering
 
-- [Static Context](docs/02-context-engineering/static-context.md)
-- [Dynamic Context](docs/02-context-engineering/dynamic-context.md)
-- [Progressive Disclosure](docs/02-context-engineering/progressive-disclosure.md)
-- [Context Window y atención efectiva](docs/02-context-engineering/context-window.md)
+- [Introducción](docs/01-context-engineering/introduccion.md)
+- [Context Window y atención efectiva](docs/01-context-engineering/context-window.md)
+- [Static Context](docs/01-context-engineering/static-context.md)
+- [Dynamic Context](docs/01-context-engineering/dynamic-context.md)
+- [Progressive Disclosure](docs/01-context-engineering/progressive-disclosure.md)
 
 ### Componentes del agente
 
-- [System Prompt](docs/03-componentes-del-agente/system-prompt.md)
-- [AGENTS.md](docs/03-componentes-del-agente/agents-md.md)
-- [Commands](docs/03-componentes-del-agente/commands.md)
-- [Skills](docs/03-componentes-del-agente/skills.md)
+- [System Prompt](docs/02-componentes/system-prompt.md)
+- [AGENTS.md](docs/02-componentes/agents-md.md)
+- [Skills](docs/02-componentes/skills.md)
+- [Commands](docs/02-componentes/commands.md)
 
 ### Tools
 
-- [Tools](docs/04-tools/tools.md)
-- [Tool Definitions Upfront](docs/04-tools/tool-definitions-upfront.md)
-- [Tool Retrieval](docs/04-tools/tool-retrieval.md)
-- [Filesystem Retrieval](docs/04-tools/filesystem-retrieval.md)
-- [Estrategia híbrida](docs/04-tools/estrategia-hibrida.md)
+- [Qué es una Tool](docs/03-tools/que-es-una-tool.md)
+- [Tool Calling](docs/03-tools/tool-calling.md)
+- [Tool Definitions Upfront](docs/03-tools/tool-definitions-upfront.md)
+- [Tool Retrieval](docs/03-tools/tool-retrieval.md)
+- [Filesystem Retrieval](docs/03-tools/filesystem-retrieval.md)
+- [Estrategia híbrida](docs/03-tools/estrategia-hibrida.md)
 
-### MCP
+### Integraciones
 
-- [Introducción a MCP](docs/05-mcp/introduccion.md)
-- [Configuración](docs/05-mcp/configuracion.md)
-- [Credenciales](docs/05-mcp/credenciales.md)
-- [MCP vs Tool Retrieval](docs/05-mcp/mcp-vs-tool-retrieval.md)
+- [MCP — Model Context Protocol](docs/04-integraciones/mcp-introduccion.md)
+- [Configuración](docs/04-integraciones/configuracion.md)
+- [Credenciales](docs/04-integraciones/credenciales.md)
+- [MCP vs Tool Retrieval](docs/04-integraciones/mcp-vs-tool-retrieval.md)
 
 ### Ejemplos
 
-- [Power BI y Fabric](docs/06-ejemplos/power-bi-fabric.md)
+- [Power BI y Fabric](docs/05-ejemplos/power-bi-fabric.md)
 
 ## Idea central
 
@@ -60,5 +62,6 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 ## Convenciones
 
 - Los nombres de archivo están en minúsculas y usan kebab-case.
+- La numeración de carpetas indica el orden conceptual; los títulos no llevan numeración manual.
 - Cada documento trata un tema concreto y enlaza con los temas relacionados.
 - Los ejemplos específicos de Power BI se mantienen separados de los fundamentos generales.

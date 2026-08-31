@@ -2,7 +2,7 @@
 
 Protocolo para conectar agentes con herramientas y fuentes externas de forma estandarizada.
 
-# 15. MCP — Model Context Protocol
+## MCP — Model Context Protocol
 
 MCP es un protocolo que permite conectar agentes con herramientas y fuentes externas de una forma estandarizada.
 
@@ -40,7 +40,7 @@ El desarrollador normalmente configura **el servidor MCP**, no cada una de sus T
 
 ---
 
-# 18. MCP y Tools
+## MCP y Tools
 
 Una distinción fundamental:
 

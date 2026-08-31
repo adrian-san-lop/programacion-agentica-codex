@@ -2,7 +2,7 @@
 
 Implementación de Tool Retrieval basada en definiciones almacenadas en archivos.
 
-# 24. Una implementación de Tool Retrieval: Filesystem Retrieval
+## Una implementación de Tool Retrieval: Filesystem Retrieval
 
 **Filesystem Retrieval** es una posible implementación de Retrieval utilizando archivos.
 
@@ -61,7 +61,7 @@ execute_dax(...)
 
 ---
 
-# 25. Filesystem Retrieval NO significa pasar sólo nombres
+## Filesystem Retrieval no significa pasar sólo nombres
 
 Una simplificación peligrosa sería:
 

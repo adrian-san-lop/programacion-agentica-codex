@@ -2,7 +2,7 @@
 
 Atajos reutilizables para lanzar prompts o workflows predefinidos.
 
-# 12. Commands
+## Definición
 
 Los **Commands** son atajos reutilizables que permiten lanzar prompts o workflows predefinidos.
 

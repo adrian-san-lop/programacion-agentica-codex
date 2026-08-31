@@ -2,7 +2,7 @@
 
 Patrón para cargar únicamente la información relevante cuando aparece la necesidad.
 
-# 8. Progressive Disclosure
+## Definición
 
 **Progressive Disclosure** consiste en no cargar toda la información desde el principio.
 

@@ -2,7 +2,7 @@
 
 Un agente combina un modelo de lenguaje, un orquestador y capacidades externas para alcanzar un objetivo.
 
-## 1. Agente
+## Agente
 
 Un **agente** es un sistema que utiliza un LLM como motor de razonamiento y que puede interactuar con su entorno mediante herramientas.
 
@@ -45,7 +45,7 @@ A este proceso iterativo se le suele llamar **Agent Loop**.
 
 ---
 
-# 2. Agent Loop
+## Agent Loop
 
 El **Agent Loop** es el ciclo mediante el cual el agente intenta conseguir un objetivo.
 

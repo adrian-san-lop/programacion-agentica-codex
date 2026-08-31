@@ -2,7 +2,7 @@
 
 Estrategia que proporciona al modelo las definiciones completas de las herramientas desde el inicio.
 
-# 20. Estrategia A — Tool Definitions Upfront
+## Estrategia A — Tool Definitions Upfront
 
 La estrategia más sencilla consiste en proporcionar al LLM las definiciones completas de todas las Tools desde el principio.
 

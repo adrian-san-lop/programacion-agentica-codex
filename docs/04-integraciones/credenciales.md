@@ -2,7 +2,7 @@
 
 Buenas prácticas para autenticar servidores MCP sin exponer secretos.
 
-# 17. MCP y credenciales
+## MCP y credenciales
 
 Un MCP puede necesitar autenticarse contra servicios externos.
 

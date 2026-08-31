@@ -16,6 +16,7 @@ Even when the user prompt is written in Spanish, all agent responses, documentat
 - `docs/`: functional and technical documentation.
 - `skills/`: specialized procedures.
 - `tools/`: catalogue of available or expected capabilities.
+- `.vscode/mcp.json`: local Power BI Modeling MCP registration.
 
 ## General rules
 
@@ -36,6 +37,14 @@ Even when the user prompt is written in Spanish, all agent responses, documentat
 5. Propose the change before applying it if results may change.
 6. Validate syntax and results.
 7. Document relevant decisions.
+
+## MCP connection workflow
+
+1. Read `docs/mcp-setup.md`.
+2. For live Desktop work, ensure the target PBIP is open in Power BI Desktop.
+3. Use `ConnectToPowerBIDesktop` for the live local model or `ConnectToPBIP` for definitions on disk.
+4. Start with read-only inspection.
+5. Require explicit approval before write operations.
 
 ## Report task workflow
 

@@ -2,7 +2,7 @@
 
 La configuración indica al cliente cómo conectarse a un servidor MCP.
 
-# 16. Configuración de un MCP
+## Configuración de un MCP
 
 Dependiendo del cliente, la configuración puede vivir en:
 

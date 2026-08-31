@@ -2,7 +2,7 @@
 
 Conocimiento e instrucciones especializadas que se cargan según el tipo de tarea.
 
-# 13. Skills
+## Definición
 
 Las **Skills** encapsulan conocimiento, instrucciones y workflows especializados.
 
@@ -60,7 +60,7 @@ Las Skills son una forma de **empaquetar conocimiento y workflows reutilizables*
 
 ---
 
-# 14. Skills y Progressive Disclosure
+## Skills y Progressive Disclosure
 
 No necesariamente queremos cargar todas las Skills completas desde el principio.
 

@@ -21,6 +21,7 @@ Context and operating template for using a local agent alongside a Power BI proj
 - `tools/`: expected capability catalogue.
 - `scripts/`: local validation scripts.
 - `.vscode/`: recommended text-editing settings.
+- `.vscode/mcp.json`: local Power BI Modeling MCP registration.
 
 ## Requirement
 
@@ -45,5 +46,6 @@ The agent can inspect and document the project, review DAX, and propose changes.
 - [DAX rules](docs/dax-rules.md)
 - [Data sources](docs/data-sources.md)
 - [Deployment](docs/deployment.md)
+- [Power BI MCP setup](docs/mcp-setup.md)
 - [DAX Skill](skills/dax/SKILL.md)
 - [Tools catalogue](tools/README.md)

@@ -2,7 +2,7 @@
 
 Instrucciones de alto nivel que definen el comportamiento general del agente.
 
-# 3. System Prompt
+## Definición
 
 El **System Prompt** contiene instrucciones de alto nivel que definen cómo debe comportarse el agente.
 

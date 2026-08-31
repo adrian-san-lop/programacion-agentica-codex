@@ -2,7 +2,7 @@
 
 Archivo de instrucciones persistentes para trabajar dentro de un proyecto.
 
-# 9. AGENTS.md
+## Propósito
 
 `AGENTS.md` contiene instrucciones persistentes sobre **cómo trabajar dentro de un proyecto**.
 
@@ -61,7 +61,7 @@ Esto permite aplicar **Progressive Disclosure**.
 
 ---
 
-# 10. AGENTS.md jerárquicos
+## AGENTS.md jerárquicos
 
 Los `AGENTS.md` pueden existir en diferentes niveles del árbol de un proyecto.
 

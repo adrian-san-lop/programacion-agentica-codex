@@ -2,7 +2,7 @@
 
 Capacidades concretas que el agente puede utilizar para interactuar con su entorno.
 
-# 4. Tools / Herramientas
+## Definición
 
 Las **Tools** son capacidades que el agente puede utilizar para interactuar con su entorno.
 

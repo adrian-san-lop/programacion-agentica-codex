@@ -2,7 +2,7 @@
 
 Información disponible de forma permanente o desde el inicio de una interacción.
 
-# 6. Static Context
+## Definición
 
 El **Static Context** es la información que se proporciona de forma habitual o desde el inicio de la interacción.
 

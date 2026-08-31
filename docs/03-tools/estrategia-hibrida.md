@@ -2,7 +2,7 @@
 
 Las herramientas frecuentes pueden cargarse upfront y las especializadas bajo demanda.
 
-# 23. Estrategia híbrida
+## Estrategia híbrida
 
 Upfront y Retrieval tampoco tienen por qué ser 100 % excluyentes.
 
@@ -56,7 +56,7 @@ consumo de contexto
 
 ---
 
-# 27. Tool Calling después de Upfront o Retrieval
+## Tool Calling después de Upfront o Retrieval
 
 Independientemente de cómo haya conocido la Tool el LLM:
 
@@ -112,7 +112,7 @@ Eso forma parte del **Agent Loop**.
 
 ---
 
-# 28. Resumen del ciclo completo de Tools
+## Resumen del ciclo completo de Tools
 
 La representación correcta es:
 

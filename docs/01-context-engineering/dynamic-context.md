@@ -2,7 +2,7 @@
 
 Información que se incorpora mientras progresa la interacción.
 
-# 7. Dynamic Context
+## Definición
 
 El **Dynamic Context** es la información que se incorpora conforme avanza la interacción.
 
@@ -88,7 +88,7 @@ Por ejemplo:
 ```text
 AGENTS.md
 
-"Para tareas DAX consultar docs/dax.md"
+"Para tareas DAX consultar Practical Example-PBIP/docs/dax-rules.md"
 
         ↓
 
@@ -96,7 +96,7 @@ Tarea DAX
 
         ↓
 
-read_file("docs/dax.md")
+read_file("Practical Example-PBIP/docs/dax-rules.md")
 ```
 
 Esto es un ejemplo de **Progressive Disclosure**.

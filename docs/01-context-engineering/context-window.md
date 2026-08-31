@@ -2,7 +2,7 @@
 
 La capacidad técnica de contexto no equivale a relevancia efectiva.
 
-# 11. Context Window vs atención efectiva
+## Context Window y atención efectiva
 
 ## Context Window
 
@@ -76,7 +76,7 @@ Cantidad correcta
 
 ---
 
-# 30. Context Engineering
+## Cómo se aplica
 
 Todos estos conceptos forman parte de algo más amplio:
 

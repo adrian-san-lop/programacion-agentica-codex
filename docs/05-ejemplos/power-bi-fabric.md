@@ -2,7 +2,7 @@
 
 Ejemplo completo de un agente especializado en proyectos pbip, DAX y modelos semánticos.
 
-# 29. Ejemplo Power BI / Fabric
+## Ejemplo Power BI / Fabric
 
 Supongamos que estamos creando un agente propio para trabajar con proyectos `.pbip`.
 
@@ -93,7 +93,7 @@ AGENTS.md
    │
    ├── Documentation Retrieval
    │       ↓
-   │     docs/dax.md
+   │     Practical Example-PBIP/docs/dax-rules.md
    │
    └── Tool Retrieval
            ↓
