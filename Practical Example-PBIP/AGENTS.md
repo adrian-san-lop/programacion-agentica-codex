@@ -16,7 +16,7 @@ Even when the user prompt is written in Spanish, all agent responses, documentat
 - `docs/`: functional and technical documentation.
 - `skills/`: specialized procedures.
 - `tools/`: catalogue of available or expected capabilities.
-- `.vscode/mcp.json`: local Power BI Modeling MCP registration.
+- `.vscode/`: optional VS Code workspace settings. The Power BI Modeling MCP server is provided by the installed extension and used by Codex.
 
 ## General rules
 

@@ -1,79 +1,83 @@
-# Power BI MCP setup
+# Configuración de Power BI MCP para Codex en VS Code
 
-## What this file does
+Esta guía describe el flujo utilizado en este proyecto: OpenAI Codex como agente dentro de VS Code y la extensión Microsoft Power BI Modeling MCP como servidor MCP local.
 
-`.vscode/mcp.json` registers Microsoft's Power BI Modeling MCP server for VS Code MCP-compatible clients.
-
-It does not contain credentials and it does not open Power BI Desktop automatically.
-
-## Prerequisites
-
-- Windows with Power BI Desktop installed.
-- Node.js and `npx` available on `PATH`.
-- VS Code with an MCP-compatible client, such as GitHub Copilot Chat.
-- The real PBIP project opened in Power BI Desktop when connecting to the live Desktop model.
-
-## Start the server
-
-1. Open the actual project root in VS Code.
-2. Ensure `.vscode/mcp.json` is present.
-3. Open the MCP server view or Command Palette.
-4. Start `powerbi-modeling-mcp`.
-5. Approve the server if VS Code asks for confirmation.
-
-The package is downloaded by `npx` on first use. Pin a tested package version instead of `latest` when reproducibility is required.
-
-## Connect to Power BI Desktop
-
-1. Open the real `accounting.pbip` in Power BI Desktop.
-2. Wait until the report and semantic model are fully loaded.
-3. Start the MCP server.
-4. In the agent chat, use the MCP prompt `ConnectToPowerBIDesktop` or ask:
-
-```text
-Connect to the Power BI Desktop instance for accounting.pbip and inspect the semantic model.
-```
-
-The server discovers the local Analysis Services instance used by the running Power BI Desktop session.
-
-## Connect to the PBIP files
-
-When the goal is to inspect the project definition on disk rather than the live Desktop instance, use the MCP prompt `ConnectToPBIP` or ask:
-
-```text
-Connect to the PBIP project in this workspace and inspect its semantic model definition.
-```
-
-This uses the local `*.SemanticModel/` files. It is different from connecting to the live model currently loaded by Power BI Desktop.
-
-## Connection modes
+## Componentes
 
 ```text
 VS Code
-  ↓
-Power BI Modeling MCP
-  ├── ConnectToPowerBIDesktop → live local model
-  └── ConnectToPBIP            → PBIP files on disk
+├── OpenAI Codex Extension
+│   └── agente y panel de conversación
+│
+└── Power BI Modeling MCP Server Extension
+    └── servidor MCP y Tools de Power BI
 ```
 
-## Smoke test
+No es necesario crear manualmente `config.toml`, `.vscode/mcp.json` ni registrar las Tools una por una. La extensión de Power BI proporciona el servidor y Codex lo utiliza desde su runtime.
 
-After connecting, ask:
+## Requisitos previos
+
+- Windows con Power BI Desktop instalado si se va a trabajar con un modelo local.
+- VS Code.
+- Extensión OpenAI Codex instalada y autenticada.
+- Extensión Microsoft Power BI Modeling MCP Server instalada y habilitada.
+- Un proyecto PBIP real cuando se vaya a trabajar con archivos o con su modelo abierto en Power BI Desktop.
+
+## Verificar la instalación
+
+1. Abrir la raíz real del proyecto PBIP en VS Code.
+2. Abrir el panel de Codex.
+3. Comprobar en las Tools disponibles que aparece `powerbi-modeling-mcp`.
+4. Si no aparece, reiniciar VS Code y comprobar que ambas extensiones están habilitadas.
+
+## Conectar con Power BI Desktop
+
+1. Abrir el archivo `.pbip` real en Power BI Desktop.
+2. Esperar a que el informe y el modelo semántico estén completamente cargados.
+3. En Codex, solicitar:
 
 ```text
-List the tables and measures available in the connected Accounting model.
+Conéctate a la instancia de Power BI Desktop de este proyecto e inspecciona el modelo semántico.
 ```
 
-Then test a read-only operation:
+El prompt MCP equivalente, si está disponible, es `ConnectToPowerBIDesktop`.
+
+## Conectar con los archivos PBIP
+
+Cuando el objetivo sea inspeccionar la definición almacenada en disco:
 
 ```text
-Show me the definition of the Gross Margin YTD measure. Do not modify anything.
+Conéctate al proyecto PBIP de este workspace e inspecciona la definición del modelo semántico.
 ```
 
-## Safety
+El prompt MCP equivalente es `ConnectToPBIP`. Esta conexión es diferente de la instancia viva cargada por Power BI Desktop.
 
-- Start with read-only inspection.
-- Keep Power BI Desktop open when using `ConnectToPowerBIDesktop`.
-- Do not use `--skipconfirmation`.
-- Review and approve write operations explicitly.
-- Keep `.pbi/localSettings.json` and `.pbi/cache.abf` out of source control.
+## Conectar con Fabric
+
+```text
+Conéctate al modelo semántico «Nombre del modelo» del workspace de Fabric «Nombre del workspace».
+```
+
+La conexión requiere que la cuenta de Codex tenga acceso al workspace y al modelo correspondiente.
+
+## Prueba de conexión
+
+Después de conectar, usar primero consultas de solo lectura:
+
+```text
+Lista las tablas y medidas disponibles en el modelo conectado.
+```
+
+```text
+Muestra la definición de la medida Gross Margin YTD. No modifiques nada.
+```
+
+## Seguridad y cambios
+
+- Comenzar siempre con operaciones de inspección.
+- Revisar y aprobar explícitamente cualquier operación de escritura.
+- No utilizar opciones que desactiven confirmaciones.
+- No almacenar credenciales, tokens o secretos en el repositorio.
+- Mantener fuera del control de versiones `.pbi/localSettings.json` y `.pbi/cache.abf`.
+
+Para ampliar la información, consulta la [guía general de configuración MCP](../../docs/04-integraciones/configuracion.md), la [documentación de la extensión Codex](https://developers.openai.com/codex/ide) y el [repositorio oficial de Power BI Modeling MCP](https://github.com/microsoft/powerbi-modeling-mcp).

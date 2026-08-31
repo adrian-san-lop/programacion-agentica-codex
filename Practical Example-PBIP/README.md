@@ -21,7 +21,7 @@ Context and operating template for using a local agent alongside a Power BI proj
 - `tools/`: expected capability catalogue.
 - `scripts/`: local validation scripts.
 - `.vscode/`: recommended text-editing settings.
-- `.vscode/mcp.json`: local Power BI Modeling MCP registration.
+- `.vscode/`: optional VS Code workspace settings. The Power BI Modeling MCP server is provided by the installed extension and used by Codex.
 
 ## Requirement
 
