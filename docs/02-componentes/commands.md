@@ -47,3 +47,9 @@ Cada agente o herramienta puede implementarlos de forma diferente.
 
 ---
 
+
+
+---
+
+[← Anterior](skills.md) · [Índice](../../README.md) · [Siguiente →](../03-tools/que-es-una-tool.md)
+

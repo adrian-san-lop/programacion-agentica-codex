@@ -56,6 +56,9 @@ consumo de contexto
 
 ---
 
+
+---
+
 ## Tool Calling después de Upfront o Retrieval
 
 Independientemente de cómo haya conocido la Tool el LLM:
@@ -164,4 +167,7 @@ La representación correcta es:
 ```
 
 ---
+
+
+[← Anterior](filesystem-retrieval.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/mcp-introduccion.md)
 

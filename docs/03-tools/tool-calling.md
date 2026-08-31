@@ -67,3 +67,9 @@ Por tanto:
 
 ---
 
+
+
+---
+
+[← Anterior](que-es-una-tool.md) · [Índice](../../README.md) · [Siguiente →](tool-definitions-upfront.md)
+

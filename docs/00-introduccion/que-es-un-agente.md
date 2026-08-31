@@ -43,6 +43,9 @@ A este proceso iterativo se le suele llamar **Agent Loop**.
 
 ---
 
+---
+
+
 ## Agent Loop
 
 El **Agent Loop** es el ciclo mediante el cual el agente intenta conseguir un objetivo.
@@ -102,4 +105,7 @@ Respuesta al usuario
 Si el resultado de una Tool no es suficiente, el LLM puede solicitar otra Tool y continuar el ciclo.
 
 ---
+
+
+[Índice](../../README.md) · [Siguiente →](actores-y-responsabilidades.md)
 

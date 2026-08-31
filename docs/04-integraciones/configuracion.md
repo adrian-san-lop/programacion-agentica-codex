@@ -47,3 +47,9 @@ MCP es el **protocolo**.
 
 ---
 
+
+
+---
+
+[← Anterior](mcp-introduccion.md) · [Índice](../../README.md) · [Siguiente →](credenciales.md)
+

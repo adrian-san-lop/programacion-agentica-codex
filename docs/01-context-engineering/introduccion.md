@@ -16,3 +16,9 @@ Context Engineering
 La ventana de contexto marca el límite técnico, pero no garantiza que todo lo incluido sea igualmente relevante. Por eso el objetivo no es cargarlo todo, sino controlar qué información entra, cuándo entra y durante cuánto tiempo permanece disponible.
 
 El resto de este capítulo explica esas tres piezas. Los capítulos de Componentes, Tools e Integraciones muestran cómo se aplican en un agente real.
+---
+
+
+---
+
+[← Anterior](../00-introduccion/actores-y-responsabilidades.md) · [Índice](../../README.md) · [Siguiente →](context-window.md)

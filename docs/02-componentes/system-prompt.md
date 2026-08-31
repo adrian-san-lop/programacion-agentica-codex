@@ -35,3 +35,9 @@ Dependiendo del runtime/API, las Tools pueden proporcionarse al modelo mediante 
 
 ---
 
+
+
+---
+
+[← Anterior](../01-context-engineering/progressive-disclosure.md) · [Índice](../../README.md) · [Siguiente →](agents-md.md)
+

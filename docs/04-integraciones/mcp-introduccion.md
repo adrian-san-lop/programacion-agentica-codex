@@ -40,6 +40,9 @@ El desarrollador normalmente configura **el servidor MCP**, no cada una de sus T
 
 ---
 
+
+---
+
 ## MCP y Tools
 
 Una distinción fundamental:
@@ -91,4 +94,7 @@ config.toml
 ```
 
 ---
+
+
+[← Anterior](../03-tools/estrategia-hibrida.md) · [Índice](../../README.md) · [Siguiente →](configuracion.md)
 

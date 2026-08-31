@@ -105,3 +105,9 @@ No cargamos todo desde el principio.
 
 ---
 
+
+
+---
+
+[← Anterior](../04-integraciones/mcp-vs-tool-retrieval.md) · [Índice](../../README.md)
+

@@ -32,6 +32,9 @@ otros datos
 
 ---
 
+---
+
+
 ## Atención efectiva
 
 Que algo quepa dentro de la ventana de contexto **no significa que todo sea igualmente relevante para el modelo**.
@@ -146,4 +149,7 @@ Todo converge en:
 ```
 
 ---
+
+
+[← Anterior](introduccion.md) · [Índice](../../README.md) · [Siguiente →](static-context.md)
 

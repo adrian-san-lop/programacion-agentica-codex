@@ -60,6 +60,9 @@ Las Skills son una forma de **empaquetar conocimiento y workflows reutilizables*
 
 ---
 
+
+---
+
 ## Skills y Progressive Disclosure
 
 No necesariamente queremos cargar todas las Skills completas desde el principio.
@@ -97,4 +100,7 @@ skills/report-design/SKILL.md
 Esto es nuevamente **Progressive Disclosure**.
 
 ---
+
+
+[← Anterior](agents-md.md) · [Índice](../../README.md) · [Siguiente →](commands.md)
 

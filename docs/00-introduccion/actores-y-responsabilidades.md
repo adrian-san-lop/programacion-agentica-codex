@@ -22,3 +22,9 @@ Runtime / orquestador
 - **MCP Server**: servidor que expone Tools u otros recursos mediante MCP.
 
 La separación es conceptual: un producto concreto puede agrupar varias de estas funciones bajo el nombre de agente o cliente.
+---
+
+
+---
+
+[← Anterior](que-es-un-agente.md) · [Índice](../../README.md) · [Siguiente →](../01-context-engineering/introduccion.md)

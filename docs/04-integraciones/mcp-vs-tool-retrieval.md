@@ -44,3 +44,9 @@ La estrategia utilizada para proporcionar esas Tools al LLM depende del runtime/
 
 ---
 
+
+
+---
+
+[← Anterior](credenciales.md) · [Índice](../../README.md) · [Siguiente →](../05-ejemplos/power-bi-fabric.md)
+

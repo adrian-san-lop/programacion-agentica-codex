@@ -61,6 +61,9 @@ execute_dax(...)
 
 ---
 
+
+---
+
 ## Filesystem Retrieval no significa pasar sólo nombres
 
 Una simplificación peligrosa sería:
@@ -106,4 +109,7 @@ La idea importante es:
 > Descubrir primero qué Tool es relevante y cargar después la información detallada necesaria para utilizarla.
 
 ---
+
+
+[← Anterior](tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](estrategia-hibrida.md)
 

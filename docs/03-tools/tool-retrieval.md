@@ -86,6 +86,9 @@ Dynamic Context
 
 ---
 
+
+---
+
 ## Upfront vs Retrieval
 
 Las dos estrategias son alternativas:
@@ -135,4 +138,7 @@ A → B → Tool Call
 ```
 
 ---
+
+
+[← Anterior](tool-definitions-upfront.md) · [Índice](../../README.md) · [Siguiente →](filesystem-retrieval.md)
 

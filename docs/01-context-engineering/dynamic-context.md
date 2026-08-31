@@ -21,6 +21,9 @@ Usuario → Agente
 
 ---
 
+---
+
+
 ## Tool Results
 
 Resultados obtenidos mediante herramientas:
@@ -102,4 +105,7 @@ read_file("Practical Example-PBIP/docs/dax-rules.md")
 Esto es un ejemplo de **Progressive Disclosure**.
 
 ---
+
+
+[← Anterior](static-context.md) · [Índice](../../README.md) · [Siguiente →](progressive-disclosure.md)
 

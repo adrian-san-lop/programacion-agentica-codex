@@ -82,3 +82,9 @@ más Static Context
 
 ---
 
+
+
+---
+
+[← Anterior](tool-calling.md) · [Índice](../../README.md) · [Siguiente →](tool-retrieval.md)
+
