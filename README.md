@@ -39,6 +39,7 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 - [Qué es una Tool](docs/03-tools/que-es-una-tool.md)
 - [Tool Calling](docs/03-tools/tool-calling.md)
+- [Mediación de Tools, proxies y gateways](docs/03-tools/mediacion-de-tools.md)
 - [Tool Definitions Upfront](docs/03-tools/tool-definitions-upfront.md)
 - [Tool Retrieval](docs/03-tools/tool-retrieval.md)
 - [Filesystem Retrieval](docs/03-tools/filesystem-retrieval.md)

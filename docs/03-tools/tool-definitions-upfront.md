@@ -86,5 +86,5 @@ más Static Context
 
 ---
 
-[← Anterior](tool-calling.md) · [Índice](../../README.md) · [Siguiente →](tool-retrieval.md)
+[← Anterior](mediacion-de-tools.md) · [Índice](../../README.md) · [Siguiente →](tool-retrieval.md)
 
