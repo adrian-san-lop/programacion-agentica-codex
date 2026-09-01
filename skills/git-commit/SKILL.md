@@ -1,50 +1,62 @@
 ---
 name: git-commit
-description: Reviews, selects, and commits repository changes using a consistent Conventional Commits message.
+description: Safely reviews and commits repository changes using Conventional Commits. Use when the user asks to review changes, prepare a commit, or create a local Git commit.
 ---
 
 # Git commit workflow
 
-Use this Skill when the user asks to review changes, prepare a commit, or automate the `status -> add -> commit` workflow.
-
-## Required workflow
-
-1. Run `git status --short` and review the diff, including both unstaged and staged changes.
-
-2. Separate unrelated changes. Do not include secrets, generated files, or user changes that do not belong to the task.
-
-3. Run `git diff --check` and fix any errors before committing.
-
-4. Propose a short message using the Conventional Commits format:
-
-   `type(scope): description`
-
-   Common types: `feat`, `fix`, `docs`, `refactor`, `test`, and `chore`.
-
-5. Use the repository script to select the files and create the commit:
+1. Inspect the repository:
 
    ```powershell
-   .\scripts\commit.ps1 -Message "docs: update agentic programming documentation" -Path README.md,docs/02-componentes/commands.md
+   git status --short
+   git branch --show-current
+   git diff
+   git diff --cached
    ```
 
-   To include all changes visible in `status`, only if the user has explicitly approved it:
+2. Commit only one logical change. Exclude unrelated, generated, or potentially sensitive files.
+
+3. Run:
 
    ```powershell
-   .\scripts\commit.ps1 -Message "docs: update course notes" -All
+   git diff --check
    ```
 
-6. Before committing, show a summary of the staged files and ask for confirmation if the user has not explicitly requested the commit to be created.
+   Do not commit if validation fails.
 
-7. After the commit, run `git status --short` and report the commit hash or the first line of the commit.
+4. Generate a Conventional Commit message:
 
-## Safety rules
+   ```text
+   type(scope): description
+   ```
 
-- Do not use `git add .` blindly. The script requires explicit paths or the deliberate `-All` option.
+   Prefer `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf`.
 
-- Do not use `git commit --no-verify`, `--amend`, or history rewriting unless explicitly requested.
+5. Before committing, verify the exact files to include and summarize them to the user.
 
-- Do not mix changes from multiple tasks in the same commit.
+6. Use the repository script for staging and committing:
 
-- If the user cancels, clearly state what remains staged so they can review or undo it manually.
+   ```powershell
+   .\scripts\commit.ps1 -Message "<message>" -Path <paths>
+   ```
 
-This Skill defines the workflow criteria; `scripts/commit.ps1` performs the mechanical Git operations.
+   Use `-All` only when the user explicitly approves all current changes.
+
+7. After committing, run:
+
+   ```powershell
+   git status --short
+   git log -1 --oneline
+   ```
+
+## Safety
+
+- Never commit secrets or credentials.
+- Never blindly use `git add .`.
+- Never mix unrelated changes.
+- Never use `--no-verify`, `--amend`, history rewriting, force push, or destructive Git commands unless explicitly requested.
+- Do not create or switch branches, push, merge, rebase, or create pull requests in this Skill.
+- If the repository is in the middle of a merge, rebase, or cherry-pick, stop and report it.
+- If direct commits are forbidden on the current branch, stop and report it.
+
+`SKILL.md` defines the workflow and safety criteria. `scripts/commit.ps1` performs the mechanical staging and commit operations.
