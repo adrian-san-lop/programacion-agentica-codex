@@ -4,27 +4,9 @@ Esta guía reúne el flujo completo para descubrir, cargar y ejecutar Tools cuan
 
 ## 1. Flujo canónico
 
-Un agente no ejecuta directamente una Tool porque el usuario la mencione. El runtime y el modelo colaboran en varias fases:
+Un agente no ejecuta directamente una Tool porque el usuario la mencione. El runtime y el modelo colaboran en varias fases. El siguiente diagrama resume el flujo completo:
 
-```text
-Usuario
-  ↓ petición
-Agente / runtime de Codex
-  ↓ contexto inicial y Tools disponibles
-Modelo
-  ↓ decide si necesita una Tool
-Agente descubre o selecciona la Tool
-  ↓ catálogo ligero o definición completa
-Modelo genera una Tool Call
-  ↓ nombre + argumentos
-Agente valida la llamada
-  ↓ permisos, schema y política
-MCP / CLI / sistema externo
-  ↓ resultado
-Agente devuelve el resultado al modelo
-  ↓ nueva iteración o respuesta final
-Usuario
-```
+![Flujo canónico de ejecución de Tools en Codex para VS Code](../../assets/images/tools/codex-tools-flow.png)
 
 La decisión del modelo no equivale a la ejecución. El agente o runtime es responsable de aplicar permisos, validar argumentos y ejecutar la operación autorizada.
 

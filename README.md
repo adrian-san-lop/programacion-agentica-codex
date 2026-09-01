@@ -93,3 +93,4 @@ El script muestra el resumen staged y solicita confirmación antes de crear el c
 - La numeración de carpetas indica el orden conceptual; los títulos no llevan numeración manual.
 - Cada documento trata un tema concreto y enlaza con los temas relacionados.
 - Los ejemplos específicos de Power BI se mantienen separados de los fundamentos generales.
+- Los recursos compartidos se almacenan en `assets/`; las imágenes se organizan por área dentro de `assets/images/`.
