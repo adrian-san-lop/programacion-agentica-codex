@@ -10,8 +10,9 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 4. [Componentes del agente](docs/02-componentes/system-prompt.md)
 5. [Tools y Tool Calling](docs/03-tools/que-es-una-tool.md)
 6. [Mediación, Upfront, Retrieval y estrategia híbrida](docs/03-tools/mediacion-de-tools.md)
-7. [MCP e integraciones](docs/04-integraciones/mcp-introduccion.md)
-8. [Ejemplo Power BI / Fabric](docs/05-ejemplos/power-bi-fabric.md)
+7. [Guía práctica de Tools en Codex para VS Code](docs/03-tools/guia-practica-tools-en-codex.md)
+8. [MCP e integraciones](docs/04-integraciones/mcp-introduccion.md)
+9. [Ejemplo Power BI / Fabric](docs/05-ejemplos/power-bi-fabric.md)
 
 ## Índice completo
 
@@ -46,6 +47,7 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 - [Tool Search](docs/03-tools/tool-search.md)
 - [MCP vs CLI](docs/03-tools/mcp-vs-cli.md)
 - [Estrategia híbrida](docs/03-tools/estrategia-hibrida.md)
+- [Guía práctica de Tools en Codex para VS Code](docs/03-tools/guia-practica-tools-en-codex.md)
 
 ### Integraciones
 
