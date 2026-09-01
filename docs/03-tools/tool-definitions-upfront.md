@@ -80,6 +80,10 @@ Tool Definitions Upfront
 más Static Context
 ```
 
+Este es el enfoque tradicional: el runtime proporciona al modelo las definiciones de Tools junto con la petición. No implica necesariamente que estén escritas literalmente dentro del System Prompt; normalmente se envían como una parte estructurada de la solicitud.
+
+Cuando el catálogo crece, las definiciones pueden contribuir al **context rot**: ocupan contexto aunque no sean relevantes para la tarea actual y pueden dificultar la selección correcta de una Tool.
+
 ---
 
 

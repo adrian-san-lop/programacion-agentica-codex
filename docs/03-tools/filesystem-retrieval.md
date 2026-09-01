@@ -108,8 +108,28 @@ La idea importante es:
 
 > Descubrir primero qué Tool es relevante y cargar después la información detallada necesaria para utilizarla.
 
+## Aplicación más allá de las Tools
+
+El mismo patrón sirve para documentación técnica y conocimiento de negocio. En lugar de añadir todas las métricas, notas de reuniones o decisiones de producto al contexto inicial, se pueden organizar en archivos recuperables:
+
+```text
+business_metrics/
+├── ventas.md
+├── retención.md
+├── pipeline.md
+└── definiciones.md
+```
+
+El agente puede buscar términos relevantes, leer sólo los archivos necesarios y utilizarlos para planificar o responder. La jerarquía, los nombres y las descripciones deben ser consistentes para que la recuperación sea fiable.
+
+## Comparación con Cursor
+
+Cursor ha documentado un mecanismo propio que sincroniza descripciones de Tools MCP en archivos agrupados por servidor y utiliza búsquedas sobre esos archivos. Es una implementación de Cursor, no una capacidad que deba atribuirse automáticamente a Codex.
+
+Lo que sí es portable a Codex es el patrón: mantener un catálogo ligero y recuperar la definición completa sólo cuando el runtime disponga de una ruta clara para hacerlo. Si Codex no ofrece ese mecanismo integrado, puede implementarse mediante Skills, Tools de filesystem o un gateway propio.
+
 ---
 
 
-[← Anterior](tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](estrategia-hibrida.md)
+[← Anterior](tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](tool-search.md)
 

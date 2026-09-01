@@ -169,5 +169,5 @@ La representación correcta es:
 ---
 
 
-[← Anterior](filesystem-retrieval.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/mcp-introduccion.md)
+[← Anterior](mcp-vs-cli.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/mcp-introduccion.md)
 

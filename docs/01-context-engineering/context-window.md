@@ -63,6 +63,19 @@ Más contexto
 Mejor resultado
 ```
 
+## Context rot
+
+**Context rot** describe la degradación práctica que aparece cuando el contexto acumula información irrelevante, repetida o antigua. Aunque los tokens sigan cabiendo técnicamente, aumenta el ruido y puede empeorar la selección de Tools, la interpretación de instrucciones y la calidad de la respuesta.
+
+Sus causas habituales son:
+
+- Muchos schemas de Tools que no participan en la tarea.
+- Resultados extensos de llamadas anteriores.
+- Documentación duplicada o contradictoria.
+- Historial que conserva detalles que ya no son relevantes.
+
+Las soluciones son reducir el contexto estático, recuperar información bajo demanda, resumir resultados y separar conocimiento estable de datos de la ejecución actual.
+
 Lo que buscamos es:
 
 ```text

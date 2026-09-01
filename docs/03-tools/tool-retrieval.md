@@ -8,6 +8,18 @@ Estrategia para descubrir y cargar únicamente las herramientas relevantes.
 
 Es una estrategia de presentación de Tools al modelo, no un protocolo de conexión. Puede aplicarse a Tools locales, APIs o Tools expuestas por un servidor MCP.
 
+## Tres enfoques para presentar Tools
+
+La evolución habitual puede resumirse así:
+
+| Enfoque | Qué recibe inicialmente el modelo | Coste principal |
+|---|---|---|
+| Tradicional / upfront | Todas las definiciones completas y sus schemas | Mucho contexto estático y más ruido |
+| Filesystem Retrieval | Catálogo o nombres recuperables desde archivos | Requiere búsqueda y lectura durante la sesión |
+| Tool Search | Catálogo consultable por el runtime o proveedor | Añade una fase de búsqueda y depende del runtime |
+
+El objetivo común es evitar que todas las definiciones compitan por la atención del modelo en cada tarea.
+
 El objetivo es proporcionar inicialmente suficiente información para descubrir qué capacidades existen, pero sin cargar necesariamente todas sus definiciones completas.
 
 Conceptualmente:
@@ -89,26 +101,20 @@ Dynamic Context
 
 ---
 
-## Upfront vs Retrieval
+## Comparación de enfoques
 
-Las dos estrategias son alternativas:
+Upfront, Filesystem Retrieval y Tool Search son estrategias diferentes para resolver el mismo problema. Pueden coexistir en una arquitectura híbrida.
 
 ```text
               ¿Cómo conoce el LLM las Tools?
                          │
-              ┌──────────┴──────────┐
-              │                     │
-              ▼                     ▼
-       ESTRATEGIA A           ESTRATEGIA B
-
-          Upfront               Retrieval
-
-     todas completas        descubrir primero
-      desde inicio          y cargar después
-
-              │                     │
-              └──────────┬──────────┘
-                         │
+              ┌──────────┼──────────┐
+              │          │          │
+              ▼          ▼          ▼
+           Upfront   Filesystem   Tool Search
+              │       Retrieval       │
+              │          │            │
+              └──────────┼────────────┘
                          ▼
                 LLM conoce la Tool
                          │
@@ -119,23 +125,7 @@ Las dos estrategias son alternativas:
                     Agent Loop
 ```
 
-Por tanto:
-
-```text
-A → Tool Call
-```
-
-o:
-
-```text
-B → Tool Call
-```
-
-NO:
-
-```text
-A → B → Tool Call
-```
+Después de cualquiera de ellas, el flujo es el mismo: el modelo recibe la definición necesaria, genera un Tool Call y el runtime lo valida y ejecuta.
 
 ---
 

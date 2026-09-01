@@ -104,6 +104,18 @@ read_file("Practical Example-PBIP/docs/dax-rules.md")
 
 Esto es un ejemplo de **Progressive Disclosure**.
 
+## Tool Search
+
+Cuando el runtime dispone de un catálogo especializado, puede buscar una Tool por intención y cargar su definición sólo después de encontrarla. Es otra forma de construir contexto dinámico, distinta de buscar manualmente archivos en el workspace.
+
+No debe darse por hecho que todos los clientes ofrecen la misma capacidad. En cada runtime hay que comprobar si la búsqueda pertenece al cliente, al proveedor del modelo o a una Tool explícita.
+
+## Carga durante la sesión
+
+El contexto dinámico se construye durante la sesión. Si se añade una Skill, un servidor o una nueva instrucción después de que el runtime haya inicializado la conversación, puede que no esté disponible en esa sesión. En ese caso hay que recargar la configuración o iniciar una nueva sesión, según el cliente.
+
+Esto explica algunos fallos aparentemente inexplicables: el archivo existe, pero no forma parte del contexto ni del catálogo que el runtime cargó al iniciar.
+
 ---
 
 

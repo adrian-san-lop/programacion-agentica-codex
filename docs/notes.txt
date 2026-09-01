@@ -1,0 +1,136 @@
+Teoría:
+Ahorrar tokens al usar MCPs: Tool Search y FileSystem Retrieval:
+
+3 principals sistemas o enfoques: Tradicional, Filesystem retrieval y Tool Search 
+- Tradicional:
+	Agent system prompt: le decimos cosas como tu eres un agente Avanzado de programador y la definition del servidor mcp que me da la lista json de toda las tools que tiene. Acaba con un listao de las herramientas que tiene. Esto es 	la mecanica que se repite indistintamente de lo que hablamos en todo el curso. Esa interlocución entre el agente y el LLM. El modelo puede ejecutar tools de mcp porque es el agente el que se lo ha inyectado en el system prompt. Al menos un "trailer" un detalle de lo que hay. Se repite en skills, tools, etc... Esta es la base. (Utiliza esta definición de mis notas más información contrastada de internet para genera runa major definicion, pero sin ser larga. 	Manten una definición concisa y clara. 
+	Se pone en formato json schema. Si usamos playwrite es muchisimo ==> llegamos al concepto CONTEXT ROT. Se llena de ruido, tokens que no aportan para la tarea en concreto. ==> Soluciones a continuación:
+
+- Filesystem retrieval:
+	Cursor propone filesystem retrieval (Ojo aqui, habla de cursor, analiza si es possible esto en codex). 
+	Agente le pasa al LLM (hace una petición) "How many users are registered in the database. ==> En foramto json schema le pasa el model_input: conversation role.. content y un static_context con el workspace_root (donde lo estamos usando, trabajando), available_tools (ahí se ve el postgres-mcp-execute_query con las herramientas como read_file, grep_search, etc…
+Cursor crea una carpeta por cada servidor mcp que tengas instalado en el agente de cursor y dentro de esa carpeta con el nombre del mcp crea un fichero .md por cad auna de la herramientas (tools) que expone ese MCP. Esas carpetas viven en nuestro local pero ocultas. Creadas/instaladas por cursor.  ==> Analiza esto para CODEX. NO USAMOS CURSOR. 
+	Es interesante para saber si lo hago en mi directorio o en directorios del workspace actual. 
+	Herramientas: read_file, grep_search ==> sale de las tools internas de cursor (agente). Solo se le pasa el nombre. Hablan de que el agente de cursor se lo pasa a Anysphere que es el servidor propio de cursor. En el servidor se llama al modelo que tengamos instalado (opus, etc). 
+Si una vez pasada la petición se añade a posteriori una skill.md como la de create_doc no la va a tener disponible porque ya se ha inicializado todo. Reiniciar para que pueda cargar todo y tenerlo en el contexto. Los tipicos errores vienen por ahi. 
+3 etapas: 
+- La aproximación para que el modelo sepa que dispone de ciertas herramientas ==> Te meto en el system promp el nombre de la herramienta como la descriptción => Se determina que e sun gasto brutal de tokens ==> deprecated.
+	-En la segunda aproximación se basa en filesystem retrieval. Se basa en lo que el agente le pide al modelo utilizando solo los nombres para que haga contexto dinámico. ==> ¿Como busca más info de esa herramienta? ==> Le pasamos semantic_search ==> En base a su inteligencia (la del LLM) de todas esas herramientas usa semantic_search porque me interesa que busques más info de la herramientas que tengo de postgress_mcp_execute_query. 
+	El modelo le devuelve al agente ==> Usame esta herramienta.
+	El agente entonces usa esa herramienta y el resultado el cual es: vale, existe esta herramienta, LLM Request => "Execute a SQL query against the configured PostgreSQL database"  se lo pasa al modelo. 
+	LLM Response: perfecto, el llm le responde al agente: tienes que buscar el fichero execute_query.md para ver que hay en ese contenido y que hacer. 
+	LLM Request (Agente): vale, ya tengo la herramienta y el path del fichero para saber que hacer, le pasa la descripción de la tarea al llm
+	LLM Response (Modelo): el modelo responde al agente, vale, usa esta tool con esta query concreta.Ejecuta esta herramienta.
+	
+	Repaso: 
+	-Elementos que interaccionan: Izda: agente. Dcha: Modelo. 
+	-Primero: prompt que le pasamos. Solo tenemos visiblidad de eso. El resto es transparente pero es importante entender como funciona para poder aplicar el contexto dinámico correctamente en los ficheros agents.md, skills.md, etc… Aplicar bien el filesystem retrieval. 
+	Agente pregunta por cuantos usuarios hay en la bbdd ==> LLM responde: espera, hay una tool que me ayuda a hacer consultas en bbdd asi que le dice al agente que la ejecute y dime que contiene. 
+	-Segunda peticion: agente le dice: he buscado entre el execute_query y estas son las herramientas que coinciden con lo que me pides. El LLM le responde, de todas estas debes usar esta concreta. (mcp-execute_query)
+	-Tercdera peticion: agente le dice aqui tienes todo el contrato de esta tool concreta asi que ya puedes invocarla en el modelo. El modelo le responde con lo que debe ejecutar conretamente sobre esa tool al agente. 
+	-Ultima petición: el agente le manda la query concreta para que el modelo la lance sobre la bbdd y el LLM le responde en formato print(Tienes 123 usuarios registrados).
+	
+	Dos links que debes entrar y analizar que añaden mas contexto a lo mencionado sobre cursor:
+- Descubrimiento dinámico de contexto · Cursor
+	-Búsqueda rápida con regex: indexación de texto para herramientas de agentes · Cursor
+	Este sistema de filesystem retrieval tiene un ahorro aproximado de 46.9% de tokens. Son json pequeños con poco texto y aplica el contexto dinamico. El porcentaje sale de las publicaciones oficiales que hicieron los de cursor. Estos descartaron la última opción que es Tool Search que veremos a continuación:
+	
+	
+	
+	NO APLICA PARA CODEX. ANALIZA ESTO PARA COMO SERIA EN CODEX (OpenAI)
+	
+- Tool Search: 
+Sigue siendo interesante. Ejemplo ahora con CLAUDE Code. Seguimos sin mirar sobre codex. Analiza todo lo que viene a continuación en este apartado para ver si aplica para codex. 
+Claude Code ==> Server 1 (LLM) ==> Server 2 (Tools Servers de Anthropic))
+Misma petición: Cuanto usuarios tienes registrados en la bbdd?
+LLM Request: model, input (prompt de que necesitas y como debe actual (eres un avanzado agente de programación, etc…). Luego se le pasa también en el json un apartado de TOOLs pero este NO entra dentro del contexto. SOLO entra en lo de input. TOOLs no llega al modelo!!. 
+Agente ==> Pasa input a server 1 con tools pero este no lo ve ==> Server 1 pasa el apartado de tools a Server 2 (Tools Server) 
+Respuesta: Server 2 a server 1 responde que todo OK. Queda indexado. ==> Ahora el modelo, Server 1, hay alguna tool para generar esto?
+Server 1 pide a server 2: busca una tool para execute databae query..
+Server 2 responde que tiene mcp-execute_query
+Server 1 responde a nuestro agente (claude) usa mcp-execute_query con esta query SELECT….
+Agente lanza la query exacta de la tool concreta al LLM 
+LLM respone tras lanzar uqery sobre la bbdd: tienes 123 usuarios registrados. 
+
+Links de documentación oficial de Claude Code: Entra, analiza lo que dicen y ve si es necesario añadir algo a nuestros apuntes sobre esa docu oficial. 
+Introducing advanced tool use on the Claude Developer Platform \ Anthropic
+Tool search tool - Claude Platform Docs
+
+Según CLAUDE Code consigue una reducción del 79.5% de TOKEN. 
+
+Entonces, ¿por qué la gente de cursor lo descartó? Una se ejecuta en cliente y otra se ejecuta en servidor. Si cursor lo hiciera en servidor la reducción de tokens seria mayor. NO es comparable. Son analisis diferentes en herramientas diferentes. 
+
+
+
+
+
+Wrap: La lectura interesante es que el potencial de algo tan sencillo como filesystemretrieval es que algo muy interesante para el dominicio del contexto de negocio. Como por ejemplo, metricas de negocio, videollamadas a potenciales clientes, etc… Igual que se tiene la carpeta documentation se mete la carpeta business_metrics con todo sobre tu negocio y a la hora de planificar siguientes features, priorizar roadmap te sirve porque al final potencial de como estan entrenados lo smodelos hacen que ya sean muy buenos indexandos, leyendo esas bases de archivos en carpetas con una determinada jerarquia. 
+En lugar de meter todo de primeras se hace en diferentes ficheros y dentro de esos ficheros se puede hacer grep para bucar las palabras que importan y no cargar todo eso en el contexto, etc… Esto son ejemplos. 
+
+
+
+MCP vs CLI: Cuál es más óptimo
+
+Sí, correcto, con un matiz importante: CLI no es la Skill. La Skill le enseña al agente cómo y cuándo usar comandos CLI; el agente los ejecuta normalmente mediante su tool de shell/terminal.
+Para vuestro proyecto lo dejaría así:
+                    CODEX
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+      AGENTS.md      Skills      Tools
+                                  │
+                          ┌───────┴───────┐
+                          ▼               ▼
+                         MCP             CLI
+                          │               │
+                          ▼               ▼
+                   Power BI Live     Git / Scripts
+MCP de Power BI → todo lo que requiera interactuar con Power BI/modelo de forma estructurada: inspeccionar modelo semántico, consultar/crear/modificar medidas DAX, relaciones, tablas, ejecutar consultas DAX y otras operaciones que exponga el MCP. Si el MCP soporta edición de elementos de informe/visuales, también podría hacerse por ahí; no daría por hecho que cualquier operación visual está soportada sin comprobar las tools disponibles.
+CLI → operaciones naturales de terminal alrededor del proyecto: git status, git diff, git add, git commit, ejecutar validadores, scripts propios, tests, convertir archivos, etc.
+Y Skills pueden estandarizar ambos workflows.
+Por ejemplo, una Skill de Git:
+# Commit changes
+
+1. Run `git status`.
+2. Review changes with `git diff`.
+3. Never include unrelated files.
+4. Generate a Conventional Commit message.
+5. Commit only after validation succeeds.
+Codex ejecutaría:
+Skill
+ ↓
+git status
+ ↓
+git diff
+ ↓
+analiza cambios
+ ↓
+git add ...
+ ↓
+git commit ...
+Y una Skill DAX podría usar MCP, no CLI:
+Skill DAX
+ ↓
+inspecciona medida          ← MCP
+ ↓
+inspecciona relaciones      ← MCP
+ ↓
+propone/realiza cambio      ← MCP
+ ↓
+ejecuta DAX para validar    ← MCP
+ ↓
+git diff                    ← CLI
+ ↓
+comprueba cambios PBIP
+Ese último ejemplo es especialmente potente porque MCP y CLI participan en el mismo Agent Loop.
+Y sobre tu ejemplo de /commit: también correcto conceptualmente, pero separaría Command y Skill:
+/commit
+= "quiero iniciar ahora este workflow"
+
+Skill de Git
+= "estas son las reglas y procedimiento para hacerlo bien"
+
+CLI
+= "estos son los comandos reales que puedo ejecutar"
+Así que una frase compacta para tus apuntes sería:
+	En un proyecto PBIP, el MCP permite al agente operar sobre Power BI y el modelo live; el CLI permite operar sobre el repositorio y el entorno local. Las Skills enseñan al agente el workflow correcto para utilizar unos u otros.
