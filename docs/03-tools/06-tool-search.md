@@ -59,4 +59,4 @@ Estas referencias sirven para comparar patrones. No describen el comportamiento 
 
 ---
 
-[← Anterior](filesystem-retrieval.md) · [Índice](../../README.md) · [Siguiente →](mcp-vs-cli.md)
+[← Anterior](05-filesystem-retrieval.md) · [Índice](../../README.md) · [Siguiente →](07-mcp-vs-cli.md)

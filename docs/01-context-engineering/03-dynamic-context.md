@@ -1,4 +1,4 @@
-﻿# Dynamic Context
+# Dynamic Context
 
 Información que se incorpora mientras progresa la interacción.
 
@@ -119,5 +119,5 @@ Esto explica algunos fallos aparentemente inexplicables: el archivo existe, pero
 ---
 
 
-[← Anterior](static-context.md) · [Índice](../../README.md) · [Siguiente →](progressive-disclosure.md)
+[← Anterior](02-static-context.md) · [Índice](../../README.md) · [Siguiente →](04-progressive-disclosure.md)
 

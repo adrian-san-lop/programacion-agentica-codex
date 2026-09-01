@@ -1,4 +1,4 @@
-﻿# Tool Calling
+# Tool Calling
 
 Cómo solicita el modelo una acción y cómo se ejecuta realmente.
 
@@ -71,5 +71,5 @@ Por tanto:
 
 ---
 
-[← Anterior](que-es-una-tool.md) · [Índice](../../README.md) · [Siguiente →](mediacion-de-tools.md)
+[← Anterior](00-que-es-una-tool.md) · [Índice](../../README.md) · [Siguiente →](02-mediacion-de-tools.md)
 

@@ -1,4 +1,4 @@
-﻿# Tool Definitions Upfront
+# Tool Definitions Upfront
 
 Estrategia que proporciona al modelo las definiciones completas de las herramientas desde el inicio.
 
@@ -90,5 +90,5 @@ Cuando el catálogo crece, las definiciones pueden contribuir al **context rot**
 
 ---
 
-[← Anterior](mediacion-de-tools.md) · [Índice](../../README.md) · [Siguiente →](tool-retrieval.md)
+[← Anterior](02-mediacion-de-tools.md) · [Índice](../../README.md) · [Siguiente →](04-tool-retrieval.md)
 

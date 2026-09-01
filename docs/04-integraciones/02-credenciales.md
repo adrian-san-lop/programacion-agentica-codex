@@ -1,4 +1,4 @@
-﻿# MCP y credenciales
+# MCP y credenciales
 
 Buenas prácticas para autenticar servidores MCP sin exponer secretos.
 
@@ -44,5 +44,5 @@ dependiendo del entorno.
 
 ---
 
-[← Anterior](configuracion.md) · [Índice](../../README.md) · [Siguiente →](mcp-vs-tool-retrieval.md)
+[← Anterior](01-configuracion.md) · [Índice](../../README.md) · [Siguiente →](03-mcp-vs-tool-retrieval.md)
 

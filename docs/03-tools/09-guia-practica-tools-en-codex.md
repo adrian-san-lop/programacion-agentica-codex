@@ -183,8 +183,8 @@ Para trabajar con Codex en VS Code:
 6. Pedir a Codex que compruebe las Tools disponibles antes de asumir que existe una capacidad.
 7. Revisar y validar cada Tool Call antes de permitir efectos externos.
 
-La configuración y los servidores MCP concretos de este proyecto se documentan en [Configuración de MCP en Codex para VS Code](../04-integraciones/configuracion.md).
+La configuración y los servidores MCP concretos de este proyecto se documentan en [Configuración de MCP en Codex para VS Code](../04-integraciones/01-configuracion.md).
 
 ---
 
-[← Anterior](estrategia-hibrida.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/mcp-introduccion.md)
+[← Anterior](08-estrategia-hibrida.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/00-mcp-introduccion.md)

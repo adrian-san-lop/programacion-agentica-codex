@@ -1,4 +1,4 @@
-﻿# Tool Retrieval
+# Tool Retrieval
 
 Estrategia para descubrir y cargar únicamente las herramientas relevantes.
 
@@ -130,5 +130,5 @@ Después de cualquiera de ellas, el flujo es el mismo: el modelo recibe la defin
 ---
 
 
-[← Anterior](tool-definitions-upfront.md) · [Índice](../../README.md) · [Siguiente →](filesystem-retrieval.md)
+[← Anterior](03-tool-definitions-upfront.md) · [Índice](../../README.md) · [Siguiente →](05-filesystem-retrieval.md)
 

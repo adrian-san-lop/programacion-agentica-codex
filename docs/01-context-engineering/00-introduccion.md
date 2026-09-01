@@ -21,4 +21,4 @@ El resto de este capítulo explica esas tres piezas. Los capítulos de Component
 
 ---
 
-[← Anterior](../00-introduccion/actores-y-responsabilidades.md) · [Índice](../../README.md) · [Siguiente →](context-window.md)
+[← Anterior](../00-introduccion/01-actores-y-responsabilidades.md) · [Índice](../../README.md) · [Siguiente →](01-context-window.md)

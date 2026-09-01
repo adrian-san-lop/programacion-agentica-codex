@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 Archivo de instrucciones persistentes para trabajar dentro de un proyecto.
 
@@ -113,5 +113,5 @@ CLAUDE.md
 ---
 
 
-[← Anterior](system-prompt.md) · [Índice](../../README.md) · [Siguiente →](skills.md)
+[← Anterior](00-system-prompt.md) · [Índice](../../README.md) · [Siguiente →](02-skills.md)
 

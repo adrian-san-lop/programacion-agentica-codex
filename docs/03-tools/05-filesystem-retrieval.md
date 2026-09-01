@@ -1,4 +1,4 @@
-﻿# Filesystem Retrieval
+# Filesystem Retrieval
 
 Implementación de Tool Retrieval basada en definiciones almacenadas en archivos.
 
@@ -131,5 +131,5 @@ Lo que sí es portable a Codex es el patrón: mantener un catálogo ligero y rec
 ---
 
 
-[← Anterior](tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](tool-search.md)
+[← Anterior](04-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](06-tool-search.md)
 

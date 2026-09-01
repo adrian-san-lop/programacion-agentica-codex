@@ -90,4 +90,4 @@ La documentación oficial de Codex describe la extensión IDE como la interfaz p
 
 ---
 
-[← Anterior](mcp-introduccion.md) · [Índice](../../README.md) · [Siguiente →](credenciales.md)
+[← Anterior](00-mcp-introduccion.md) · [Índice](../../README.md) · [Siguiente →](02-credenciales.md)

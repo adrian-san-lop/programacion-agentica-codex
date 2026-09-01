@@ -1,4 +1,4 @@
-﻿# MCP — Model Context Protocol
+# MCP — Model Context Protocol
 
 Protocolo para conectar agentes con herramientas y fuentes externas de forma estandarizada.
 
@@ -96,5 +96,5 @@ config.toml
 ---
 
 
-[← Anterior](../03-tools/estrategia-hibrida.md) · [Índice](../../README.md) · [Siguiente →](configuracion.md)
+[← Anterior](../03-tools/09-guia-practica-tools-en-codex.md) · [Índice](../../README.md) · [Siguiente →](01-configuracion.md)
 

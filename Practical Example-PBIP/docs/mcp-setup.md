@@ -80,4 +80,4 @@ Muestra la definición de la medida Gross Margin YTD. No modifiques nada.
 - No almacenar credenciales, tokens o secretos en el repositorio.
 - Mantener fuera del control de versiones `.pbi/localSettings.json` y `.pbi/cache.abf`.
 
-Para ampliar la información, consulta la [guía general de configuración MCP](../../docs/04-integraciones/configuracion.md), la [documentación de la extensión Codex](https://developers.openai.com/codex/ide) y el [repositorio oficial de Power BI Modeling MCP](https://github.com/microsoft/powerbi-modeling-mcp).
+Para ampliar la información, consulta la [guía general de configuración MCP](../../docs/04-integraciones/01-configuracion.md), la [documentación de la extensión Codex](https://developers.openai.com/codex/ide) y el [repositorio oficial de Power BI Modeling MCP](https://github.com/microsoft/powerbi-modeling-mcp).

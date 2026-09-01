@@ -1,4 +1,4 @@
-﻿# Context Window y atención efectiva
+# Context Window y atención efectiva
 
 La capacidad técnica de contexto no equivale a relevancia efectiva.
 
@@ -164,5 +164,5 @@ Todo converge en:
 ---
 
 
-[← Anterior](introduccion.md) · [Índice](../../README.md) · [Siguiente →](static-context.md)
+[← Anterior](00-introduccion.md) · [Índice](../../README.md) · [Siguiente →](02-static-context.md)
 

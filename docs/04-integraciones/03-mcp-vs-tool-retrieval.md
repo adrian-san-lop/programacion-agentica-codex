@@ -1,4 +1,4 @@
-﻿# MCP vs Tool Retrieval
+# MCP vs Tool Retrieval
 
 MCP describe la conexión y las capacidades; Tool Retrieval describe cómo se presentan al modelo.
 
@@ -48,5 +48,5 @@ La estrategia utilizada para proporcionar esas Tools al LLM depende del runtime/
 
 ---
 
-[← Anterior](credenciales.md) · [Índice](../../README.md) · [Siguiente →](../05-ejemplos/power-bi-fabric.md)
+[← Anterior](02-credenciales.md) · [Índice](../../README.md) · [Siguiente →](../05-ejemplos/00-power-bi-fabric.md)
 

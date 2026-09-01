@@ -27,4 +27,4 @@ La separación es conceptual: un producto concreto puede agrupar varias de estas
 
 ---
 
-[← Anterior](que-es-un-agente.md) · [Índice](../../README.md) · [Siguiente →](../01-context-engineering/introduccion.md)
+[← Anterior](00-que-es-un-agente.md) · [Índice](../../README.md) · [Siguiente →](../01-context-engineering/00-introduccion.md)

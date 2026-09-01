@@ -186,4 +186,4 @@ La auditoría debería permitir reconstruir la operación sin almacenar secretos
 
 ---
 
-[← Anterior](tool-calling.md) · [Índice](../../README.md) · [Siguiente →](tool-definitions-upfront.md)
+[← Anterior](01-tool-calling.md) · [Índice](../../README.md) · [Siguiente →](03-tool-definitions-upfront.md)

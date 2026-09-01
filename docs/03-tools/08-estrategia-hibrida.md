@@ -1,4 +1,4 @@
-﻿# Estrategia híbrida de Tools
+# Estrategia híbrida de Tools
 
 Las herramientas frecuentes pueden cargarse upfront y las especializadas bajo demanda.
 
@@ -169,5 +169,5 @@ La representación correcta es:
 ---
 
 
-[← Anterior](mcp-vs-cli.md) · [Índice](../../README.md) · [Siguiente →](guia-practica-tools-en-codex.md)
+[← Anterior](07-mcp-vs-cli.md) · [Índice](../../README.md) · [Siguiente →](09-guia-practica-tools-en-codex.md)
 

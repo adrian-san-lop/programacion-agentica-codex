@@ -77,4 +77,4 @@ La separación importante no es elegir uno para todo, sino asignar cada operaci�
 
 ---
 
-[← Anterior](tool-search.md) · [Índice](../../README.md) · [Siguiente →](estrategia-hibrida.md)
+[← Anterior](06-tool-search.md) · [Índice](../../README.md) · [Siguiente →](08-estrategia-hibrida.md)

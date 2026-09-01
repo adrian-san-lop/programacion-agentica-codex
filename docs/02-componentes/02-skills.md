@@ -1,4 +1,4 @@
-﻿# Skills
+# Skills
 
 Conocimiento e instrucciones especializadas que se cargan según el tipo de tarea.
 
@@ -102,5 +102,5 @@ Esto es nuevamente **Progressive Disclosure**.
 ---
 
 
-[← Anterior](agents-md.md) · [Índice](../../README.md) · [Siguiente →](commands.md)
+[← Anterior](01-agents-md.md) · [Índice](../../README.md) · [Siguiente →](03-commands.md)
 

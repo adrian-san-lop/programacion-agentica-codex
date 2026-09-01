@@ -1,4 +1,4 @@
-﻿# Static Context
+# Static Context
 
 Información disponible de forma permanente o desde el inicio de una interacción.
 
@@ -69,5 +69,5 @@ pero eso no significa que el contenido completo de `config.toml` se envíe al LL
 
 ---
 
-[← Anterior](context-window.md) · [Índice](../../README.md) · [Siguiente →](dynamic-context.md)
+[← Anterior](01-context-window.md) · [Índice](../../README.md) · [Siguiente →](03-dynamic-context.md)
 

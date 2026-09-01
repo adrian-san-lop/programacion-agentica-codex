@@ -1,4 +1,4 @@
-﻿# Commands
+# Commands
 
 Atajos reutilizables para lanzar prompts o workflows predefinidos.
 
@@ -55,7 +55,7 @@ En este repositorio, el flujo repetitivo de revisar cambios, seleccionar archivo
 Desde la raíz del repositorio se puede ejecutar así:
 
 ```powershell
-.\scripts\commit.ps1 -Message "docs: update commands documentation" -Path docs/02-componentes/commands.md
+.\scripts\commit.ps1 -Message "docs: update commands documentation" -Path docs/02-componentes/03-commands.md
 ```
 
 La opción `-All` equivale a seleccionar todos los cambios actuales, incluidas las eliminaciones, y requiere revisar antes el `git status`:
@@ -72,5 +72,5 @@ No se asume que `/commit` exista como comando slash universal en Codex. La forma
 
 ---
 
-[← Anterior](skills.md) · [Índice](../../README.md) · [Siguiente →](../03-tools/que-es-una-tool.md)
+[← Anterior](02-skills.md) · [Índice](../../README.md) · [Siguiente →](../03-tools/00-que-es-una-tool.md)
 

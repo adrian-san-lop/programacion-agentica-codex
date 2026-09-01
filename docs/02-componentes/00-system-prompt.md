@@ -1,4 +1,4 @@
-﻿# System Prompt
+# System Prompt
 
 Instrucciones de alto nivel que definen el comportamiento general del agente.
 
@@ -39,5 +39,5 @@ Dependiendo del runtime/API, las Tools pueden proporcionarse al modelo mediante 
 
 ---
 
-[← Anterior](../01-context-engineering/progressive-disclosure.md) · [Índice](../../README.md) · [Siguiente →](agents-md.md)
+[← Anterior](../01-context-engineering/04-progressive-disclosure.md) · [Índice](../../README.md) · [Siguiente →](01-agents-md.md)
 

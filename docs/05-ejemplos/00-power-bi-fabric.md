@@ -1,4 +1,4 @@
-﻿# Ejemplo: Power BI y Fabric
+# Ejemplo: Power BI y Fabric
 
 Ejemplo completo de un agente especializado en proyectos pbip, DAX y modelos semánticos.
 
@@ -109,5 +109,5 @@ No cargamos todo desde el principio.
 
 ---
 
-[← Anterior](../04-integraciones/mcp-vs-tool-retrieval.md) · [Índice](../../README.md)
+[← Anterior](../04-integraciones/03-mcp-vs-tool-retrieval.md) · [Índice](../../README.md)
 

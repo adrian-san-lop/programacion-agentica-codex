@@ -1,4 +1,4 @@
-﻿# Agentes
+# Qué es un agente y Agent Loop
 
 Un agente combina un modelo de lenguaje, un orquestador y capacidades externas para alcanzar un objetivo.
 
@@ -107,5 +107,5 @@ Si el resultado de una Tool no es suficiente, el LLM puede solicitar otra Tool y
 ---
 
 
-[Índice](../../README.md) · [Siguiente →](actores-y-responsabilidades.md)
+[Índice](../../README.md) · [Siguiente →](01-actores-y-responsabilidades.md)
 

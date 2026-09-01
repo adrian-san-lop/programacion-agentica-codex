@@ -1,4 +1,4 @@
-﻿# Tools
+# Qué es una Tool
 
 Capacidades concretas que el agente puede utilizar para interactuar con su entorno.
 
@@ -51,5 +51,5 @@ El LLM necesita conocer suficiente información sobre una Tool para poder solici
 
 ---
 
-[← Anterior](../02-componentes/commands.md) · [Índice](../../README.md) · [Siguiente →](tool-calling.md)
+[← Anterior](../02-componentes/03-commands.md) · [Índice](../../README.md) · [Siguiente →](01-tool-calling.md)
 
