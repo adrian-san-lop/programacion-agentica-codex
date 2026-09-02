@@ -2,8 +2,6 @@
 
 La capacidad técnica de contexto no equivale a relevancia efectiva.
 
-## Context Window y atención efectiva
-
 ## Context Window
 
 La **ventana de contexto** representa cuánta información puede manejar el modelo dentro de una inferencia.
