@@ -45,7 +45,8 @@ if (($branch -in @('main', 'dev')) -and -not $AllowProtectedBranch) {
 & git -C $repoRoot remote get-url origin *> $null
 if ($LASTEXITCODE -ne 0) { throw 'The remote origin is not configured.' }
 
-$upstream = (& git -C $repoRoot rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>$null).Trim()
+$upstreamOutput = @(& git -C $repoRoot rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>$null)
+$upstream = if ($upstreamOutput.Count -gt 0) { ([string]$upstreamOutput[0]).Trim() } else { '' }
 Write-Host "Branch: $branch"
 Write-Host 'Remote: origin'
 if ([string]::IsNullOrWhiteSpace($upstream)) {
