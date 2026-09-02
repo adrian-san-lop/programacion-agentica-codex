@@ -29,7 +29,13 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 23. [Configuración de MCP](docs/04-integraciones/01-configuracion.md)
 24. [MCP y credenciales](docs/04-integraciones/02-credenciales.md)
 25. [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
-26. [Ejemplo Power BI / Fabric](docs/05-ejemplos/00-power-bi-fabric.md)
+26. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
+27. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
+28. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
+29. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
+30. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
+31. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
+32. [Ejemplo Power BI / Fabric](docs/06-ejemplos/00-power-bi-fabric.md)
 
 ## Índice completo
 
@@ -73,9 +79,18 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 - [Credenciales](docs/04-integraciones/02-credenciales.md)
 - [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
 
+### Trabajo en equipo
+
+- [Introducción](docs/05-trabajo-en-equipo/00-introduccion.md)
+- [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
+- [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
+- [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
+- [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
+- [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
+
 ### Ejemplos
 
-- [Power BI y Fabric](docs/05-ejemplos/00-power-bi-fabric.md)
+- [Power BI y Fabric](docs/06-ejemplos/00-power-bi-fabric.md)
 
 ### Automatización del repositorio
 

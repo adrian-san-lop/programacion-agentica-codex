@@ -73,5 +73,7 @@ continuar
 
 ---
 
+Este patrón también organiza el trabajo colaborativo: `AGENTS.md` apunta a la documentación, las Skills cargan workflows específicos y los subagentes reciben solo el contexto necesario. Consulta [Trabajo en equipo](../05-trabajo-en-equipo/00-introduccion.md).
+
 [← Anterior](03-dynamic-context.md) · [Índice](../../README.md) · [Siguiente →](../02-componentes/00-system-prompt.md)
 

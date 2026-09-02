@@ -134,3 +134,23 @@ CLI
 = "estos son los comandos reales que puedo ejecutar"
 Así que una frase compacta para tus apuntes sería:
 	En un proyecto PBIP, el MCP permite al agente operar sobre Power BI y el modelo live; el CLI permite operar sobre el repositorio y el entorno local. Las Skills enseñan al agente el workflow correcto para utilizar unos u otros.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Trabajar en equipo:
+
+Cual es la mejor forma de hacerlo. ==> MCPs, Skills, sub-agents, documentation
+
+Se aboga por monorepositorio con carpeta docs y centralizar ahi la documentación. Usar agents.md con el arbol de donde se encuentran los ficheros .md de la docs.
+
+Solo pasaríamos a usar skills si la distribución un aspecto critico -> si no vamos a migrar un monorepo, pues tira millas con todos los repos y monta skills para distribuirlo.
+Y si hacemos git sub-modules? habrá fricciones para mantenerlo. Las skills lo recibe mejor al ser algo nuevo.
+
+A medida de que salen cosas nuevas de la skill debes ir al repo de la skill y hacer los cambios ahí.
+
+Carpeta de docs con todo y a funcionar dicen, mejor a nivel de rendimiento. Esto me gustaría que lo analizaras ya que hemos estado generando skills y me esta resultando complejo de entender los conceptos...
+
+docs es más fácil de descubrir para los humanos y la jerarquia puede tener dif. niveles de identación.
+
+Subagents: le metes demasiado contexto de primeras, se podría hacer progresive disclosure y dentro de agents le dices que tiene la carpeta docs y asi puede tener ahi tiene doc par que parezcan otros sub-agents
