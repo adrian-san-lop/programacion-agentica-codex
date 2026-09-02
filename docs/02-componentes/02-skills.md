@@ -102,5 +102,7 @@ Esto es nuevamente **Progressive Disclosure**.
 ---
 
 
+Cuando varias personas colaboran, conviene decidir si una Skill pertenece a este repositorio o si debe distribuirse de forma independiente. Consulta [Skills compartidas](../05-trabajo-en-equipo/03-skills-compartidas.md).
+
 [← Anterior](01-agents-md.md) · [Índice](../../README.md) · [Siguiente →](03-commands.md)
 

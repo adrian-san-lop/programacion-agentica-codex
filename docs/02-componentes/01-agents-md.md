@@ -113,5 +113,7 @@ CLAUDE.md
 ---
 
 
+En un equipo, este mapa ayuda a que personas, agentes y subagentes encuentren la misma información. Consulta [Monorepo y documentación](../05-trabajo-en-equipo/02-monorepo-y-documentacion.md).
+
 [← Anterior](00-system-prompt.md) · [Índice](../../README.md) · [Siguiente →](02-skills.md)
 

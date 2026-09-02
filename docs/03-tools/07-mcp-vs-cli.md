@@ -77,4 +77,6 @@ La separación importante no es elegir uno para todo, sino asignar cada operaci�
 
 ---
 
+Esta separación también facilita el trabajo en equipo: MCP resuelve la integración externa y CLI las operaciones del repositorio. Consulta [Flujo Git y pull requests](../05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md).
+
 [← Anterior](06-tool-search.md) · [Índice](../../README.md) · [Siguiente →](08-estrategia-hibrida.md)

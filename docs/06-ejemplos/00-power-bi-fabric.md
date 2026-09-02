@@ -109,5 +109,5 @@ No cargamos todo desde el principio.
 
 ---
 
-[← Anterior](../04-integraciones/03-mcp-vs-tool-retrieval.md) · [Índice](../../README.md)
+[← Anterior](../05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md) · [Índice](../../README.md)
 
