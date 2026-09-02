@@ -1,7 +1,5 @@
 # Qué es una Tool
 
-Capacidades concretas que el agente puede utilizar para interactuar con su entorno.
-
 ## Definición
 
 Las **Tools** son capacidades que el agente puede utilizar para interactuar con su entorno.
