@@ -81,6 +81,8 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 - [Skill de workflow Git](skills/git-commit/SKILL.md)
 - [Script seguro de commit](scripts/commit.ps1)
+- [Skill de ramas de documentación](skills/git-branch/SKILL.md)
+- [Script para crear ramas desde `dev`](scripts/new-branch.ps1)
 
 #### Cómo utilizarlo
 
@@ -99,6 +101,18 @@ Si has comprobado que todos los cambios del `git status` pertenecen a la misma t
 ```
 
 El script muestra el resumen staged y solicita confirmación antes de crear el commit. `-All` incluye también eliminaciones; úsalo solo después de revisar el estado.
+
+#### Flujo de ramas
+
+`main` contiene la versión estable, `dev` integra los cambios y cada tarea se desarrolla en una rama creada desde `dev`:
+
+```powershell
+git switch dev
+git pull --ff-only
+.\scripts\new-branch.ps1 -Name "docs/update-codex-guide"
+```
+
+La rama de trabajo se integra en `dev` mediante Pull Request. Después de validar `dev`, se crea otra Pull Request hacia `main`. El script exige un workspace limpio y no hace `push`, merge ni rebase automáticamente.
 
 ## Idea central
 
