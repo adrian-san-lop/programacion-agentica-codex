@@ -15,10 +15,11 @@ function Invoke-Git {
     }
 }
 
-$repoRoot = (& git rev-parse --show-toplevel 2>$null).Trim()
-if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($repoRoot)) {
+$repoRootOutput = @(& git rev-parse --show-toplevel 2>$null)
+if ($LASTEXITCODE -ne 0 -or $repoRootOutput.Count -eq 0) {
     throw 'The current directory is not inside a Git repository.'
 }
+$repoRoot = ([string]$repoRootOutput[0]).Trim()
 
 $status = @(& git -C $repoRoot status --porcelain)
 if ($LASTEXITCODE -ne 0) { throw 'Could not read the repository status.' }
