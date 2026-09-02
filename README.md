@@ -83,6 +83,8 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 - [Script seguro de commit](scripts/commit.ps1)
 - [Skill de ramas de documentación](skills/git-branch/SKILL.md)
 - [Script para crear ramas desde `dev`](scripts/new-branch.ps1)
+- [Skill para publicar ramas en GitHub](skills/git-push/SKILL.md)
+- [Script para hacer push a `origin`](scripts/push-origin.ps1)
 
 #### Cómo utilizarlo
 
@@ -113,6 +115,14 @@ git pull --ff-only
 ```
 
 La rama de trabajo se integra en `dev` mediante Pull Request. Después de validar `dev`, se crea otra Pull Request hacia `main`. El script exige un workspace limpio y no hace `push`, merge ni rebase automáticamente.
+
+Después de crear el commit local, publica la rama actual con:
+
+```powershell
+.\scripts\push-origin.ps1
+```
+
+El script configura el upstream en el primer push, solicita confirmación y no crea la Pull Request. Las ramas de trabajo se publican para abrir una Pull Request hacia `dev`; la promoción posterior de `dev` a `main` se realiza mediante otra Pull Request.
 
 ## Idea central
 
