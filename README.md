@@ -2,6 +2,8 @@
 
 Documentación sobre los conceptos, componentes y patrones utilizados para diseñar agentes basados en modelos de lenguaje.
 
+- [Roadmap y temas pendientes](ROADMAP.md)
+
 ## Ruta recomendada
 
 1. [Qué es un agente](docs/00-introduccion/00-que-es-un-agente.md)

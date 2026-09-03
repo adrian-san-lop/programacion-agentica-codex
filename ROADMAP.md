@@ -1,0 +1,180 @@
+# Roadmap de programación agéntica
+
+Este documento sirve para controlar qué conceptos del curso ya están documentados y qué temas quedan pendientes. No pretende sustituir a `docs/notes.txt`: las notas son el espacio de captura y este roadmap es el espacio de seguimiento.
+
+## Cómo utilizarlo
+
+Cuando aparezca una idea nueva:
+
+1. Anotarla primero en [`docs/notes.txt`](docs/notes.txt), manteniendo el contexto, enlaces y dudas originales.
+2. Añadirla a la tabla de pendientes de este documento si requiere investigación o una nueva explicación.
+3. Cuando se convierta en documentación estable, enlazar el documento resultante y cambiar su estado a `Cubierto`.
+4. Si la documentación sólo cubre una parte, mantenerla como `Parcial` y describir qué falta.
+
+Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en documentación hay que contrastar las afirmaciones dependientes del producto, del runtime o de la versión utilizada.
+
+## Estados
+
+- `Cubierto`: existe documentación suficiente y enlazada.
+- `Parcial`: existe una primera explicación, pero falta profundidad, ejemplos o verificación.
+- `Pendiente`: el tema está identificado, pero todavía no tiene documentación suficiente.
+- `Investigación`: requiere contrastar fuentes o comprobar el comportamiento real del runtime.
+- `Futuro`: útil para una fase posterior del curso.
+
+## Situación actual
+
+| Área | Estado | Documentación relacionada | Próximo paso |
+|---|---|---|---|
+| Qué es un agente y Agent Loop | Cubierto | [`docs/00-introduccion/00-que-es-un-agente.md`](docs/00-introduccion/00-que-es-un-agente.md) | Añadir un ejemplo ejecutable cuando comience la parte práctica |
+| Actores y responsabilidades | Cubierto | [`docs/00-introduccion/01-actores-y-responsabilidades.md`](docs/00-introduccion/01-actores-y-responsabilidades.md) | Mantener la separación entre LLM, runtime y agente |
+| Conceptos que se confunden | Cubierto | [`docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md`](docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md) | Revisar el documento cuando aparezcan nuevos términos |
+| Context Engineering | Cubierto | [`docs/01-context-engineering/`](docs/01-context-engineering/00-introduccion.md) | Conectar la teoría con un flujo real de recuperación |
+| Componentes del agente | Cubierto | [`docs/02-componentes/`](docs/02-componentes/00-system-prompt.md) | Mostrar cómo se combinan en una sesión completa |
+| Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Añadir implementación mínima y manejo de errores |
+| MCP e integraciones | Parcial | [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Verificar capacidades concretas de Codex y del servidor MCP usado |
+| Trabajo en equipo y Git | Cubierto | [`docs/05-trabajo-en-equipo/`](docs/05-trabajo-en-equipo/00-introduccion.md) | Mantenerlo separado de la teoría del agente |
+| Ejemplo Power BI / Fabric | Parcial | [`docs/06-ejemplos/00-power-bi-fabric.md`](docs/06-ejemplos/00-power-bi-fabric.md) | Desarrollar el ejemplo práctico paso a paso |
+
+## Pendientes prioritarios
+
+### 1. Primer ejemplo ejecutable
+
+**Estado:** Pendiente
+
+Crear un ejemplo pequeño, independiente de Power BI, que muestre:
+
+- una petición del usuario;
+- un modelo que propone una Tool Call;
+- un runtime que valida los argumentos;
+- una Tool sencilla, como una calculadora o lectura de datos;
+- el resultado que vuelve al modelo;
+- la condición de finalización del Agent Loop.
+
+El objetivo es que el lector pueda observar la mecánica completa antes de entrar en MCP, retrieval o Power BI.
+
+### 2. Del concepto a la implementación
+
+**Estado:** Pendiente
+
+Explicar con código o pseudocódigo cómo se construyen:
+
+- el bucle principal;
+- los mensajes y roles de una petición;
+- una definición con JSON Schema;
+- la validación de argumentos;
+- los resultados y errores de una Tool;
+- los reintentos, timeouts y límites de iteraciones;
+- la respuesta final y la cancelación.
+
+### 3. Diseño seguro de Tools
+
+**Estado:** Parcial
+
+Ampliar los documentos actuales con idempotencia, efectos secundarios, permisos, operaciones de solo lectura frente a escritura, aprobación humana, límites de argumentos y tratamiento de datos sensibles.
+
+### 4. Contexto y recuperación en profundidad
+
+**Estado:** Parcial
+
+Desarrollar, con un ejemplo trazable:
+
+- cómo se construye una petición real al modelo;
+- cómo se selecciona y ordena el contexto recuperado;
+- diferencias entre búsqueda por texto, búsqueda semántica e índices;
+- caché, compresión, resumen y caducidad del contexto;
+- memoria de sesión frente a memoria persistente;
+- cómo medir coste, latencia y calidad de la recuperación.
+
+### 5. Filesystem Retrieval y Tool Search en Codex
+
+**Estado:** Investigación
+
+Las notas contienen observaciones sobre Cursor y Claude Code. Hay que separar tres niveles antes de documentar más:
+
+1. el patrón general de retrieval;
+2. la implementación concreta de Cursor o Claude;
+3. las capacidades realmente disponibles en Codex para esta instalación.
+
+No trasladar porcentajes de ahorro de otros productos a Codex sin una medición comparable.
+
+### 6. MCP con más detalle
+
+**Estado:** Parcial
+
+Documentar, cuando sea necesario para el curso, la relación entre host, cliente y servidor MCP, el ciclo de conexión, el descubrimiento de capacidades, Tools, Resources y Prompts, transportes, autenticación y límites de la integración concreta de Power BI.
+
+### 7. Subagentes y sistemas multiagente
+
+**Estado:** Parcial
+
+Ampliar la introducción actual con patrones de delegación, aislamiento de contexto, handoff, paralelismo, coordinación, coste, criterios para no delegar y validación de resultados del subagente.
+
+### 8. Evaluación, observabilidad y fiabilidad
+
+**Estado:** Pendiente
+
+Añadir cómo evaluar un agente más allá de que produzca una respuesta:
+
+- tasa de éxito de tareas;
+- Tool Calls inválidas;
+- calidad de los argumentos;
+- latencia y coste;
+- trazas y auditoría;
+- regresiones al cambiar prompts, Skills o Tools;
+- datasets y casos de prueba;
+- revisión humana de operaciones de riesgo.
+
+### 9. Seguridad específica de agentes
+
+**Estado:** Parcial
+
+Profundizar en prompt injection, instrucciones no confiables recuperadas del workspace, exfiltración de secretos, escalada de permisos, herramientas destructivas, aislamiento del entorno y límites de red o filesystem.
+
+### 10. Ejemplo práctico de Power BI / Fabric
+
+**Estado:** Futuro
+
+Construir el ejemplo cuando el curso llegue a la parte práctica:
+
+```text
+Tarea DAX
+  ↓
+AGENTS.md
+  ↓
+Skill especializada
+  ↓
+documentación del modelo
+  ↓
+Tool MCP de inspección
+  ↓
+análisis y propuesta
+  ↓
+aprobación
+  ↓
+modificación y validación
+```
+
+Debe distinguir siempre qué ocurre en el modelo, qué hace el runtime y qué capacidad proporciona el MCP.
+
+## Temas que pueden aparecer en nuevas notas
+
+Al actualizar `docs/notes.txt`, revisar si aparecen conceptos de estas familias:
+
+- planificación, descomposición y selección de acciones;
+- memoria y estado;
+- evaluación y tracing;
+- seguridad y gobernanza;
+- arquitecturas multiagente;
+- streaming, concurrencia y eventos;
+- costes, latencia y caching;
+- modelos, SDKs y APIs concretas;
+- despliegue, versionado y operación en producción.
+
+No todos deben entrar automáticamente en el curso. Antes de añadir un tema hay que comprobar si ayuda al objetivo actual, si depende de una tecnología concreta y en qué capítulo encaja.
+
+## Registro de actualizaciones desde `notes.txt`
+
+| Fecha | Tema detectado | Acción | Documento resultante |
+|---|---|---|---|
+| 2026-09-03 | Roadmap inicial a partir de la revisión de la documentación existente | Crear este roadmap y definir el flujo notes → documentación | — |
+
