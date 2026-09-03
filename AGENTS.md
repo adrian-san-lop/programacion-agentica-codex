@@ -12,6 +12,7 @@ The documentation should enable a complete beginner to understand the core conce
 
 - Start with `README.md` and follow its recommended route.
 - Use `docs/` for conceptual explanations.
+- Use `skills/` for reusable repository skills, including Git workflow tasks.
 - Use `docs/notes.txt` as working notes; do not treat it as finished documentation.
 - Use `examples/` for runnable examples.
 - Use `Practical Example-PBIP/` for the Power BI project template.
@@ -30,6 +31,6 @@ The documentation should enable a complete beginner to understand the core conce
 ## Git workflow
 
 - Work from `dev` in a task branch.
-- Before new changes are made, generate a new branch from `dev` using the skill `git-branch`.
+- Before starting a new task, create a task branch from `dev` using the `git-branch` skill.
 - Review changes before committing.
 - Target task-branch pull requests at `dev`; promote `dev` to `main` separately.
