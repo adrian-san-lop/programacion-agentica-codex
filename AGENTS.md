@@ -28,5 +28,6 @@ The documentation should enable a complete beginner to understand the core conce
 ## Git workflow
 
 - Work from `dev` in a task branch.
+- Before new changes are made, generate a new branch from `dev` using the skill `git-branch`.
 - Review changes before committing.
 - Target task-branch pull requests at `dev`; promote `dev` to `main` separately.
