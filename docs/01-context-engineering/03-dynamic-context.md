@@ -118,6 +118,7 @@ Esto explica algunos fallos aparentemente inexplicables: el archivo existe, pero
 
 ---
 
+El contexto dinámico también afecta a la posibilidad de reutilizar prefijos. Consulta [Prompt Caching](06-prompt-caching.md) después de entender cómo se construye este contexto.
 
 [← Anterior](02-static-context.md) · [Índice](../../README.md) · [Siguiente →](04-progressive-disclosure.md)
 

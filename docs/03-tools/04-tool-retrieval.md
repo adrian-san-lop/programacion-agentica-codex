@@ -129,6 +129,7 @@ Después de cualquiera de ellas, el flujo es el mismo: el modelo recibe la defin
 
 ---
 
+Retrieval puede reducir el contexto inicial, pero añade búsquedas y lecturas. Estos trade-offs forman parte del consumo de una interacción; consulta [Costes básicos de LLM](../01-context-engineering/05-costes-basicos-de-llm.md).
 
 [← Anterior](03-tool-definitions-upfront.md) · [Índice](../../README.md) · [Siguiente →](05-filesystem-retrieval.md)
 

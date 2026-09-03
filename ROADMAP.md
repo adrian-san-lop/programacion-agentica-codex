@@ -29,6 +29,7 @@ Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en docu
 | Actores y responsabilidades | Cubierto | [`docs/00-introduccion/01-actores-y-responsabilidades.md`](docs/00-introduccion/01-actores-y-responsabilidades.md) | Mantener la separación entre LLM, runtime y agente |
 | Conceptos que se confunden | Cubierto | [`docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md`](docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md) | Revisar el documento cuando aparezcan nuevos términos |
 | Context Engineering | Cubierto | [`docs/01-context-engineering/`](docs/01-context-engineering/00-introduccion.md) | Conectar la teoría con un flujo real de recuperación |
+| Costes y Prompt Caching | Parcial | [`docs/01-context-engineering/05-costes-basicos-de-llm.md`](docs/01-context-engineering/05-costes-basicos-de-llm.md) · [`docs/01-context-engineering/06-prompt-caching.md`](docs/01-context-engineering/06-prompt-caching.md) | Verificar detalles por modalidad de Codex y API |
 | Componentes del agente | Cubierto | [`docs/02-componentes/`](docs/02-componentes/00-system-prompt.md) | Mostrar cómo se combinan en una sesión completa |
 | Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Añadir implementación mínima y manejo de errores |
 | MCP e integraciones | Parcial | [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Verificar capacidades concretas de Codex y del servidor MCP usado |
