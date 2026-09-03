@@ -236,4 +236,4 @@ Para trabajar con Codex en VS Code:
 
 ---
 
-[← Anterior](08-estrategia-hibrida.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/00-mcp-introduccion.md)
+[← Anterior](08-estrategia-hibrida.md) · [Índice](../../README.md) · [Siguiente →](10-codex-suscripcion-contexto-y-tool-retrieval.md)

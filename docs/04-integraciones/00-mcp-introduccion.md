@@ -96,5 +96,5 @@ config.toml
 ---
 
 
-[← Anterior](../03-tools/09-guia-practica-tools-en-codex.md) · [Índice](../../README.md) · [Siguiente →](01-configuracion.md)
+[← Anterior](../03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](01-configuracion.md)
 
