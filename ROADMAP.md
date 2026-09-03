@@ -32,7 +32,7 @@ Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en docu
 | Costes y Prompt Caching | Parcial | [`docs/01-context-engineering/05-costes-basicos-de-llm.md`](docs/01-context-engineering/05-costes-basicos-de-llm.md) · [`docs/01-context-engineering/06-prompt-caching.md`](docs/01-context-engineering/06-prompt-caching.md) | Verificar detalles por modalidad de Codex y API |
 | Componentes del agente | Cubierto | [`docs/02-componentes/`](docs/02-componentes/00-system-prompt.md) | Mostrar cómo se combinan en una sesión completa |
 | Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Añadir implementación mínima y manejo de errores |
-| MCP, contexto y Tool Retrieval en Codex | Parcial | [`docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md`](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Separar capacidades documentadas, observaciones e inferencias |
+| MCP, contexto y Tool Retrieval en Codex | Parcial | [`docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md`](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Mantener la documentación alineada con cambios del producto |
 | Trabajo en equipo y Git | Cubierto | [`docs/05-trabajo-en-equipo/`](docs/05-trabajo-en-equipo/00-introduccion.md) | Mantenerlo separado de la teoría del agente |
 | Ejemplo mínimo de Agent Loop | Cubierto | [`docs/06-ejemplos/00-agent-loop-minimo.md`](docs/06-ejemplos/00-agent-loop-minimo.md) | Mantenerlo como base ejecutable e independiente |
 | Ejemplo Power BI / Fabric | Parcial | [`docs/06-ejemplos/01-power-bi-fabric.md`](docs/06-ejemplos/01-power-bi-fabric.md) | Desarrollar el ejemplo práctico paso a paso |
@@ -88,13 +88,13 @@ No trasladar porcentajes de ahorro de otros productos a Codex sin una medición 
 
 **Estado:** Parcial
 
-Documentar, cuando sea necesario para el curso, la relación entre host, cliente y servidor MCP, el ciclo de conexión, el descubrimiento de capacidades, Tools, Resources y Prompts, transportes, autenticación y límites de la integración concreta de Power BI.
+Documentar, cuando sea necesario para el curso, la relación entre host, cliente y servidor MCP, el ciclo de conexión, el descubrimiento de capacidades, Tools, Resources, Prompts e instrucciones del servidor, transportes, autenticación y límites de la integración concreta de Power BI.
 
 ### 6. Subagentes y sistemas multiagente
 
 **Estado:** Parcial
 
-Ampliar la introducción actual con patrones de delegación, aislamiento de contexto, handoff, paralelismo, coordinación, coste, criterios para no delegar y validación de resultados del subagente.
+Ampliar la introducción actual con patrones de delegación, aislamiento de contexto, handoff, paralelismo, coordinación, herencia de permisos, coste, criterios para no delegar y validación de resultados del subagente.
 
 ### 7. Evaluación, observabilidad y fiabilidad
 

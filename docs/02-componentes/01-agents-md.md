@@ -100,7 +100,9 @@ reglas específicas backend
 
 Las instrucciones más específicas pueden complementar o prevalecer sobre las generales dependiendo del runtime.
 
-En **Codex**, `AGENTS.md` es un mecanismo soportado.
+En **Codex**, `AGENTS.md` es un mecanismo soportado. Codex busca estos archivos desde el ámbito global y desde la raíz del proyecto hasta la carpeta de trabajo; los combina en ese orden para construir la cadena de instrucciones de la ejecución. Un `AGENTS.override.md` puede sustituir al `AGENTS.md` equivalente en un ámbito. La documentación oficial indica además un límite predeterminado de 32 KiB para esa cadena, configurable por el proyecto.
+
+Por tanto, en Codex las instrucciones más cercanas a la carpeta donde se trabaja aparecen después y pueden concretar o sobrescribir las generales. Esta es la regla operativa que debemos enseñar aquí; otros runtimes pueden resolver la jerarquía de otra forma.
 
 Otros agentes pueden utilizar otros mecanismos.
 

@@ -47,13 +47,13 @@ AGENTS.md
    ↓
 detecta tarea DAX
    ↓
-carga Skill DAX
+consulta o invoca la Skill DAX
    ↓
 LLM
    ↓
 necesita inspeccionar Sales YTD
    ↓
-Tool Retrieval
+selecciona una Tool disponible
    ↓
 get_measure
    ↓
@@ -67,7 +67,7 @@ LLM analiza DAX
    ↓
 necesita comprobar modelo
    ↓
-Tool Retrieval
+selecciona una Tool disponible
    ↓
 get_model_schema
    ↓
@@ -109,7 +109,7 @@ La plantilla que acompaña a este repositorio está en [`Practical Example-PBIP`
 
 1. Copia `Practical Example-PBIP` en la carpeta raíz de un proyecto PBIP y ábrela en VS Code.
 2. Lee `AGENTS.md`: indica el objetivo, la estructura, las reglas y el procedimiento de trabajo.
-3. Para una tarea DAX, consulta `skills/dax/SKILL.md` y después solo la documentación del modelo que necesites.
+3. Para una tarea DAX, consulta explícitamente `skills/dax/SKILL.md` en esta plantilla; si quieres auto-descubrimiento local de Codex, coloca la Skill bajo `.agents/skills/`.
 4. Inspecciona el modelo mediante las Tools disponibles; si proceden de Power BI, Codex las utiliza a través del MCP configurado en VS Code.
 5. Empieza por operaciones de lectura, revisa la propuesta y solicita aprobación antes de modificar el modelo.
 6. Ejecuta `scripts/validate-project.ps1` y revisa los cambios antes de entregarlos.

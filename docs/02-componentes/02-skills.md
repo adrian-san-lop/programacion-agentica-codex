@@ -9,7 +9,7 @@ Las **Skills** encapsulan conocimiento, instrucciones y workflows especializados
 Ejemplo:
 
 ```text
-skills/
+.agents/skills/
 │
 ├── dax/
 │   └── SKILL.md
@@ -23,6 +23,8 @@ skills/
 └── report-design/
     └── SKILL.md
 ```
+
+En Codex, las Skills locales auto-descubiertas se organizan en carpetas `.agents/skills/` dentro de los ámbitos soportados. Este repositorio también contiene carpetas `skills/` para versionar workflows y documentación operativa; esa carpeta no debe presentarse automáticamente como la ubicación estándar de auto-descubrimiento de Codex.
 
 Una Skill puede indicar:
 
@@ -49,9 +51,9 @@ Agente:
 
         ↓
 
-Carga:
+Carga o invoca:
 
-skills/dax/SKILL.md
+.agents/skills/dax/SKILL.md
 ```
 
 Las Skills son una forma de **empaquetar conocimiento y workflows reutilizables**.
@@ -70,7 +72,7 @@ No necesariamente queremos cargar todas las Skills completas desde el principio.
 Podemos tener:
 
 ```text
-Metadata de Skills
+Catálogo o lista de Skills disponibles (si el runtime la ofrece)
         ↓
 LLM / Agente
         ↓
@@ -85,24 +87,24 @@ LLM / Agente
 Si la tarea es DAX:
 
 ```text
-Carga:
-skills/dax/SKILL.md
+Carga o invoca:
+.agents/skills/dax/SKILL.md
 ```
 
 pero no:
 
 ```text
-skills/power-query/SKILL.md
-skills/report-design/SKILL.md
+.agents/skills/power-query/SKILL.md
+.agents/skills/report-design/SKILL.md
 ...
 ```
 
-Esto es nuevamente **Progressive Disclosure**.
+Esto puede ser un ejemplo de **Progressive Disclosure**, pero no debemos asumir que Codex expone exactamente este catálogo ni que usa una fase interna concreta de metadata antes de leer cada `SKILL.md`. La ubicación y el formato documentados no revelan por sí solos el mecanismo interno de selección.
 
 ---
 
 
-Cuando varias personas colaboran, conviene decidir si una Skill pertenece a este repositorio o si debe distribuirse de forma independiente. Consulta [Skills compartidas](../05-trabajo-en-equipo/03-skills-compartidas.md).
+Si el proyecto mantiene workflows en `skills/`, Codex puede utilizarlos cuando se le indiquen explícitamente o cuando exista una integración que los exponga. Para que una Skill local sea auto-descubierta por Codex, utiliza la estructura `.agents/skills/` documentada por OpenAI. Si la distribución es importante, considera empaquetarla como plugin. Consulta [Skills compartidas](../05-trabajo-en-equipo/03-skills-compartidas.md) y la [documentación oficial para crear Skills](https://learn.chatgpt.com/es-419/docs/build-skills).
 
 [← Anterior](01-agents-md.md) · [Índice](../../README.md) · [Siguiente →](03-commands.md)
 

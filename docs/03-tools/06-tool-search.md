@@ -38,6 +38,8 @@ Por eso la documentación de un proyecto debe distinguir:
 
 En Codex se puede documentar Tool Search como una posibilidad del runtime, pero no debe presentarse como una Tool o comando disponible sin comprobarlo en la instalación concreta.
 
+Para la diferencia entre el `tool_search` configurable de la API y el comportamiento no completamente expuesto de Codex mediante suscripción, consulta [Contexto y Tool Retrieval en Codex mediante suscripción](10-codex-suscripcion-contexto-y-tool-retrieval.md).
+
 ## Coste y trade-offs
 
 Tool Search reduce el contexto inicial, pero añade una fase de descubrimiento. Hay que valorar:

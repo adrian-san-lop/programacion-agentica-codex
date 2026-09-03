@@ -17,7 +17,7 @@ Context and operating template for using a local agent alongside a Power BI proj
 
 - `AGENTS.md`: persistent instructions for the agent.
 - `docs/`: project-specific knowledge.
-- `skills/`: specialized workflows.
+- `skills/`: specialized workflows kept by this template as a project convention. For Codex auto-discovery, local Skills use `.agents/skills/`; otherwise refer to these files explicitly.
 - `tools/`: expected capability catalogue.
 - `scripts/`: local validation scripts.
 - `.vscode/`: recommended text-editing settings.

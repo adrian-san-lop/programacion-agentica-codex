@@ -92,7 +92,9 @@ Skill → instrucciones y workflow reutilizable
 Tool  → capacidad ejecutable
 ```
 
-Codex puede descubrir Skills disponibles y utilizar su contenido cuando la tarea es relevante. Sin embargo, no debemos presentar como hecho el mecanismo interno exacto —por ejemplo, qué metadata entra inicialmente, cuándo se lee el archivo completo o cómo se calcula la relevancia— salvo que el producto lo documente explícitamente o lo comprobemos en una versión concreta.
+Codex busca Skills locales en ubicaciones documentadas, entre ellas `.agents/skills/` dentro del repositorio, y puede detectar cambios en ellas. Si una actualización no aparece, la documentación oficial recomienda reiniciar Codex. Esto no significa que una carpeta arbitraria llamada `skills/` se auto-descubra por ese nombre.
+
+Cuando se invoca una Skill, sus instrucciones pueden incorporarse al contexto. No debemos presentar como hecho el mecanismo interno exacto —por ejemplo, qué metadata entra inicialmente, cuándo se lee el archivo completo o cómo se calcula la relevancia— salvo que el producto lo documente explícitamente o lo comprobemos en una versión concreta.
 
 ## Qué sabemos sobre MCP
 
@@ -111,6 +113,27 @@ servidor MCP
 La documentación oficial indica que la aplicación de escritorio de ChatGPT, Codex CLI y la extensión IDE pueden compartir la configuración MCP del mismo host. También documenta servidores STDIO, servidores Streamable HTTP y el uso del campo `instructions` del servidor.
 
 Esto responde a la pregunta “¿cómo conecta Codex capacidades externas?”, pero no necesariamente a la pregunta “¿cómo decide qué definiciones de Tools ve el modelo en cada turno?”.
+
+## Memoria, contexto del IDE y permisos
+
+Estas capas también participan en el contexto, pero no son equivalentes a Tool Retrieval:
+
+```text
+Memoria       → recupera información útil de trabajos anteriores
+Contexto IDE  → aporta archivos abiertos, selecciones o conversaciones recientes
+Permisos      → limita qué operaciones puede ejecutar el runtime
+Tool Retrieval → decide qué definiciones de Tools presenta el runtime
+```
+
+Las memorias locales de Codex son una capa independiente y no deben sustituir a las reglas obligatorias de `AGENTS.md`. Su disponibilidad y controles dependen del cliente y de la configuración del host.
+
+Los permisos y aprobaciones son controles del runtime. Determinan si Codex puede leer, escribir, ejecutar comandos o acceder a recursos, pero no son un mecanismo para enseñar al modelo cómo funciona una Tool.
+
+La extensión IDE puede incorporar al prompt archivos abiertos, selecciones y conversaciones recientes. Ese contexto explícito procede de la interacción del usuario con el editor; no debe confundirse con que Codex haya indexado automáticamente todo el repositorio.
+
+## Subagentes
+
+Los subagentes son otra forma de Progressive Disclosure y aislamiento de contexto: se delega una tarea acotada a un agente especializado y el principal recibe su resultado. En las versiones locales actuales de Codex, la delegación puede solicitarse explícitamente o venir indicada por `AGENTS.md` o una Skill. Los subagentes heredan la política de permisos del agente principal y pueden consumir más tokens al ejecutar su propio trabajo.
 
 ## Tool Retrieval: patrón frente a implementación
 
@@ -197,6 +220,7 @@ Codex mediante suscripción
     → Tools y MCP disponibles según configuración
     → AGENTS.md como instrucciones de proyecto
     → Skills como workflows especializados
+    → memoria, contexto IDE y permisos como capas independientes
     → system prompt interno no editable ni completamente visible
     → Tool Retrieval interno no documentado con el detalle de la API
 ```
@@ -206,6 +230,11 @@ Para este curso, la conclusión teórica es suficiente: podemos estudiar el Agen
 ## Fuentes oficiales consultadas
 
 - [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+- [Crear y descubrir Skills](https://learn.chatgpt.com/es-419/docs/build-skills)
+- [Memorias en Codex](https://learn.chatgpt.com/es-419/docs/customization/memories)
+- [Subagentes](https://learn.chatgpt.com/es-419/docs/agent-configuration/subagents)
+- [Extensión IDE de Codex](https://developers.openai.com/codex/ide)
+- [Permisos en Codex](https://learn.chatgpt.com/es-419/docs/permissions)
 - [Model Context Protocol en Codex](https://learn.chatgpt.com/docs/extend/mcp)
 - [Tool search en la API de OpenAI](https://developers.openai.com/api/docs/guides/tools-tool-search)
 

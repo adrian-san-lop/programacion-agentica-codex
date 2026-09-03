@@ -15,6 +15,7 @@ Even when the user prompt is written in Spanish, all agent responses, documentat
 - `*.SemanticModel/`: semantic model definition, tables, columns, measures, and relationships.
 - `docs/`: functional and technical documentation.
 - `skills/`: specialized procedures.
+- The template keeps these procedures in `skills/` for portability. This is a project convention; Codex auto-discovery of local Skills uses `.agents/skills/` or an explicit Skill reference.
 - `tools/`: catalogue of available or expected capabilities.
 - `.vscode/`: optional VS Code workspace settings. The Power BI Modeling MCP server is provided by the installed extension and used by Codex.
 

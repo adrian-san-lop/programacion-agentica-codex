@@ -17,7 +17,7 @@ Codex actúa como cliente MCP y la extensión de Power BI proporciona el servido
 
 ## Configuración recomendada
 
-En el flujo utilizado por este proyecto no se crean manualmente `config.toml`, `.vscode/mcp.json` ni otro archivo de registro. La extensión instala el servidor y Codex lo incorpora a su runtime.
+En el flujo utilizado originalmente por este proyecto, la extensión instala el servidor y Codex lo incorpora a su runtime sin registrar manualmente cada Tool. Esto no significa que Codex carezca de configuración de MCP en archivos: la documentación oficial también permite configurar servidores mediante `~/.codex/config.toml` o un `.codex/config.toml` con alcance de proyecto. `.vscode/mcp.json` no debe presentarse como el formato estándar de configuración de Codex sin verificar la extensión concreta.
 
 El procedimiento es:
 
@@ -82,9 +82,11 @@ Si Codex no puede utilizar el MCP:
 - Comprueba que Power BI Desktop está abierto cuando se usa la conexión al modelo vivo.
 - Revisa la salida o los diagnósticos del servidor desde la interfaz de Codex.
 
+La configuración puede compartirse entre la aplicación de escritorio de ChatGPT, Codex CLI y la extensión IDE cuando utilizan el mismo host de Codex. Para opciones avanzadas, consulta la [documentación oficial de MCP en Codex](https://learn.chatgpt.com/docs/extend/mcp).
+
 ## Configuración manual
 
-Otros clientes MCP pueden requerir un archivo propio de configuración. Ese caso es distinto del flujo documentado aquí y no debe mezclarse con la configuración de Codex en VS Code.
+Otros clientes MCP pueden requerir un archivo propio de configuración. Ese caso es distinto del flujo documentado aquí y no debe mezclarse con la configuración de Codex en VS Code. En Codex, el archivo soportado oficialmente es `config.toml`, además de la configuración desde el cliente.
 
 La documentación oficial de Codex describe la extensión IDE como la interfaz para trabajar junto al código. Para la instalación del servidor Power BI, consulta también la [extensión oficial Power BI Modeling MCP](https://marketplace.visualstudio.com/items?itemName=analysis-services.powerbi-modeling-mcp) y el [repositorio oficial de Microsoft](https://github.com/microsoft/powerbi-modeling-mcp).
 
