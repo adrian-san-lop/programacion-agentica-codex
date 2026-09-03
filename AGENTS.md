@@ -4,6 +4,8 @@
 
 Maintain beginner-friendly documentation about agentic programming with Codex in VS Code, using Power BI and Fabric as practical context.
 
+This course explores Codex within ChatGPT via a subscription. We do not use the OpenAI API as a hands-on environment; the API is only mentioned as a point of comparison when it helps distinguish a general pattern from a specific capability.
+
 The documentation should enable a complete beginner to understand the core concepts and progressively build a small practical example using what has been learned.
 
 ## Navigation
