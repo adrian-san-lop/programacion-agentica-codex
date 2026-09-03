@@ -32,7 +32,7 @@ Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en docu
 | Costes y Prompt Caching | Parcial | [`docs/01-context-engineering/05-costes-basicos-de-llm.md`](docs/01-context-engineering/05-costes-basicos-de-llm.md) · [`docs/01-context-engineering/06-prompt-caching.md`](docs/01-context-engineering/06-prompt-caching.md) | Verificar detalles por modalidad de Codex y API |
 | Componentes del agente | Cubierto | [`docs/02-componentes/`](docs/02-componentes/00-system-prompt.md) | Mostrar cómo se combinan en una sesión completa |
 | Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Añadir implementación mínima y manejo de errores |
-| MCP e integraciones | Parcial | [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Verificar capacidades concretas de Codex y del servidor MCP usado |
+| MCP, contexto y Tool Retrieval en Codex | Parcial | [`docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md`](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Separar capacidades documentadas, observaciones e inferencias |
 | Trabajo en equipo y Git | Cubierto | [`docs/05-trabajo-en-equipo/`](docs/05-trabajo-en-equipo/00-introduccion.md) | Mantenerlo separado de la teoría del agente |
 | Ejemplo mínimo de Agent Loop | Cubierto | [`docs/06-ejemplos/00-agent-loop-minimo.md`](docs/06-ejemplos/00-agent-loop-minimo.md) | Mantenerlo como base ejecutable e independiente |
 | Ejemplo Power BI / Fabric | Parcial | [`docs/06-ejemplos/01-power-bi-fabric.md`](docs/06-ejemplos/01-power-bi-fabric.md) | Desarrollar el ejemplo práctico paso a paso |
@@ -72,11 +72,11 @@ Desarrollar, con un ejemplo trazable:
 - memoria de sesión frente a memoria persistente;
 - cómo medir coste, latencia y calidad de la recuperación.
 
-### 4. Filesystem Retrieval y Tool Search en Codex
+### 4. Contexto y Tool Retrieval en Codex mediante suscripción
 
 **Estado:** Investigación
 
-Las notas contienen observaciones sobre Cursor y Claude Code. Hay que separar tres niveles antes de documentar más:
+La documentación específica de Codex está en [Contexto y Tool Retrieval en Codex mediante suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md). Las notas contienen además observaciones sobre Cursor y Claude Code. Hay que separar tres niveles antes de documentar más:
 
 1. el patrón general de retrieval;
 2. la implementación concreta de Cursor o Claude;

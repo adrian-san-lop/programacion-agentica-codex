@@ -34,18 +34,19 @@ Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la pl
 22. [MCP vs CLI](docs/03-tools/07-mcp-vs-cli.md)
 23. [Estrategia híbrida](docs/03-tools/08-estrategia-hibrida.md)
 24. [Guía práctica de Tools en Codex para VS Code](docs/03-tools/09-guia-practica-tools-en-codex.md)
-25. [MCP — Model Context Protocol](docs/04-integraciones/00-mcp-introduccion.md)
-26. [Configuración de MCP](docs/04-integraciones/01-configuracion.md)
-27. [MCP y credenciales](docs/04-integraciones/02-credenciales.md)
-28. [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
-29. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
-30. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
-31. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
-32. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
-33. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
-34. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
-35. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
-36. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
+25. [Contexto y Tool Retrieval en Codex mediante suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md)
+26. [MCP — Model Context Protocol](docs/04-integraciones/00-mcp-introduccion.md)
+27. [Configuración de MCP](docs/04-integraciones/01-configuracion.md)
+28. [MCP y credenciales](docs/04-integraciones/02-credenciales.md)
+29. [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
+30. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
+31. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
+32. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
+33. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
+34. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
+35. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
+36. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
+37. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
 
 ## Índice completo
 
@@ -84,6 +85,7 @@ Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la pl
 - [MCP vs CLI](docs/03-tools/07-mcp-vs-cli.md)
 - [Estrategia híbrida](docs/03-tools/08-estrategia-hibrida.md)
 - [Guía práctica de Tools en Codex para VS Code](docs/03-tools/09-guia-practica-tools-en-codex.md)
+- [Contexto y Tool Retrieval en Codex mediante suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md)
 
 ### Integraciones
 
