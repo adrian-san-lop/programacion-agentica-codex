@@ -103,11 +103,24 @@ AGENTS.md
 
 No cargamos todo desde el principio.
 
+La plantilla que acompaña a este repositorio está en [`Practical Example-PBIP`](../../Practical Example-PBIP/README.md). Contiene un `AGENTS.md`, documentación específica, Skills, catálogo de Tools y un script de validación para practicar este flujo sobre un proyecto PBIP real.
+
+## Cómo practicar el recorrido completo
+
+1. Copia `Practical Example-PBIP` en la carpeta raíz de un proyecto PBIP y ábrela en VS Code.
+2. Lee `AGENTS.md`: indica el objetivo, la estructura, las reglas y el procedimiento de trabajo.
+3. Para una tarea DAX, consulta `skills/dax/SKILL.md` y después solo la documentación del modelo que necesites.
+4. Inspecciona el modelo mediante las Tools disponibles; si proceden de Power BI, Codex las utiliza a través del MCP configurado en VS Code.
+5. Empieza por operaciones de lectura, revisa la propuesta y solicita aprobación antes de modificar el modelo.
+6. Ejecuta `scripts/validate-project.ps1` y revisa los cambios antes de entregarlos.
+
+En este recorrido, `AGENTS.md` orienta, la Skill define el workflow, la documentación aporta conocimiento, el MCP proporciona Tools y el script comprueba el proyecto. Codex coordina el ciclo, pero la persona revisa y valida el resultado.
+
 ---
 
 
 
 ---
 
-[← Anterior](../05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md) · [Índice](../../README.md)
+[← Anterior](00-agent-loop-minimo.md) · [Índice](../../README.md)
 

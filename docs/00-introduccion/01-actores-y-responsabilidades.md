@@ -29,4 +29,4 @@ Si estos términos se confunden, consulta [Conceptos que no deben confundirse](0
 
 ---
 
-[← Anterior](00-que-es-un-agente.md) · [Índice](../../README.md) · [Siguiente →](../01-context-engineering/00-introduccion.md)
+[← Anterior](00-que-es-un-agente.md) · [Índice](../../README.md) · [Siguiente →](02-conceptos-que-no-deben-confundirse.md)

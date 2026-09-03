@@ -33,30 +33,16 @@ Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en docu
 | Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Añadir implementación mínima y manejo de errores |
 | MCP e integraciones | Parcial | [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Verificar capacidades concretas de Codex y del servidor MCP usado |
 | Trabajo en equipo y Git | Cubierto | [`docs/05-trabajo-en-equipo/`](docs/05-trabajo-en-equipo/00-introduccion.md) | Mantenerlo separado de la teoría del agente |
-| Ejemplo Power BI / Fabric | Parcial | [`docs/06-ejemplos/00-power-bi-fabric.md`](docs/06-ejemplos/00-power-bi-fabric.md) | Desarrollar el ejemplo práctico paso a paso |
+| Ejemplo mínimo de Agent Loop | Cubierto | [`docs/06-ejemplos/00-agent-loop-minimo.md`](docs/06-ejemplos/00-agent-loop-minimo.md) | Mantenerlo como base ejecutable e independiente |
+| Ejemplo Power BI / Fabric | Parcial | [`docs/06-ejemplos/01-power-bi-fabric.md`](docs/06-ejemplos/01-power-bi-fabric.md) | Desarrollar el ejemplo práctico paso a paso |
 
 ## Pendientes prioritarios
 
-### 1. Primer ejemplo ejecutable
+### 1. Del concepto a la implementación
 
-**Estado:** Pendiente
+**Estado:** Parcial
 
-Crear un ejemplo pequeño, independiente de Power BI, que muestre:
-
-- una petición del usuario;
-- un modelo que propone una Tool Call;
-- un runtime que valida los argumentos;
-- una Tool sencilla, como una calculadora o lectura de datos;
-- el resultado que vuelve al modelo;
-- la condición de finalización del Agent Loop.
-
-El objetivo es que el lector pueda observar la mecánica completa antes de entrar en MCP, retrieval o Power BI.
-
-### 2. Del concepto a la implementación
-
-**Estado:** Pendiente
-
-Explicar con código o pseudocódigo cómo se construyen:
+El [ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md) muestra el ciclo, los mensajes, la validación, una Tool y la condición de finalización. Sigue pendiente ampliar con una implementación conectada a un modelo real y explicar:
 
 - el bucle principal;
 - los mensajes y roles de una petición;
@@ -66,13 +52,13 @@ Explicar con código o pseudocódigo cómo se construyen:
 - los reintentos, timeouts y límites de iteraciones;
 - la respuesta final y la cancelación.
 
-### 3. Diseño seguro de Tools
+### 2. Diseño seguro de Tools
 
 **Estado:** Parcial
 
 Ampliar los documentos actuales con idempotencia, efectos secundarios, permisos, operaciones de solo lectura frente a escritura, aprobación humana, límites de argumentos y tratamiento de datos sensibles.
 
-### 4. Contexto y recuperación en profundidad
+### 3. Contexto y recuperación en profundidad
 
 **Estado:** Parcial
 
@@ -85,7 +71,7 @@ Desarrollar, con un ejemplo trazable:
 - memoria de sesión frente a memoria persistente;
 - cómo medir coste, latencia y calidad de la recuperación.
 
-### 5. Filesystem Retrieval y Tool Search en Codex
+### 4. Filesystem Retrieval y Tool Search en Codex
 
 **Estado:** Investigación
 
@@ -97,19 +83,19 @@ Las notas contienen observaciones sobre Cursor y Claude Code. Hay que separar tr
 
 No trasladar porcentajes de ahorro de otros productos a Codex sin una medición comparable.
 
-### 6. MCP con más detalle
+### 5. MCP con más detalle
 
 **Estado:** Parcial
 
 Documentar, cuando sea necesario para el curso, la relación entre host, cliente y servidor MCP, el ciclo de conexión, el descubrimiento de capacidades, Tools, Resources y Prompts, transportes, autenticación y límites de la integración concreta de Power BI.
 
-### 7. Subagentes y sistemas multiagente
+### 6. Subagentes y sistemas multiagente
 
 **Estado:** Parcial
 
 Ampliar la introducción actual con patrones de delegación, aislamiento de contexto, handoff, paralelismo, coordinación, coste, criterios para no delegar y validación de resultados del subagente.
 
-### 8. Evaluación, observabilidad y fiabilidad
+### 7. Evaluación, observabilidad y fiabilidad
 
 **Estado:** Pendiente
 
@@ -124,13 +110,13 @@ Añadir cómo evaluar un agente más allá de que produzca una respuesta:
 - datasets y casos de prueba;
 - revisión humana de operaciones de riesgo.
 
-### 9. Seguridad específica de agentes
+### 8. Seguridad específica de agentes
 
 **Estado:** Parcial
 
 Profundizar en prompt injection, instrucciones no confiables recuperadas del workspace, exfiltración de secretos, escalada de permisos, herramientas destructivas, aislamiento del entorno y límites de red o filesystem.
 
-### 10. Ejemplo práctico de Power BI / Fabric
+### 9. Ejemplo práctico de Power BI / Fabric
 
 **Estado:** Futuro
 
@@ -177,4 +163,3 @@ No todos deben entrar automáticamente en el curso. Antes de añadir un tema hay
 | Fecha | Tema detectado | Acción | Documento resultante |
 |---|---|---|---|
 | 2026-09-03 | Roadmap inicial a partir de la revisión de la documentación existente | Crear este roadmap y definir el flujo notes → documentación | — |
-
