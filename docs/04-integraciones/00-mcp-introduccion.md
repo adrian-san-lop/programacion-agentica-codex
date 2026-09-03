@@ -38,11 +38,6 @@ El desarrollador normalmente configura **el servidor MCP**, no cada una de sus T
 
 ---
 
----
-
-
----
-
 ## MCP y Tools
 
 Una distinción fundamental:
@@ -92,9 +87,6 @@ ni necesariamente en:
 ```text
 config.toml
 ```
-
----
-
 
 [← Anterior](../03-tools/09-guia-practica-tools-en-codex.md) · [Índice](../../README.md) · [Siguiente →](01-configuracion.md)
 
