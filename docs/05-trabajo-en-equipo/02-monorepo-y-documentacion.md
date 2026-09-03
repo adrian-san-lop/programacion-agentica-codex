@@ -12,6 +12,8 @@ repo/
 
 `AGENTS.md` debe actuar como mapa del proyecto. Puede indicar dónde están los conceptos de programación agéntica, las integraciones y los ejemplos, pero no debe contener todo el conocimiento.
 
+La carpeta `skills/` del esquema es una convención de este repositorio. En Codex, las Skills locales que deben auto-descubrirse se organizan en `.agents/skills/`; las que permanezcan en `skills/` deben consultarse mediante una referencia explícita o mediante la integración que las exponga.
+
 La carpeta `docs/` es principalmente para las personas y para consultas concretas del agente. Tener muchos documentos en el repositorio no significa que todos entren en el contexto. El coste depende de lo que se lea durante la tarea.
 
 ```text

@@ -11,9 +11,9 @@ Puede incluir:
 - System Prompt.
 - Instrucciones generales.
 - `AGENTS.md`.
-- Memoria persistente cargada siempre.
+- Memoria o estado que el runtime decida incorporar.
 - Definiciones de Tools si se cargan upfront.
-- Metadata de Skills.
+- Información resumida de Skills, si el runtime la expone.
 - Otra información permanente necesaria para el agente.
 
 Ejemplo:
@@ -24,8 +24,8 @@ Petición al LLM
 ├── System Prompt
 ├── AGENTS.md
 ├── Tool definitions
-├── Skill metadata
-├── Memory
+├── Skill information (if exposed)
+├── Memory or state (if loaded)
 └── User Prompt
 ```
 
@@ -40,6 +40,8 @@ potencialmente más ruido
 ```
 
 Por eso interesa mantenerlo pequeño y relevante.
+
+IMPORTANTE: este esquema es conceptual. No implica que Codex incorpore siempre cada elemento ni permite deducir el contenido de su system prompt interno. El contexto del IDE —por ejemplo, archivos abiertos o selecciones que la persona añade— también puede incorporarse de forma explícita y no equivale a indexar automáticamente todo el repositorio.
 
 IMPORTANTE:
 

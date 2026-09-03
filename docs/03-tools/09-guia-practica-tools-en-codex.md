@@ -211,7 +211,7 @@ La decisión debe considerar permisos, auditabilidad, latencia, coste y facilida
 Para trabajar con Codex en VS Code:
 
 1. Mantener las reglas generales en `AGENTS.md`.
-2. Mantener procedimientos reutilizables en `skills/`.
+2. Mantener las Skills auto-descubiertas por Codex en `.agents/skills/`; conservar `skills/` sólo como convención del repositorio cuando se utilicen mediante referencia explícita.
 3. Usar MCP para capacidades estructuradas de Power BI y Fabric.
 4. Usar CLI para Git, validadores, tests y scripts locales.
 5. Usar archivos de documentación para conocimiento de negocio que no deba cargarse siempre.

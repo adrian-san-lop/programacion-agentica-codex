@@ -20,7 +20,7 @@ Codex
 
 Un **MCP Server** puede exponer diferentes capacidades.
 
-Entre ellas, Tools.
+Entre ellas, Tools e instrucciones generales para utilizarlas. En Codex, las instrucciones del servidor se leen durante la inicialización y sirven como orientación común para sus Tools; no sustituyen a `AGENTS.md` ni al system prompt interno de Codex.
 
 Ejemplo conceptual:
 
