@@ -4,7 +4,11 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 - [Roadmap y temas pendientes](ROADMAP.md)
 
+`AGENTS.md` contiene las instrucciones de navegación que utiliza Codex al trabajar en este repositorio.
+
 ## Ruta recomendada
+
+Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la plantilla PBIP para relacionar los conceptos con un proyecto real.
 
 1. [Qué es un agente](docs/00-introduccion/00-que-es-un-agente.md)
 2. [Actores y responsabilidades](docs/00-introduccion/01-actores-y-responsabilidades.md)
@@ -38,7 +42,8 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 30. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
 31. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
 32. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
-33. [Ejemplo Power BI / Fabric](docs/06-ejemplos/00-power-bi-fabric.md)
+33. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
+34. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
 
 ## Índice completo
 
@@ -94,7 +99,9 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 ### Ejemplos
 
-- [Power BI y Fabric](docs/06-ejemplos/00-power-bi-fabric.md)
+- [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
+- [Power BI y Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
+- [Plantilla práctica para un proyecto PBIP](<Practical Example-PBIP/README.md>)
 
 ### Automatización del repositorio
 

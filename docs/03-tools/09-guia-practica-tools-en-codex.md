@@ -12,7 +12,7 @@ Esta guía explica el flujo conceptual para descubrir, cargar y ejecutar herrami
 
 Un modelo no ejecuta directamente una Tool solo porque el usuario la mencione. El runtime expone las capacidades disponibles, el modelo propone una invocación y el runtime decide si puede ejecutarse según los permisos y las políticas aplicables.
 
-![Flujo conceptual de ejecución de Tools en Codex para VS Code](/assets/images/tools/codex-tools-flow.png)
+![Flujo conceptual de ejecución de Tools en Codex para VS Code](../../assets/images/tools/codex-tools-flow.png)
 
 El ciclo puede resumirse así:
 
