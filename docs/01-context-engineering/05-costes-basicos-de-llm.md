@@ -1,5 +1,7 @@
 # Costes básicos al usar LLMs
 
+En este curso usamos Codex dentro de ChatGPT mediante suscripción. Las fórmulas de tokens y las referencias de la API sirven para entender conceptos, pero no representan automáticamente una factura ni un contador visible de nuestra suscripción.
+
 Los LLMs procesan texto en **tokens**. En una interacción hay que distinguir, como mínimo, entre los tokens que entran al modelo y los que genera como respuesta.
 
 ## Input y output
@@ -43,7 +45,7 @@ Coste de output:
 7 / 1.000.000 × 5 $ = 0,000035 $
 ```
 
-Es un ejemplo pedagógico, no una tarifa real.
+Es un ejemplo pedagógico, no una tarifa real ni una estimación del coste de Codex mediante suscripción.
 
 ## El contexto se repite
 
@@ -67,7 +69,7 @@ Cuando Codex se utiliza mediante un plan de ChatGPT, la interfaz puede mostrar u
 
 Eso no equivale necesariamente a una factura monetaria por token. En una aplicación propia mediante API, input, cached input y output pueden tener categorías y tarifas separadas. Consulta siempre la información oficial del producto y del modelo utilizado.
 
-La documentación oficial de OpenAI distingue entre input, output, cached input y límites de uso. [Understanding and counting tokens](https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens).
+La documentación oficial distingue entre input, output, cached input y límites de uso en productos que los exponen. En Codex mediante suscripción debemos utilizar los límites y el consumo que muestre el propio cliente, sin inferir una tarifa por token. [Understanding and counting tokens](https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens).
 
 ## Idea que debemos conservar
 

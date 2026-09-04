@@ -67,9 +67,5 @@ Por tanto:
 
 ---
 
-
-
----
-
 [← Anterior](00-que-es-una-tool.md) · [Índice](../../README.md) · [Siguiente →](02-mediacion-de-tools.md)
 

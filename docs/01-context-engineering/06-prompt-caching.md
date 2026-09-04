@@ -1,5 +1,7 @@
 # Prompt Caching
 
+Este capítulo explica un patrón general. Nuestro entorno práctico es Codex dentro de ChatGPT mediante suscripción; no podemos trasladar automáticamente a Codex los parámetros, TTL, precios o contadores expuestos por la API.
+
 **Prompt Caching** permite reutilizar parte del trabajo realizado sobre un input que vuelve a aparecer en peticiones posteriores. Es especialmente útil cuando una conversación o un agente repite instrucciones, Tools y contexto estable.
 
 No debe confundirse con:
@@ -89,7 +91,7 @@ El input recuperado desde caché puede tener un tratamiento distinto del input n
 - no evita procesar la parte nueva;
 - no garantiza un porcentaje universal de ahorro.
 
-En la API de OpenAI, la documentación explica el uso de prefijos comunes y la medición de tokens recuperados desde caché. [Prompt Caching in the API](https://openai.com/index/api-prompt-caching/).
+En la API de OpenAI, la documentación explica el uso de prefijos comunes y la medición de tokens recuperados desde caché. Es una referencia comparativa, no una descripción del funcionamiento interno de Codex. [Prompt Caching in the API](https://developers.openai.com/api/docs/guides/prompt-caching).
 
 Codex utilizado mediante un plan de ChatGPT no debe tratarse automáticamente como una aplicación propia facturada por API. Para precios, cache writes, TTL y límites hay que consultar la modalidad concreta y la documentación vigente.
 
@@ -111,4 +113,4 @@ Mide los cached tokens cuando el producto lo permita.
 
 ---
 
-[← Anterior](05-costes-basicos-de-llm.md) · [Índice](../../README.md) · [Siguiente →](../02-componentes/00-system-prompt.md)
+[← Anterior](05-costes-basicos-de-llm.md) · [Índice](../../README.md) · [Siguiente →](07-recuperacion-profunda.md)

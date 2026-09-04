@@ -96,11 +96,6 @@ Dynamic Context
 
 ---
 
----
-
-
----
-
 ## Comparación de enfoques
 
 Upfront, Filesystem Retrieval y Tool Search son estrategias diferentes para resolver el mismo problema. Pueden coexistir en una arquitectura híbrida.

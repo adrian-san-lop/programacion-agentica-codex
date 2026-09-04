@@ -40,9 +40,5 @@ dependiendo del entorno.
 
 ---
 
-
-
----
-
 [← Anterior](01-configuracion.md) · [Índice](../../README.md) · [Siguiente →](03-mcp-vs-tool-retrieval.md)
 

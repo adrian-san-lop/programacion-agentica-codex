@@ -45,9 +45,5 @@ El LLM necesita conocer suficiente información sobre una Tool para poder solici
 
 ---
 
-
-
----
-
 [← Anterior](../02-componentes/03-commands.md) · [Índice](../../README.md) · [Siguiente →](01-tool-calling.md)
 

@@ -46,9 +46,5 @@ La estrategia utilizada para proporcionar esas Tools al LLM depende del runtime/
 
 ---
 
-
-
----
-
 [← Anterior](02-credenciales.md) · [Índice](../../README.md) · [Siguiente →](../05-trabajo-en-equipo/00-introduccion.md)
 

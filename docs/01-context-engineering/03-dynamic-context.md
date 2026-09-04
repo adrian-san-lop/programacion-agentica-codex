@@ -21,9 +21,6 @@ Usuario → Agente
 
 ---
 
----
-
-
 ## Tool Results
 
 Resultados obtenidos mediante herramientas:

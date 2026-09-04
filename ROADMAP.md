@@ -28,8 +28,8 @@ Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en docu
 | Qué es un agente y Agent Loop | Cubierto | [`docs/00-introduccion/00-que-es-un-agente.md`](docs/00-introduccion/00-que-es-un-agente.md) | Añadir un ejemplo ejecutable cuando comience la parte práctica |
 | Actores y responsabilidades | Cubierto | [`docs/00-introduccion/01-actores-y-responsabilidades.md`](docs/00-introduccion/01-actores-y-responsabilidades.md) | Mantener la separación entre LLM, runtime y agente |
 | Conceptos que se confunden | Cubierto | [`docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md`](docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md) | Revisar el documento cuando aparezcan nuevos términos |
-| Context Engineering | Cubierto | [`docs/01-context-engineering/`](docs/01-context-engineering/00-introduccion.md) | Conectar la teoría con un flujo real de recuperación |
-| Costes y Prompt Caching | Parcial | [`docs/01-context-engineering/05-costes-basicos-de-llm.md`](docs/01-context-engineering/05-costes-basicos-de-llm.md) · [`docs/01-context-engineering/06-prompt-caching.md`](docs/01-context-engineering/06-prompt-caching.md) | Verificar detalles por modalidad de Codex y API |
+| Context Engineering | Cubierto | [`docs/01-context-engineering/`](docs/01-context-engineering/00-introduccion.md) · [`Contexto y recuperación en profundidad`](docs/01-context-engineering/07-recuperacion-profunda.md) | Mantener la selección de contexto aplicada a Codex; dejar RAG como ampliación futura |
+| Costes y Prompt Caching | Parcial | [`docs/01-context-engineering/05-costes-basicos-de-llm.md`](docs/01-context-engineering/05-costes-basicos-de-llm.md) · [`docs/01-context-engineering/06-prompt-caching.md`](docs/01-context-engineering/06-prompt-caching.md) | Mantener Prompt Caching como optimización avanzada, no como práctica principal |
 | Componentes del agente | Cubierto | [`docs/02-componentes/`](docs/02-componentes/00-system-prompt.md) | Mostrar cómo se combinan en una sesión completa |
 | Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Añadir implementación mínima y manejo de errores |
 | MCP, contexto y Tool Retrieval en Codex | Parcial | [`docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md`](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Mantener la documentación alineada con cambios del producto |
@@ -61,9 +61,9 @@ Ampliar los documentos actuales con idempotencia, efectos secundarios, permisos,
 
 ### 3. Contexto y recuperación en profundidad
 
-**Estado:** Parcial
+**Estado:** Cubierto como base teórica; pendiente de validación con un modelo real
 
-Desarrollar, con un ejemplo trazable:
+La documentación [Contexto y recuperación en profundidad](docs/01-context-engineering/07-recuperacion-profunda.md) desarrolla, con un ejemplo DAX trazable:
 
 - cómo se construye una petición real al modelo;
 - cómo se selecciona y ordena el contexto recuperado;
@@ -71,6 +71,8 @@ Desarrollar, con un ejemplo trazable:
 - caché, compresión, resumen y caducidad del contexto;
 - memoria de sesión frente a memoria persistente;
 - cómo medir coste, latencia y calidad de la recuperación.
+
+Queda pendiente conectar el registro conceptual con una ejecución real y comparar configuraciones mediante un dataset de evaluación.
 
 ### 4. Contexto y Tool Retrieval en Codex mediante suscripción
 
@@ -142,6 +144,17 @@ modificación y validación
 ```
 
 Debe distinguir siempre qué ocurre en el modelo, qué hace el runtime y qué capacidad proporciona el MCP.
+
+### 10. Modos de trabajo, hooks y flujo completo
+
+**Estado:** Pendiente
+
+Incorporar los temas del curso que todavía no tienen un capítulo específico en esta documentación:
+
+- diferencias entre modos de trabajo como Ask, Plan, Agent y Debug, sin asumir que todos los clientes los denominan igual;
+- hooks y controles deterministas alrededor del Agent Loop;
+- recorrido desde una tarea o issue hasta el plan, la implementación, las pruebas y la entrega a producción;
+- relación entre Progressive Disclosure, Skills, MCP, documentación y subagentes en ese recorrido.
 
 ## Temas que pueden aparecer en nuevas notas
 

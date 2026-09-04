@@ -59,11 +59,6 @@ Esto permite aplicar **Progressive Disclosure**.
 
 ---
 
----
-
-
----
-
 ## AGENTS.md jerárquicos
 
 Los `AGENTS.md` pueden existir en diferentes niveles del árbol de un proyecto.

@@ -30,9 +30,6 @@ otros datos
 
 ---
 
----
-
-
 ## Atención efectiva
 
 Que algo quepa dentro de la ventana de contexto **no significa que todo sea igualmente relevante para el modelo**.
@@ -85,8 +82,6 @@ Momento correcto
         +
 Cantidad correcta
 ```
-
----
 
 ---
 

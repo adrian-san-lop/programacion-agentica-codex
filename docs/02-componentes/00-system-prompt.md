@@ -35,9 +35,5 @@ Dependiendo del runtime/API, las Tools pueden proporcionarse al modelo mediante 
 
 ---
 
-
-
----
-
 [← Anterior](../01-context-engineering/06-prompt-caching.md) · [Índice](../../README.md) · [Siguiente →](01-agents-md.md)
 
