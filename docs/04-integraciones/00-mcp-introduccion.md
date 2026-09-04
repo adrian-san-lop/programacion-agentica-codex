@@ -36,6 +36,26 @@ Power BI MCP
 
 El desarrollador normalmente configura **el servidor MCP**, no cada una de sus Tools manualmente.
 
+## Host, cliente y servidor
+
+Estos nombres describen posiciones distintas en la conexión:
+
+```text
+Host o aplicación que ejecuta la experiencia
+  ↓
+Cliente MCP integrado en el runtime
+  ↓
+Servidor MCP
+  ├── Tools
+  ├── Resources
+  ├── Prompts
+  └── instrucciones del servidor
+```
+
+En el curso, Codex es la experiencia de agente que utilizamos en VS Code. El cliente MCP forma parte del entorno que conecta Codex con un servidor, y el servidor es el componente que ofrece capacidades sobre Power BI, Fabric u otro sistema. Un servidor no es el modelo y una Tool no es el servidor completo.
+
+MCP tampoco garantiza que todas las capacidades anunciadas se presenten siempre al modelo ni que puedan ejecutarse sin permisos. La conexión, el descubrimiento, la selección y la autorización son preguntas relacionadas, pero distintas.
+
 ---
 
 ## MCP y Tools
@@ -86,6 +106,15 @@ ni necesariamente en:
 
 ```text
 config.toml
+```
+
+Para recordar la relación:
+
+```text
+MCP       → protocolo y conexión
+Servidor  → componente que expone capacidades
+Tool      → operación ejecutable concreta
+Runtime   → decide cómo incorporar y ejecutar esa capacidad
 ```
 
 ---

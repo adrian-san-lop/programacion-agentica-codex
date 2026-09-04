@@ -1,6 +1,6 @@
 # Qué es un agente y Agent Loop
 
-Un agente combina un modelo de lenguaje, un orquestador y capacidades externas para alcanzar un objetivo.
+Un agente combina un modelo de lenguaje, un runtime u orquestador y capacidades externas para alcanzar un objetivo. En este curso veremos el concepto primero y después lo relacionaremos con Codex en VS Code.
 
 ## Agente
 
@@ -100,6 +100,36 @@ Respuesta al usuario
 ```
 
 Si el resultado de una Tool no es suficiente, el LLM puede solicitar otra Tool y continuar el ciclo.
+
+## Qué debes poder explicar
+
+Al terminar este capítulo, deberías poder seguir esta secuencia sin atribuir todas las acciones al modelo:
+
+```text
+Objetivo de la persona
+  ↓
+Contexto que el runtime reúne
+  ↓
+Propuesta del modelo
+  ↓
+Validación y permisos del runtime
+  ↓
+Acción de una Tool
+  ↓
+Resultado observable
+  ↓
+Nueva decisión o condición de finalización
+```
+
+La pregunta clave no es sólo “¿qué respondió el modelo?”, sino también:
+
+- ¿qué información tenía disponible?
+- ¿qué acción propuso?
+- ¿quién la validó y ejecutó?
+- ¿qué resultado volvió al ciclo?
+- ¿por qué el agente pudo terminar?
+
+Si puedes responder esas preguntas con el ejemplo de ventas, tienes la base necesaria para estudiar el resto del curso.
 
 ---
 

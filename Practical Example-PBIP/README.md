@@ -1,6 +1,6 @@
 # Practical Example: PBIP Agent Workspace
 
-Context and operating template for using a local agent alongside a Power BI project in PBIP format.
+Context and operating template for using Codex alongside a Power BI project in PBIP format.
 
 > This folder does not contain a `.pbip` file or the native `.Report` and `.SemanticModel` folders. Place it in the root folder that contains the real Power BI project.
 
@@ -13,6 +13,8 @@ Context and operating template for using a local agent alongside a Power BI proj
 5. Use the Skills and Tools according to the task.
 6. Run `scripts/validate-project.ps1` before delivering changes.
 
+The template is a learning scaffold, not a complete Power BI agent. It supplies instructions, documentation, Skill workflows, a Tool catalogue, and a structural check; the actual model inspection and edits require a compatible Power BI connection and the Tools exposed by the local runtime.
+
 ## Structure
 
 - `AGENTS.md`: persistent instructions for the agent.
@@ -20,7 +22,6 @@ Context and operating template for using a local agent alongside a Power BI proj
 - `skills/`: specialized workflows kept by this template as a project convention. For Codex auto-discovery, local Skills use `.agents/skills/`; otherwise refer to these files explicitly.
 - `tools/`: expected capability catalogue.
 - `scripts/`: local validation scripts.
-- `.vscode/`: recommended text-editing settings.
 - `.vscode/`: optional VS Code workspace settings. The Power BI Modeling MCP server is provided by the installed extension and used by Codex.
 
 ## Requirement

@@ -72,6 +72,27 @@ Tool Retrieval → qué operación se muestra al modelo ahora
 
 Un servidor MCP puede exponer muchas Tools y el runtime puede presentarlas todas upfront o recuperar sólo las relevantes. MCP no implica automáticamente Retrieval.
 
+## Glosario mínimo
+
+| Término | Definición sencilla |
+|---|---|
+| Modelo o LLM | Sistema que interpreta entradas y genera texto o decisiones propuestas. |
+| Runtime | Capa que reúne contexto, aplica políticas y coordina la ejecución. |
+| Agente | Sistema completo formado por modelo, runtime, instrucciones y capacidades. |
+| Agent Loop | Ciclo de observar, decidir, actuar, recibir el resultado y continuar o terminar. |
+| Contexto | Información disponible para tomar la siguiente decisión. |
+| Tool | Capacidad ejecutable con argumentos. |
+| Tool Call | Solicitud estructurada para utilizar una Tool. |
+| Tool result | Resultado que la Tool devuelve al runtime y que puede volver al contexto. |
+| Skill | Procedimiento especializado con instrucciones y validaciones. |
+| Command | Atajo o petición que inicia un workflow. |
+| MCP | Protocolo para conectar un cliente con servidores que exponen capacidades. |
+| Retrieval | Recuperación selectiva de información o definiciones relevantes. |
+| Permiso | Regla que limita qué puede leer, escribir o ejecutar el runtime. |
+| Aprobación | Confirmación humana requerida antes de una operación determinada. |
+
+Cuando aparezca un término nuevo, conviene ubicarlo en esta tabla antes de estudiar sus detalles. Una Tool puede pertenecer a un servidor MCP, una Skill puede indicar cuándo utilizarla y un permiso puede impedir la ejecución; ninguno de esos conceptos es intercambiable.
+
 ## Catálogo, contrato e invocación
 
 No debe confundirse saber que existe una Tool con tener información suficiente para usarla:
@@ -113,5 +134,14 @@ docs/ documenta.
 ```
 
 Estas distinciones son conceptuales. Un producto concreto puede agrupar varias funciones bajo el mismo nombre, por lo que siempre conviene comprobar cómo las implementa el runtime utilizado.
+
+## Comprobación
+
+Antes de continuar, intenta contestar sin mirar el texto:
+
+1. ¿Qué diferencia hay entre el modelo y el runtime?
+2. ¿Por qué una Skill no es una Tool?
+3. ¿Qué aporta MCP que no aporta una Tool concreta?
+4. ¿Por qué descubrir una capacidad no significa tener permiso para ejecutarla?
 
 [← Anterior](01-actores-y-responsabilidades.md) · [Índice](../../README.md) · [Siguiente →](../01-context-engineering/00-introduccion.md)

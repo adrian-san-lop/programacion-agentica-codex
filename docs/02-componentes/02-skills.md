@@ -58,6 +58,15 @@ Carga o invoca:
 
 Las Skills son una forma de **empaquetar conocimiento y workflows reutilizables**.
 
+Para una persona que empieza, la diferencia esencial es:
+
+```text
+Skill → qué procedimiento seguir y qué comprobar
+Tool  → qué operación puede ejecutarse
+```
+
+Una Skill puede recomendar `get_measure` antes de `update_measure`, pero no se convierte por ello en la Tool ni obtiene permisos adicionales.
+
 ---
 
 ## Skills y Progressive Disclosure
