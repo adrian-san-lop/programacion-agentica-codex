@@ -1,10 +1,100 @@
 # Contexto y recuperación en profundidad
 
-Este documento explica cómo pasar de una petición del usuario a un contexto pequeño, trazable y útil para el modelo. El entorno práctico del curso es **Codex dentro de ChatGPT mediante suscripción**: trabajaremos con workspace, `AGENTS.md`, Skills, contexto del IDE, MCP y Tools disponibles en Codex.
+Este documento explica una idea sencilla:
 
-La API de OpenAI sólo se menciona para comparar patrones documentados. No es el entorno práctico del curso y sus endpoints, vector stores o métricas no deben interpretarse como controles disponibles en nuestra suscripción.
+> Recuperar contexto significa darle a Codex sólo la información que necesita para resolver una tarea concreta.
 
-## 1. La petición real no es sólo la pregunta
+El entorno práctico del curso es **Codex dentro de ChatGPT mediante suscripción**. No vamos a construir un buscador mediante la API ni a crear índices vectoriales. Primero aprenderemos a organizar y pedir correctamente el contexto del workspace.
+
+La API de OpenAI aparece únicamente como comparación posterior. Sus endpoints y métricas no son controles disponibles automáticamente en nuestra suscripción.
+
+## 1. El problema: un proyecto contiene demasiada información
+
+Imagina un proyecto con:
+
+```text
+100 documentos
+20 Skills
+15 Tools
+varios archivos del modelo Power BI
+```
+
+Y la petición del usuario:
+
+```text
+Optimiza la medida Sales YTD.
+```
+
+Codex no necesita leerlo todo. Probablemente necesita:
+
+```text
+AGENTS.md
+Skill de DAX
+reglas DAX
+definición de Sales YTD
+esquema del modelo
+```
+
+Eso es recuperación de contexto:
+
+```text
+no cargar todo
+      ↓
+buscar lo necesario
+      ↓
+usar sólo lo encontrado
+```
+
+No significa que tengas que programar un buscador. Significa decidir qué información debe consultar Codex y cuál no necesita.
+
+## 2. Cómo aplicarlo en Codex
+
+El flujo conceptual para esta tarea sería:
+
+```text
+1. Codex entiende que es una tarea DAX.
+2. Consulta las instrucciones del proyecto.
+3. Busca o utiliza la Skill de DAX.
+4. Lee las reglas DAX relevantes.
+5. Obtiene la definición actual de Sales YTD mediante una Tool.
+6. Obtiene el esquema del modelo si lo necesita.
+7. Analiza la medida.
+8. Propone un cambio.
+```
+
+La organización del proyecto ayuda a que este flujo sea posible:
+
+```text
+AGENTS.md
+    ↓
+indica dónde buscar
+
+Skill DAX
+    ↓
+indica cómo trabajar
+
+documentación DAX
+    ↓
+aporta reglas
+
+MCP / Tools
+    ↓
+aportan datos actuales del modelo
+```
+
+Una petición práctica podría ser:
+
+```text
+Quiero optimizar la medida Sales YTD.
+
+Lee primero AGENTS.md.
+Después consulta la Skill de DAX y las reglas DAX del proyecto.
+Obtén la definición actual de Sales YTD mediante las Tools disponibles.
+No modifiques nada.
+Indica qué información has utilizado y qué dato te falta.
+```
+
+Este prompt ya aplica Context Engineering y recuperación de contexto. No hemos utilizado la API ni hemos construido un sistema de búsqueda.
 
 En Codex, el runtime gestionado por el producto prepara una petición combinando varias capas. Nosotros no vemos ni controlamos todo el mensaje interno; podemos registrar una representación aproximada para analizar qué contexto visible aportamos:
 
@@ -19,7 +109,7 @@ instrucciones del sistema
 petición al modelo
 ```
 
-El orden y el formato exactos dependen del producto. Para aprender el patrón basta con registrar una representación equivalente:
+El orden y el formato exactos dependen del producto. No necesitas escribir este JSON para trabajar con Codex; es sólo un registro opcional para analizar el contexto visible:
 
 ```json
 {
@@ -35,7 +125,7 @@ El orden y el formato exactos dependen del producto. Para aprender el patrón ba
 
 Este JSON es un registro pedagógico, no el formato interno de Codex ni una petición que vayamos a enviar directamente. La pregunta importante es: ¿qué contexto visible aportamos, por qué lo aportamos, en qué orden lo presentamos y con qué versión?
 
-## 2. Ejemplo trazable: optimizar una medida DAX
+## 3. Ejemplo trazable: optimizar una medida DAX
 
 Supongamos que el workspace contiene estos fragmentos:
 
@@ -108,7 +198,9 @@ Optimiza la medida Sales YTD y explica qué cambiarías.
 
 El modelo propone una respuesta basándose en ese contexto. Si necesita conocer la expresión real o el esquema actual, solicita `get_measure` o `get_model_schema`; sus resultados vuelven a ser contexto dinámico y el ciclo continúa.
 
-## 3. Tres formas de buscar
+## 4. Tres formas de buscar: teoría posterior
+
+Estas formas de búsqueda son importantes para entender cómo se construyen agentes, pero no son pasos que tengamos que programar ahora en Codex.
 
 ### Búsqueda por texto
 
@@ -138,7 +230,7 @@ reranking: B, E, A
 
 Como comparación, la API de OpenAI documenta File Search como una herramienta que combina búsqueda semántica y por palabras clave sobre archivos cargados en vector stores. La referencia de búsqueda muestra filtros, número máximo de resultados, reescritura de consulta y puntuaciones. Esto describe la API, no una promesa sobre el mecanismo interno ni las herramientas disponibles en Codex mediante suscripción.
 
-## 4. Qué hacer con el contexto recuperado
+## 5. Qué hacer con el contexto seleccionado
 
 ### Caché
 
@@ -171,7 +263,7 @@ Cada dato debería tener una política:
 
 La fecha de caducidad no se debe confundir con la fecha del documento. Una escritura en el modelo puede invalidar inmediatamente un resultado cacheado aunque su TTL no haya terminado.
 
-## 5. Sesión, memoria persistente y fuente de verdad
+## 6. Sesión, memoria y fuente de verdad
 
 ```text
 Memoria de sesión
@@ -188,7 +280,7 @@ La memoria persistente no debe convertirse en la autoridad para datos cambiantes
 
 En Codex, las memorias locales y el contexto de una conversación son capas distintas de `AGENTS.md`, Skills, Tools y contexto explícito del IDE. La disponibilidad depende del cliente; por eso el curso debe enseñar a preguntar qué fuente se ha utilizado y no asumir una memoria infinita.
 
-## 6. Cómo medir si la recuperación funciona
+## 7. Cómo medirlo cuando tengamos un entorno observable
 
 Crear un pequeño dataset de preguntas con una respuesta esperada y fuentes relevantes. Para cada ejecución registrar:
 
@@ -222,7 +314,30 @@ Para el agente completo añadir:
 
 Una recuperación mejor no es la que devuelve más fragmentos, sino la que permite responder correctamente con el menor contexto y tiempo compatibles con la calidad requerida.
 
-## 7. Qué es general y qué depende de OpenAI
+## 8. Qué puedes hacer ahora y qué queda para después
+
+### Puedes hacerlo ahora en Codex
+
+- organizar el workspace;
+- mantener `AGENTS.md` como mapa de navegación;
+- indicar qué Skill y documentación debe consultarse;
+- pedir que Codex trabaje con archivos concretos;
+- utilizar las Tools disponibles para obtener datos actuales;
+- pedir una lista de fuentes utilizadas;
+- revisar el resultado antes de aprobar cambios.
+
+### Es teoría o requiere otro entorno
+
+- construir un índice invertido o vectorial;
+- configurar `File Search` o `vector stores`;
+- utilizar `tool_search` de la API;
+- controlar el ranking interno de Codex;
+- ver las puntuaciones internas de recuperación;
+- inspeccionar el system prompt completo;
+- conocer el TTL interno de la caché de Codex;
+- medir los tokens internos si el cliente no los muestra.
+
+## 9. Qué es general y qué depende de OpenAI
 
 | Concepto | General | Documentado específicamente en OpenAI |
 |---|---:|---:|
