@@ -10,14 +10,27 @@ This documentation is not about the OpenAI API, ChatGPT SDKs, or application dev
 
 The documentation should enable a complete beginner to understand the core concepts and progressively build a small practical example using what has been learned.
 
-## Navigation
+## Navigation and progressive disclosure
 
-- Start with `README.md` and follow its recommended route.
-- Use `docs/` for conceptual explanations.
-- Use `skills/` for reusable repository skills, including Git workflow tasks.
-- Use `docs/notes.txt` as working notes; do not treat it as finished documentation.
-- Use `examples/` for runnable examples.
-- Use `Practical Example-PBIP/` for the Power BI project template.
+-  `README.md` only for humans. Do not use this file for progressive disclosure and/or navigation.
+- For a focused question, use the smallest relevant path below; do not read all of `docs/`.
+- Read the target document first and follow links only when they are needed.
+- Treat `docs/notes.txt` as provisional notes, not course content.
+
+| Topic | Starting path |
+|---|---|
+| Agent Loop and core terms | `docs/00-introduccion/00-que-es-un-agente.md` |
+| LLM, runtime, Tool, Skill or MCP differences | `docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md` |
+| Context and context rot | `docs/01-context-engineering/00-introduccion.md` |
+| Progressive Disclosure or retrieval | `docs/01-context-engineering/04-progressive-disclosure.md` |
+| System Prompt, `AGENTS.md`, Skills and Commands | `docs/02-componentes/00-system-prompt.md` |
+| Tools, retrieval and Tool Calling | `docs/03-tools/00-que-es-una-tool.md` |
+| Codex subscription behavior | `docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md` |
+| MCP and integrations | `docs/04-integraciones/00-mcp-introduccion.md` |
+| Collaboration and subagents | `docs/05-trabajo-en-equipo/00-introduccion.md` |
+| Power BI and Fabric | `docs/06-ejemplos/01-power-bi-fabric.md` |
+
+When answering, define unfamiliar terms, cite the files consulted, and distinguish general patterns, Codex behavior, API comparisons, observations and inferences. Do not modify files unless explicitly asked.
 
 ## Editing rules
 
