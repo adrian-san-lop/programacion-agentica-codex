@@ -6,6 +6,8 @@ MCP describe la conexión y las capacidades; Tool Retrieval describe cómo se pr
 
 MCP y Tool Retrieval **NO son lo mismo**.
 
+Esta diferencia forma parte de un conjunto más amplio de conceptos relacionados. El mapa introductorio está disponible en [Conceptos que no deben confundirse](../00-introduccion/02-conceptos-que-no-deben-confundirse.md).
+
 MCP describe la interfaz de integración. Upfront y Retrieval describen la estrategia del runtime para decidir qué Tools se presentan al LLM. Por tanto, un runtime puede usar Tool Retrieval sobre las Tools que descubre a través de MCP.
 
 MCP responde principalmente a:
@@ -41,10 +43,6 @@ Por tanto:
 > MCP por sí solo no implica necesariamente Progressive Disclosure de Tools.
 
 La estrategia utilizada para proporcionar esas Tools al LLM depende del runtime/agente.
-
----
-
-
 
 ---
 

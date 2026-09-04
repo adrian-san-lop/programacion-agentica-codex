@@ -2,6 +2,8 @@
 
 MCP y CLI son dos formas de dar capacidades externas a un agente. No son equivalentes ni compiten necesariamente: pueden participar en el mismo Agent Loop.
 
+Para distinguir además Tool, Skill, Command y Tool Retrieval, consulta [Conceptos que no deben confundirse](../00-introduccion/02-conceptos-que-no-deben-confundirse.md).
+
 ```text
                          CODEX
                            │

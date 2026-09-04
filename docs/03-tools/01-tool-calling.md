@@ -65,9 +65,18 @@ Por tanto:
 >
 > El agente/orquestador ejecuta realmente la Tool.
 
----
+## El ciclo completo de una Tool Call
 
+Una llamada no termina cuando el modelo escribe el nombre de la Tool. El ciclo conceptual completo es:
 
+1. El modelo propone una Tool y sus argumentos.
+2. El runtime comprueba que la Tool exista y que la llamada tenga el formato esperado.
+3. El runtime aplica permisos, límites y, cuando corresponda, solicita aprobación.
+4. La Tool se ejecuta o se rechaza.
+5. El resultado o el error vuelve al runtime.
+6. El modelo interpreta la evidencia y decide si responde, corrige la llamada o continúa con otra Tool.
+
+Un error, un rechazo y un resultado vacío también son resultados del ciclo. No deben ocultarse ni tratarse automáticamente como una respuesta correcta. Esta idea será importante cuando estudiemos seguridad, MCP y validación.
 
 ---
 

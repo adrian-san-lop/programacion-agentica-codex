@@ -45,6 +45,8 @@ estándar universal
 
 Cada agente o herramienta puede implementarlos de forma diferente.
 
+En este curso, un Command es sólo la puerta de entrada a un workflow. No sustituye al razonamiento del agente, no es una Tool y no garantiza que el workflow se ejecute sin validaciones o aprobaciones.
+
 ## Workflow Git del repositorio
 
 En este repositorio, el flujo repetitivo de revisar cambios, seleccionar archivos y crear un commit está separado en dos piezas:
@@ -65,10 +67,6 @@ La opción `-All` equivale a seleccionar todos los cambios actuales, incluidas l
 ```
 
 No se asume que `/commit` exista como comando slash universal en Codex. La forma portable es pedir explícitamente a Codex que use la Skill o ejecutar el script. Así el conocimiento del proceso y la ejecución quedan documentados y versionados en el propio repositorio.
-
----
-
-
 
 ---
 

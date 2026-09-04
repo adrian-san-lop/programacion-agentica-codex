@@ -21,9 +21,6 @@ Usuario → Agente
 
 ---
 
----
-
-
 ## Tool Results
 
 Resultados obtenidos mediante herramientas:
@@ -63,7 +60,7 @@ LLM
 
 ## Skills Loading
 
-Una Skill puede descubrirse inicialmente mediante metadata mínima y cargarse completamente sólo cuando sea relevante.
+Una Skill puede estar disponible en el entorno y sus instrucciones incorporarse cuando se invoca. Codex documenta ubicaciones concretas para descubrir Skills, pero el mecanismo interno exacto que decide qué metadata o contenido carga no debe darse por supuesto.
 
 ```text
 Usuario:
@@ -76,8 +73,8 @@ Agente detecta:
 
         ↓
 
-Carga:
-skills/dax/SKILL.md
+Carga o invoca:
+.agents/skills/dax/SKILL.md
 ```
 
 ---
@@ -118,6 +115,7 @@ Esto explica algunos fallos aparentemente inexplicables: el archivo existe, pero
 
 ---
 
+El contexto dinámico también afecta a la posibilidad de reutilizar prefijos. Consulta [Prompt Caching](06-prompt-caching.md) después de entender cómo se construye este contexto.
 
 [← Anterior](02-static-context.md) · [Índice](../../README.md) · [Siguiente →](04-progressive-disclosure.md)
 

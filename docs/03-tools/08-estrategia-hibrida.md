@@ -54,11 +54,6 @@ consumo de contexto
 
 ---
 
----
-
-
----
-
 ## Tool Calling después de Upfront o Retrieval
 
 Independientemente de cómo haya conocido la Tool el LLM:
@@ -110,8 +105,6 @@ LLM
 ```
 
 Eso forma parte del **Agent Loop**.
-
----
 
 ---
 

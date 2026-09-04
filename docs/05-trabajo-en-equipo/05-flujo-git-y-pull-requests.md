@@ -28,4 +28,4 @@ Este flujo conecta la colaboración humana con el trabajo del agente: Codex pued
 
 ---
 
-[← Anterior](04-subagentes-y-delegacion.md) · [Índice](../../README.md) · [Siguiente →](../06-ejemplos/00-power-bi-fabric.md)
+[← Anterior](04-subagentes-y-delegacion.md) · [Índice](../../README.md) · [Siguiente →](../06-ejemplos/00-agent-loop-minimo.md)

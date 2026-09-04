@@ -2,8 +2,6 @@
 
 La capacidad técnica de contexto no equivale a relevancia efectiva.
 
-## Context Window y atención efectiva
-
 ## Context Window
 
 La **ventana de contexto** representa cuánta información puede manejar el modelo dentro de una inferencia.
@@ -31,9 +29,6 @@ otros datos
 ```
 
 ---
-
----
-
 
 ## Atención efectiva
 
@@ -87,8 +82,6 @@ Momento correcto
         +
 Cantidad correcta
 ```
-
----
 
 ---
 
@@ -163,6 +156,7 @@ Todo converge en:
 
 ---
 
+El tamaño del contexto también influye en el consumo de una interacción. Consulta [Costes básicos de LLM](05-costes-basicos-de-llm.md) para relacionar capacidad, contexto y consumo.
 
 [← Anterior](00-introduccion.md) · [Índice](../../README.md) · [Siguiente →](02-static-context.md)
 

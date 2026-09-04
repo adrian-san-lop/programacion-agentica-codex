@@ -154,3 +154,973 @@ Carpeta de docs con todo y a funcionar dicen, mejor a nivel de rendimiento. Esto
 docs es más fácil de descubrir para los humanos y la jerarquia puede tener dif. niveles de identación.
 
 Subagents: le metes demasiado contexto de primeras, se podría hacer progresive disclosure y dentro de agents le dices que tiene la carpeta docs y asi puede tener ahi tiene doc par que parezcan otros sub-agents
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+COSTES BÁSICOS AL USAR LLMs: Tokens de input y de output
+
+Entender que costes ==> CODEX NO TIENE ESTO. Puedes usar el /status y te da tokens de contexto y limites diario y semanal. 
+
+COSTES BÁSICOS AL USAR LLMs: INPUT, OUTPUT Y CONTEXTO
+
+Idea principal:
+Los LLMs procesan tokens. De forma simplificada, el coste y consumo de una interacción dependen principalmente de los tokens que entran al modelo y de los tokens que genera como salida.
+
+IMPORTANTE SOBRE CODEX:
+Cuando Codex se usa mediante un plan de ChatGPT, `/status` no muestra un coste monetario directo tipo "$X por millón de tokens".
+
+Lo que muestra principalmente es:
+- uso de contexto del hilo actual;
+- límite de uso de 5 horas;
+- límite de uso de 7 días.
+
+Esto no es lo mismo que usar un modelo mediante API, donde sí puede existir billing explícito por tokens.
+
+No confundir:
+- Context window / context usage.
+- Usage limits del plan.
+- Billing monetario por tokens.
+
+Son conceptos diferentes.
+
+
+BILLING COMPONENTS
+
+Para entender el concepto, usar un modelo ficticio llamado "Codely Code 3.8".
+
+Precios ficticios pero realistas:
+
+Input:
+$1 / 1M tokens
+
+Output:
+$5 / 1M tokens
+
+
+INPUT TOKENS
+
+El input no es únicamente el prompt que escribe el usuario.
+
+Un agente puede tener que enviar al modelo información adicional como:
+
+- System prompt.
+- Instrucciones internas.
+- Definición de Tools disponibles.
+- Skills disponibles.
+- AGENTS.md.
+- Historial de la conversación.
+- Resultados de llamadas a Tools.
+- Contenido de archivos leídos.
+- Información obtenida durante la exploración del repositorio.
+- Prompt actual del usuario.
+
+
+EJEMPLO SIMPLE
+
+Prompt del usuario:
+
+"What is 100 minus 80?"
+
+Supongamos que antes de procesar esa pregunta el agente tiene:
+
+System prompt:
+3.000 tokens
+
+Tools disponibles:
+9.000 tokens
+
+Skills:
+1.000 tokens
+
+AGENTS.md:
+1.000 tokens
+
+Prompt del usuario:
+8 tokens
+
+Total aproximado de input:
+
+14.008 tokens
+
+Coste ficticio:
+
+14.008 / 1.000.000 * $1
+= $0.014008
+
+
+OUTPUT
+
+Respuesta del modelo:
+
+"100 minus 80 equals 20"
+
+Supongamos:
+
+7 output tokens
+
+Coste:
+
+7 / 1.000.000 * $5
+= $0.000035
+
+
+SEGUNDO TURNO
+
+Usuario:
+
+"and times 5?"
+
+El modelo no tiene una memoria mágica de lo ocurrido anteriormente.
+
+Para poder interpretar "and times 5?", necesita tener disponible el contexto relevante del turno anterior.
+
+La plataforma o la aplicación puede gestionar ese estado de distintas formas, pero conceptualmente el modelo necesita recibir el contexto necesario para entender la conversación.
+
+Por ejemplo, el siguiente input puede contener:
+
+- Contexto estático anterior.
+- Prompt anterior.
+- Respuesta anterior.
+- Nuevo prompt.
+
+Ejemplo aproximado:
+
+Contexto inicial:
+14.000 tokens
+
+Prompt 1:
+8 tokens
+
+Respuesta 1:
+7 tokens
+
+Prompt 2:
+5 tokens
+
+Total aproximado:
+
+14.020 tokens
+
+Coste ficticio:
+
+14.020 / 1.000.000 * $1
+= $0.01402
+
+
+IMPORTANTE: EL OUTPUT ANTERIOR PASA A FORMAR PARTE DEL CONTEXTO
+
+La respuesta del primer turno se cobró como OUTPUT cuando fue generada.
+
+En el siguiente turno, esa misma información puede formar parte del INPUT necesario para continuar la conversación.
+
+Por tanto:
+
+Turno 1:
+Prompt -> INPUT
+Respuesta -> OUTPUT
+
+Turno 2:
+Prompt anterior + respuesta anterior + nuevo prompt -> INPUT
+Nueva respuesta -> OUTPUT
+
+Los output tokens no se "acumulan como output", pero parte de las respuestas anteriores puede convertirse en input de futuros turnos.
+
+
+INPUT VS OUTPUT
+
+En muchos modelos actuales, el precio unitario de los output tokens es superior al de los input tokens.
+
+Pero esto NO significa necesariamente que el output sea siempre la parte más cara de una tarea.
+
+En workflows agénticos puede existir muchísimo más input que output.
+
+Ejemplo:
+
+100.000 input tokens
+2.000 output tokens
+
+Aunque cada output token sea varias veces más caro, el enorme volumen de contexto puede hacer que el input siga representando una parte importante del consumo total.
+
+
+AGENTES Y CONSUMO INVISIBLE AL USUARIO
+
+Un agente normalmente hace muchas más cosas que simplemente:
+
+Prompt -> Respuesta
+
+Puede realizar internamente:
+
+- búsquedas;
+- lecturas de archivos;
+- llamadas a herramientas;
+- inspección de carpetas;
+- ejecución de comandos;
+- lectura de errores;
+- análisis de resultados;
+- nuevas llamadas al modelo;
+- validaciones;
+- reintentos.
+
+Muchas de estas interacciones son transparentes para el usuario.
+
+Por eso una tarea aparentemente sencilla puede terminar procesando decenas o cientos de miles de tokens.
+
+
+EJEMPLO
+
+Usuario:
+
+"Corrige el módulo de usuarios."
+
+El usuario solamente ha escrito unas pocas palabras.
+
+Pero el agente podría hacer algo parecido a:
+
+1. Leer instrucciones.
+2. Inspeccionar el repositorio.
+3. Buscar archivos relacionados con users.
+4. Leer varios archivos.
+5. Leer dependencias.
+6. Analizar el código.
+7. Modificar archivos.
+8. Ejecutar tests.
+9. Leer errores.
+10. Volver a modificar código.
+11. Ejecutar tests otra vez.
+12. Revisar el diff.
+
+Cada uno de estos pasos puede generar nuevas interacciones con el modelo y, por tanto, más tokens.
+
+
+IMPORTANCIA DE AGENTS.md
+
+Un AGENTS.md consume tokens porque también forma parte del contexto.
+
+Por tanto, hacerlo innecesariamente grande tiene un coste.
+
+Pero un AGENTS.md pequeño, preciso y operativo puede AHORRAR muchos más tokens de los que consume.
+
+Ejemplo:
+
+Si existe esta estructura:
+
+src/
+    authentication/
+    billing/
+    users/
+    reports/
+
+Y el usuario pide:
+
+"Modifica la lógica de usuarios."
+
+Sin instrucciones claras, el agente podría tener que explorar:
+
+- src/
+- distintos módulos;
+- buscar "user";
+- leer varios archivos;
+- descartar carpetas;
+- identificar finalmente src/users/.
+
+Eso genera tokens.
+
+Si AGENTS.md contiene:
+
+"User-related logic lives in `src/users/`."
+
+el agente puede dirigirse directamente a esa carpeta.
+
+Esos pocos tokens añadidos al contexto pueden evitar miles de tokens de exploración repetida.
+
+Por eso AGENTS.md debe ser:
+
+- corto;
+- estable;
+- preciso;
+- operativo.
+
+No debe convertirse en una documentación completa del proyecto.
+
+
+REPOSITORIO COMO MEMORIA PERSISTENTE
+
+La conversación no debería ser el único lugar donde se almacena información importante.
+
+Las decisiones relevantes del proyecto deberían persistirse en archivos del repositorio cuando tenga sentido.
+
+Ejemplos:
+
+AGENTS.md:
+instrucciones operativas para el agente.
+
+README.md:
+entrada al proyecto y navegación.
+
+docs/:
+conocimiento estable.
+
+notes.txt:
+notas de trabajo y conceptos pendientes de formalizar.
+
+Esto permite que futuras sesiones o agentes puedan reconstruir correctamente el contexto sin depender exclusivamente del historial de conversación.
+
+
+COMPACTACIÓN DEL CONTEXTO
+
+Los modelos tienen una ventana de contexto limitada.
+
+Si una sesión se hace muy larga, un agente puede necesitar compactar o resumir información anterior para poder continuar trabajando dentro de esa ventana.
+
+Conceptualmente:
+
+ANTES:
+
+System prompt
+Tools
+AGENTS.md
+Conversación completa
+Archivos leídos
+Resultados de tools
+Decisiones
+Más conversación
+...
+
+La ventana de contexto empieza a llenarse.
+
+
+DESPUÉS DE COMPACTAR:
+
+System prompt
+Tools
+AGENTS.md
+
+Resumen de trabajo anterior:
+- decisiones principales;
+- archivos modificados;
+- información relevante;
+- pendientes.
+
+Contexto reciente completo.
+
+
+La compactación permite continuar una sesión larga, pero tiene un coste conceptual:
+
+se pierde parte del detalle literal del contexto antiguo.
+
+Por ejemplo, puede mantenerse:
+
+"Se decidió utilizar la opción B."
+
+pero perderse parte del razonamiento detallado que llevó a descartar A y C.
+
+Por eso las decisiones realmente importantes deberían estar persistidas en el repositorio y no depender únicamente del historial de conversación.
+
+
+IMPORTANTE SOBRE EL MOTIVO DE LA COMPACTACIÓN
+
+La compactación no debe explicarse únicamente como un mecanismo para reducir costes.
+
+Su función principal es permitir continuar trabajando cuando el contexto se aproxima al límite disponible.
+
+Como consecuencia adicional, reducir el contexto también puede disminuir el número de input tokens necesarios en futuras interacciones.
+
+
+MODELO MENTAL HASTA ESTE PUNTO
+
+Una interacción agéntica puede imaginarse así:
+
+INPUT
+    System prompt
+    Tools
+    Skills
+    AGENTS.md
+    Historial relevante
+    Archivos
+    Tool outputs
+    Prompt del usuario
+
+        ↓
+
+      MODEL
+
+        ↓
+
+OUTPUT
+    Respuesta
+    Tool call
+    Código
+    Razonamiento necesario para continuar
+    etc.
+
+
+Y este proceso puede repetirse muchas veces dentro de una única tarea.
+
+
+SIGUIENTE CONCEPTO: CACHE
+
+Hasta aquí parece que existe un problema importante:
+
+Si gran parte del contexto se repite en cada interacción, ¿hay que volver a pagar/procesar siempre exactamente lo mismo?
+
+Ejemplo:
+
+System prompt:
+3k
+
+Tools:
+9k
+
+Skills:
+1k
+
+AGENTS.md:
+1k
+
+Total de contexto relativamente estático:
+14k tokens
+
+Si ese mismo prefijo aparece una y otra vez, parece muy ineficiente procesarlo siempre desde cero.
+
+Aquí entra el siguiente concepto:
+
+PROMPT CACHING
+
+OBJETIVO
+
+Los agentes suelen enviar una gran cantidad de contexto repetido al modelo:
+
+- system/developer instructions;
+- Tool definitions;
+- Skills;
+- AGENTS.md;
+- contexto persistente;
+- partes anteriores de la conversación.
+
+Procesar exactamente los mismos miles de tokens una y otra vez sería caro e ineficiente.
+
+Prompt Caching intenta reutilizar el trabajo realizado sobre partes del input que ya han sido procesadas anteriormente.
+
+
+MODELO MENTAL SIMPLIFICADO DE INFERENCIA
+
+Podemos pensar una inferencia de un LLM en cuatro etapas:
+
+1. TOKENIZATION
+
+Convertir el texto/input en tokens.
+
+Ejemplo:
+
+"What is 100 minus 80?"
+
+se transforma en una secuencia de tokens que el modelo puede procesar.
+
+
+2. PREFILL
+
+El modelo procesa los tokens del input/contexto antes de empezar a generar la respuesta.
+
+Ejemplo de contexto:
+
+System prompt
+Tools
+Skills
+AGENTS.md
+Conversation history
+User prompt
+
+Cuanto mayor sea este contexto, mayor es el trabajo necesario para procesarlo.
+
+Durante esta fase se genera estado interno que permite al modelo continuar desde ese contexto.
+
+Para entender Prompt Caching podemos pensar en este estado como:
+
+"El resultado de haber procesado previamente este prefijo."
+
+Técnicamente existen estructuras internas como los key/value states utilizados durante inferencia, pero para documentación beginner-friendly no es necesario entrar inicialmente en su implementación matemática.
+
+
+3. DECODE
+
+Una vez procesado el contexto, el modelo empieza a generar nuevos tokens.
+
+Ejemplo:
+
+"100 minus 80 equals 20"
+
+
+4. DETOKENIZATION
+
+Los tokens generados se transforman nuevamente en texto u otro formato interpretable.
+
+IMPORTANTE:
+
+Este modelo de cuatro pasos es una simplificación pedagógica.
+
+Para comprender costes y caching, las partes más interesantes son:
+
+PREFILL
+    Procesar input/contexto.
+
+DECODE
+    Generar output.
+
+
+CÓMO ENTRA PROMPT CACHING
+
+Supongamos este contexto:
+
+System prompt       3.000 tokens
+Tools               9.000 tokens
+Skills              1.000 tokens
+AGENTS.md            1.000 tokens
+
+Total relativamente estático:
+
+14.000 tokens
+
+
+PRIMERA INTERACCIÓN
+
+Usuario:
+
+"What is 100 minus 80?"
+
+El modelo recibe algo conceptualmente parecido a:
+
+[System]
+[Tools]
+[Skills]
+[AGENTS.md]
+[Prompt 1]
+
+Durante prefill:
+
+No existe todavía un estado reutilizable para ese contexto.
+
+CACHE MISS
+
+El sistema procesa ese prefijo y puede almacenar información reutilizable para futuras peticiones.
+
+
+SEGUNDA INTERACCIÓN
+
+Usuario:
+
+"and times 5?"
+
+El input puede parecerse conceptualmente a:
+
+[System]
+[Tools]
+[Skills]
+[AGENTS.md]
+[Prompt 1]
+[Response 1]
+[Prompt 2]
+
+Una gran parte del principio es idéntica a la petición anterior.
+
+Por tanto, el sistema puede encontrar un prefijo previamente procesado:
+
+[System]        CACHED
+[Tools]         CACHED
+[Skills]        CACHED
+[AGENTS.md]     CACHED
+[Prompt 1]      potencialmente CACHED
+[Response 1]    NEW
+[Prompt 2]      NEW
+
+En lugar de volver a realizar todo el trabajo de prefill desde cero, puede reutilizar el estado correspondiente al prefijo coincidente y procesar solamente la continuación necesaria.
+
+
+CONCEPTO CLAVE: PREFIX
+
+Prompt Caching funciona principalmente sobre PREFIJOS reutilizables.
+
+No hay que pensar:
+
+"Busca cualquier fragmento repetido en cualquier parte del prompt."
+
+El modelo mental correcto es:
+
+"¿Cuánto del principio de esta petición coincide con algo que ya fue procesado?"
+
+Por eso es importante colocar:
+
+CONTEXTO ESTABLE PRIMERO
+
+y
+
+CONTEXTO DINÁMICO DESPUÉS.
+
+
+Ejemplo bueno:
+
+System instructions
+Tool definitions
+Stable project instructions
+Shared context
+User-specific information
+Current request
+
+
+Si el comienzo permanece igual entre llamadas, la probabilidad de reutilizar cache aumenta.
+
+
+CACHE HIT NO TIENE POR QUÉ SER TODO O NADA
+
+Supongamos:
+
+System
+Tools
+AGENTS.md
+Conversation
+
+Y modificamos AGENTS.md.
+
+Podría ocurrir conceptualmente:
+
+System        CACHE HIT
+Tools         CACHE HIT
+AGENTS.md     cambia aquí
+Conversation no continúa el antiguo prefijo
+
+Por tanto:
+
+Cambiar una parte del contexto NO significa necesariamente que absolutamente todo el prompt deje de ser reutilizable.
+
+Se puede reutilizar el prefijo que siga siendo idéntico hasta el punto donde aparece la diferencia.
+
+
+¿QUÉ PASA SI MODIFICAMOS AGENTS.md?
+
+Si AGENTS.md forma parte del contexto enviado al modelo y su contenido cambia, cambia también el input desde ese punto.
+
+Por tanto, parte del prefijo que anteriormente podía estar cacheado puede dejar de coincidir.
+
+Conclusión práctica:
+
+No modificar AGENTS.md constantemente sin necesidad.
+
+AGENTS.md debería contener información:
+
+- estable;
+- útil;
+- concisa;
+- operativa.
+
+Esto tiene dos beneficios:
+
+1. Reduce directamente el tamaño del contexto.
+2. Favorece que una parte estable del prompt sea reutilizable.
+
+
+TOOLS Y MCP
+
+Las definiciones de Tools también pueden formar parte del contexto enviado al modelo.
+
+Supongamos:
+
+System
+Tool A definition
+Tool B definition
+Tool C definition
+AGENTS.md
+Conversation
+
+Si continuamente añadimos, eliminamos o modificamos tool definitions, estamos modificando una parte relativamente temprana del contexto.
+
+Eso puede reducir el porcentaje de prefijo reutilizable.
+
+Por tanto, desde el punto de vista de caching:
+
+TOOLS ESTABLES = BUENO
+
+TOOLS QUE CAMBIAN CONSTANTEMENTE = POTENCIALMENTE PEOR CACHE HIT
+
+
+OpenAI incluso dispone de mecanismos para declarar un conjunto estable de tools y restringir posteriormente cuáles están permitidas para una petición, evitando tener que cambiar continuamente las definiciones completas.
+
+Esto puede mejorar la predictibilidad y el caching.
+
+
+IMPORTANTE CON MCP
+
+No asumir automáticamente:
+
+"Desactivar una Tool de un MCP invalida toda la cache."
+
+Depende de cómo el cliente construya finalmente el contexto enviado al modelo.
+
+Si cambiar la configuración del MCP provoca que cambien las tool definitions incluidas en el prompt, entonces el prefijo cambia desde ese punto y puede reducirse el cache hit.
+
+La implementación concreta puede variar entre:
+
+- Codex;
+- Cursor;
+- Claude Code;
+- otros agentes.
+
+No generalizar comportamiento interno entre productos.
+
+
+CACHE READ Y COSTE
+
+Los cached input tokens pueden tener un precio muy inferior a los input tokens normales.
+
+Ejemplo actual de algunos modelos OpenAI:
+
+Input:
+$X
+
+Cached input:
+aproximadamente $X / 10
+
+Es decir, en determinados modelos actuales de Codex/OpenAI, leer input desde cache puede ser aproximadamente 10 veces más barato que procesarlo como input normal.
+
+IMPORTANTE:
+
+10x NO es una regla universal.
+
+Depende de:
+
+- modelo;
+- producto;
+- proveedor;
+- pricing vigente.
+
+Consultar siempre pricing oficial.
+
+
+CACHE WRITE
+
+Hay que distinguir entre:
+
+CACHE MISS
+    El prefijo debe procesarse.
+
+CACHE WRITE
+    El sistema conserva estado reutilizable.
+
+CACHE HIT / CACHE READ
+    Una petición posterior reutiliza ese estado.
+
+
+IMPORTANTE SOBRE OPENAI:
+
+En la API de GPT-5.6, OpenAI puede contabilizar explícitamente cache_write_tokens.
+
+Actualmente, los cache writes de GPT-5.6 vía API pueden tener un coste superior al input estándar.
+
+Sin embargo:
+
+CODEX utilizado mediante los esquemas actuales de ChatGPT no debe asumirse igual que la API.
+
+La documentación/rate card actual de Codex especifica que Codex no cobra cache writes.
+
+Por tanto:
+
+NO mezclar pricing de API con pricing de Codex.
+
+
+CACHE INVALIDATION / REDUCCIÓN DEL CACHE HIT
+
+Situaciones que pueden hacer que una parte previamente cacheada deje de ser reutilizable:
+
+1. CAMBIAR CONTEXTO ESTÁTICO
+
+Por ejemplo:
+
+- system instructions;
+- AGENTS.md;
+- tool definitions;
+- contenido estable situado al principio del prompt.
+
+Cuanto antes ocurra el cambio en el prefijo, menor puede ser la parte reutilizable posterior.
+
+
+2. CAMBIAR DE MODELO
+
+No asumir que la cache generada para un modelo puede utilizarse con otro modelo.
+
+El procesamiento interno depende del modelo.
+
+Desde un punto de vista práctico:
+
+Model A cache != Model B cache.
+
+
+3. PROMPTS NO DETERMINISTAS
+
+Si nuestra aplicación genera cada vez un prompt estático ligeramente distinto:
+
+Request 1:
+Tools orden A,B,C
+
+Request 2:
+Tools orden B,A,C
+
+aunque semánticamente sean iguales, la secuencia de tokens cambia.
+
+Eso perjudica el prefix matching.
+
+Por eso es importante generar prompts de manera estable/determinista.
+
+
+4. CAMBIAR TOOL DEFINITIONS
+
+Si cada petición reconstruye las tools de manera diferente, cambia una parte temprana del contexto y puede reducirse significativamente el cache hit.
+
+
+TTL
+
+La cache no vive para siempre.
+
+IMPORTANTE:
+
+No documentar "Codex cache TTL = X" salvo que exista documentación específica del producto.
+
+Históricamente, OpenAI Prompt Caching utilizaba ventanas mucho más cortas, como aproximadamente 5-10 minutos de inactividad.
+
+Esto ha cambiado.
+
+Para GPT-5.6 actual, OpenAI documenta una ventana mínima de Prompt Caching de aproximadamente 30 minutos y existen opciones específicas de caching en la API.
+
+Esto es comportamiento de los modelos/API documentados por OpenAI.
+
+NO asumir automáticamente que:
+
+Codex
+Cursor
+Claude Code
+
+utilizan exactamente el mismo TTL o la misma estrategia interna.
+
+
+SUBAGENTES Y CACHE
+
+No asumir:
+
+"Un subagente siempre empieza con cache limpia."
+
+El comportamiento depende de cómo el sistema construya el contexto del subagente.
+
+Un subagente puede:
+
+- recibir solo una tarea pequeña;
+- recibir parte del contexto padre;
+- recibir instrucciones propias;
+- utilizar otro modelo;
+- tener herramientas distintas.
+
+Desde el punto de vista de eficiencia, sí puede ser beneficioso delegar tareas pequeñas a agentes con contextos más reducidos o modelos más baratos.
+
+Pero esto es una decisión de arquitectura del sistema/agente y NO debe explicarse como una propiedad universal de Prompt Caching.
+
+
+OBJETIVO: MAXIMIZAR CACHE HITS
+
+Buenas prácticas conceptuales:
+
+1. Mantener contenido estable al principio.
+2. Colocar contenido dinámico hacia el final.
+3. Mantener AGENTS.md corto y estable.
+4. Evitar modificar continuamente tool definitions.
+5. Generar prompts de forma determinista.
+6. Evitar información dinámica innecesaria dentro del contexto estático.
+7. No duplicar instrucciones.
+8. Mantener únicamente las Tools realmente necesarias cuando la arquitectura lo permita sin destruir estabilidad.
+9. Medir cached tokens en lugar de asumir que la cache está funcionando.
+
+
+MODELO MENTAL
+
+SIN CACHE:
+
+14k contexto
+        ↓
+PREFILL COMPLETO
+        ↓
+STATE
+        ↓
+DECODE
+
+
+SIGUIENTE TURNO:
+
+14k contexto + historial
+        ↓
+PREFILL COMPLETO OTRA VEZ
+        ↓
+STATE
+        ↓
+DECODE
+
+
+CON CACHE:
+
+14k contexto estable
+        ↓
+CACHE HIT
+        ↓
+REUTILIZAR ESTADO PRECALCULADO
+        +
+PROCESAR SOLO CONTINUACIÓN NUEVA
+        ↓
+NUEVO STATE
+        ↓
+DECODE
+
+
+RESULTADO
+
+Prompt Caching puede reducir:
+
+- coste de input;
+- trabajo de prefill;
+- latencia.
+
+No aumenta la context window.
+
+No sustituye a context compaction.
+
+No proporciona memoria infinita.
+
+
+DIFERENCIAS IMPORTANTES
+
+PROMPT CACHING:
+Evita repetir trabajo sobre prefijos idénticos.
+
+CONTEXT WINDOW:
+Cantidad máxima de contexto que el modelo puede manejar.
+
+COMPACTION:
+Reduce/resume contexto antiguo para poder seguir trabajando dentro de la context window.
+
+MEMORY:
+Mecanismo mediante el cual un producto puede conservar información entre conversaciones/sesiones.
+
+Son conceptos relacionados pero diferentes.
+
+
+IMPORTANTE PARA EL CURSO
+
+Estas reglas deben documentarse por proveedor.
+
+OPENAI / CODEX:
+Usar documentación oficial de OpenAI.
+
+No asumir que:
+
+- TTL;
+- cache writes;
+- descuentos;
+- invalidación;
+- tratamiento de tools;
+- tratamiento de subagentes;
+- persistencia;
+
+funcionan igual entre proveedores.

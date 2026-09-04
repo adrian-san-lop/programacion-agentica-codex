@@ -13,7 +13,7 @@ VS Code
     └── servidor MCP y Tools de Power BI
 ```
 
-No es necesario crear manualmente `config.toml`, `.vscode/mcp.json` ni registrar las Tools una por una. La extensión de Power BI proporciona el servidor y Codex lo utiliza desde su runtime.
+En el flujo previsto por esta plantilla, la extensión de Power BI proporciona el servidor y Codex lo utiliza desde su runtime sin registrar las Tools una por una. Codex también admite configuración de servidores MCP mediante `~/.codex/config.toml`, un `.codex/config.toml` de proyecto o la interfaz del cliente; `.vscode/mcp.json` no debe asumirse como formato estándar de Codex sin verificar la extensión concreta.
 
 ## Requisitos previos
 

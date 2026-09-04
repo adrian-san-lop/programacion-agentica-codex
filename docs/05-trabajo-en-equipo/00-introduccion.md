@@ -27,6 +27,8 @@ MCP, CLI, Skills y subagentes no son alternativas del mismo nivel:
 
 La colaboración funciona mejor cuando cada elemento conserva su responsabilidad y el contexto se entrega progresivamente.
 
+La persona mantiene la responsabilidad de definir el objetivo, revisar las propuestas y aceptar los cambios relevantes. La autonomía del agente describe su capacidad de avanzar dentro de unas reglas; no elimina los permisos ni la supervisión humana.
+
 ---
 
 [← Anterior](../04-integraciones/03-mcp-vs-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](01-personas-agentes-y-responsabilidades.md)
