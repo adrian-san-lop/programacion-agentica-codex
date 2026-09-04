@@ -118,9 +118,5 @@ En este recorrido, `AGENTS.md` orienta, la Skill define el workflow, la document
 
 ---
 
-
-
----
-
 [← Anterior](00-agent-loop-minimo.md) · [Índice](../../README.md)
 
