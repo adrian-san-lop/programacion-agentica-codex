@@ -19,6 +19,43 @@ The documentation should enable a complete beginner to understand the core conce
 - Use `examples/` for runnable examples.
 - Use `Practical Example-PBIP/` for the Power BI project template.
 
+## Progressive disclosure for questions
+
+Use this repository as a guided learning workspace. Do not read every document for a focused question.
+
+1. Identify the user's topic.
+2. Start with the matching entry in the topic map below.
+3. Read only the relevant sections of that document.
+4. Follow links to related documents only when the first source is insufficient.
+5. Summarize the answer before adding optional background.
+
+### Topic map
+
+| User asks about... | Start here |
+|---|---|
+| Agent or Agent Loop | `docs/00-introduccion/00-que-es-un-agente.md` |
+| LLM, runtime, agent, Tool, Skill or MCP differences | `docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md` |
+| Context, context window or context rot | `docs/01-context-engineering/` |
+| Progressive Disclosure or retrieval | `docs/01-context-engineering/04-progressive-disclosure.md` |
+| System Prompt, `AGENTS.md`, Skills or Commands | `docs/02-componentes/` |
+| Tools or Tool Calling | `docs/03-tools/` |
+| Codex subscription behavior | `docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md` |
+| MCP | `docs/04-integraciones/` |
+| Collaboration, subagents or Git | `docs/05-trabajo-en-equipo/` |
+| Power BI or Fabric | `docs/06-ejemplos/01-power-bi-fabric.md` |
+
+The topic map is a routing aid, not a replacement for the full course route in `README.md`.
+
+## Response rules for learners
+
+- Explain concepts progressively and define a term before using it extensively.
+- Prefer the smallest set of files that answers the question.
+- Mention which repository documents support the answer.
+- Distinguish general agentic patterns, Codex behavior, and OpenAI API comparisons.
+- Treat product behavior as version-dependent and identify facts, local observations, and inferences separately.
+- Treat `docs/notes.txt` as provisional working material, not authoritative course content.
+- Do not modify files unless the user explicitly asks for a change.
+
 ## Editing rules
 
 1. Keep explanations simple, progressive, and introduce terms before using them.
