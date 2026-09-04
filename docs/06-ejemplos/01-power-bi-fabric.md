@@ -1,6 +1,6 @@
-# Ejemplo: Power BI y Fabric
+# Ejemplo guiado: Power BI y Fabric
 
-Ejemplo completo de un agente especializado en proyectos pbip, DAX y modelos semánticos.
+Recorrido guiado para diseñar un agente especializado en proyectos PBIP, DAX y modelos semánticos. Es una arquitectura de aprendizaje: la plantilla aporta el contexto y la validación, pero las capacidades reales dependen de la conexión y las Tools disponibles.
 
 ## Ejemplo Power BI / Fabric
 
@@ -107,7 +107,7 @@ La plantilla que acompaña a este repositorio está en [`Practical Example-PBIP`
 
 ## Cómo practicar el recorrido completo
 
-1. Copia `Practical Example-PBIP` en la carpeta raíz de un proyecto PBIP y ábrela en VS Code.
+1. Copia `Practical Example-PBIP` en la carpeta raíz de un proyecto PBIP y ábrela en VS Code. La carpeta debe quedar junto al archivo `.pbip`, no sustituirlo.
 2. Lee `AGENTS.md`: indica el objetivo, la estructura, las reglas y el procedimiento de trabajo.
 3. Para una tarea DAX, consulta explícitamente `skills/dax/SKILL.md` en esta plantilla; si quieres auto-descubrimiento local de Codex, coloca la Skill bajo `.agents/skills/`.
 4. Inspecciona el modelo mediante las Tools disponibles; si proceden de Power BI, Codex las utiliza a través del MCP configurado en VS Code.

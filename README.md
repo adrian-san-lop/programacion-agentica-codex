@@ -6,9 +6,15 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 `AGENTS.md` contiene las instrucciones de navegación que utiliza Codex al trabajar en este repositorio.
 
+## Alcance del curso
+
+Este curso enseña los fundamentos de la programación agéntica mediante la extensión de Codex para VS Code, usando Power BI y Microsoft Fabric como contexto práctico. No construimos aquí una aplicación con la API de OpenAI ni con un SDK: cuando la API aparece, se utiliza sólo para comparar un patrón general con el funcionamiento concreto de Codex.
+
+No necesitas una API key para ejecutar el ejemplo mínimo. Sí conviene tener Python y VS Code instalados para seguir la parte práctica; la conexión con Power BI o Fabric se presenta como una integración posterior y depende de las Tools y del entorno disponibles.
+
 ## Ruta recomendada
 
-Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la plantilla PBIP para relacionar los conceptos con un proyecto real.
+Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la plantilla PBIP para relacionar los conceptos con un proyecto real. Los primeros capítulos explican el modelo mental; los últimos muestran cómo coordinar contexto, Skills, Tools y validación.
 
 1. [Qué es un agente](docs/00-introduccion/00-que-es-un-agente.md)
 2. [Actores y responsabilidades](docs/00-introduccion/01-actores-y-responsabilidades.md)
