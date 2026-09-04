@@ -2,9 +2,11 @@
 
 ## Purpose
 
-Maintain beginner-friendly documentation about agentic programming with Codex in VS Code, using Power BI and Fabric as practical context.
+Maintain beginner-friendly documentation about agentic programming with the Codex extension for VS Code, using Power BI and Fabric as practical context.
 
-This course explores Codex within ChatGPT via a subscription. We do not use the OpenAI API as a hands-on environment; the API is only mentioned as a point of comparison when it helps distinguish a general pattern from a specific capability.
+This course explores Codex through a ChatGPT subscription. We do not use the OpenAI API as a hands-on environment; the API is only mentioned for comparison when it helps distinguish a general agentic pattern from a Codex-specific capability.
+
+This documentation is not about the OpenAI API, ChatGPT SDKs, or application development with OpenAI APIs. Its purpose is to teach the fundamentals of agentic programming and put them into practice using Codex in VS Code.
 
 The documentation should enable a complete beginner to understand the core concepts and progressively build a small practical example using what has been learned.
 
