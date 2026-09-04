@@ -10,51 +10,27 @@ This documentation is not about the OpenAI API, ChatGPT SDKs, or application dev
 
 The documentation should enable a complete beginner to understand the core concepts and progressively build a small practical example using what has been learned.
 
-## Navigation
+## Navigation and progressive disclosure
 
-- Start with `README.md` and follow its recommended route.
-- Use `docs/` for conceptual explanations.
-- Use `skills/` for reusable repository skills, including Git workflow tasks.
-- Use `docs/notes.txt` as working notes; do not treat it as finished documentation.
-- Use `examples/` for runnable examples.
-- Use `Practical Example-PBIP/` for the Power BI project template.
+-  `README.md` only for humans. Do not use this file for progressive disclosure and/or navigation.
+- For a focused question, use the smallest relevant path below; do not read all of `docs/`.
+- Read the target document first and follow links only when they are needed.
+- Treat `docs/notes.txt` as provisional notes, not course content.
 
-## Progressive disclosure for questions
-
-Use this repository as a guided learning workspace. Do not read every document for a focused question.
-
-1. Identify the user's topic.
-2. Start with the matching entry in the topic map below.
-3. Read only the relevant sections of that document.
-4. Follow links to related documents only when the first source is insufficient.
-5. Summarize the answer before adding optional background.
-
-### Topic map
-
-| User asks about... | Start here |
+| Topic | Starting path |
 |---|---|
-| Agent or Agent Loop | `docs/00-introduccion/00-que-es-un-agente.md` |
-| LLM, runtime, agent, Tool, Skill or MCP differences | `docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md` |
-| Context, context window or context rot | `docs/01-context-engineering/` |
+| Agent Loop and core terms | `docs/00-introduccion/00-que-es-un-agente.md` |
+| LLM, runtime, Tool, Skill or MCP differences | `docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md` |
+| Context and context rot | `docs/01-context-engineering/00-introduccion.md` |
 | Progressive Disclosure or retrieval | `docs/01-context-engineering/04-progressive-disclosure.md` |
-| System Prompt, `AGENTS.md`, Skills or Commands | `docs/02-componentes/` |
-| Tools or Tool Calling | `docs/03-tools/` |
+| System Prompt, `AGENTS.md`, Skills and Commands | `docs/02-componentes/00-system-prompt.md` |
+| Tools, retrieval and Tool Calling | `docs/03-tools/00-que-es-una-tool.md` |
 | Codex subscription behavior | `docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md` |
-| MCP | `docs/04-integraciones/` |
-| Collaboration, subagents or Git | `docs/05-trabajo-en-equipo/` |
-| Power BI or Fabric | `docs/06-ejemplos/01-power-bi-fabric.md` |
+| MCP and integrations | `docs/04-integraciones/00-mcp-introduccion.md` |
+| Collaboration and subagents | `docs/05-trabajo-en-equipo/00-introduccion.md` |
+| Power BI and Fabric | `docs/06-ejemplos/01-power-bi-fabric.md` |
 
-The topic map is a routing aid, not a replacement for the full course route in `README.md`.
-
-## Response rules for learners
-
-- Explain concepts progressively and define a term before using it extensively.
-- Prefer the smallest set of files that answers the question.
-- Mention which repository documents support the answer.
-- Distinguish general agentic patterns, Codex behavior, and OpenAI API comparisons.
-- Treat product behavior as version-dependent and identify facts, local observations, and inferences separately.
-- Treat `docs/notes.txt` as provisional working material, not authoritative course content.
-- Do not modify files unless the user explicitly asks for a change.
+When answering, define unfamiliar terms, cite the files consulted, and distinguish general patterns, Codex behavior, API comparisons, observations and inferences. Do not modify files unless explicitly asked.
 
 ## Editing rules
 
