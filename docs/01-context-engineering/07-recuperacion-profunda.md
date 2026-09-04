@@ -200,7 +200,7 @@ El modelo propone una respuesta basándose en ese contexto. Si necesita conocer 
 
 ## 4. Tres formas de buscar: teoría posterior
 
-Estas formas de búsqueda son importantes para entender cómo se construyen agentes, pero no son pasos que tengamos que programar ahora en Codex.
+Estas formas de búsqueda son importantes para entender cómo se construyen agentes, pero no son pasos que tengamos que programar ahora en Codex. En nuestro curso son una referencia para comprender el concepto, no el siguiente ejercicio práctico.
 
 ### Búsqueda por texto
 
@@ -228,7 +228,9 @@ fusión:    B, A, E, C
 reranking: B, E, A
 ```
 
-Como comparación, la API de OpenAI documenta File Search como una herramienta que combina búsqueda semántica y por palabras clave sobre archivos cargados en vector stores. La referencia de búsqueda muestra filtros, número máximo de resultados, reescritura de consulta y puntuaciones. Esto describe la API, no una promesa sobre el mecanismo interno ni las herramientas disponibles en Codex mediante suscripción.
+Como comparación, la API de OpenAI documenta File Search como una herramienta que combina búsqueda semántica y por palabras clave sobre archivos cargados en vector stores. Esto describe cómo puede construirse un sistema de recuperación mediante API, no una promesa sobre el mecanismo interno ni las herramientas disponibles en Codex mediante suscripción.
+
+No necesitas crear un índice, generar embeddings ni configurar File Search para aplicar este curso. En Codex aplicamos la misma idea de forma operativa: organizar el workspace, indicar los archivos relevantes y pedir que se consulten sólo cuando la tarea los necesite.
 
 ## 5. Qué hacer con el contexto seleccionado
 
@@ -280,9 +282,9 @@ La memoria persistente no debe convertirse en la autoridad para datos cambiantes
 
 En Codex, las memorias locales y el contexto de una conversación son capas distintas de `AGENTS.md`, Skills, Tools y contexto explícito del IDE. La disponibilidad depende del cliente; por eso el curso debe enseñar a preguntar qué fuente se ha utilizado y no asumir una memoria infinita.
 
-## 7. Cómo medirlo cuando tengamos un entorno observable
+## 7. Cómo medirlo más adelante
 
-Crear un pequeño dataset de preguntas con una respuesta esperada y fuentes relevantes. Para cada ejecución registrar:
+Cuando exista un entorno observable o una implementación propia de recuperación, podremos crear un pequeño dataset de preguntas con una respuesta esperada y fuentes relevantes. Para cada ejecución registrar:
 
 - consulta original y consulta reescrita;
 - candidatos y resultados finales, con puntuación;
@@ -349,7 +351,7 @@ Una recuperación mejor no es la que devuelve más fragmentos, sino la que permi
 | Memoria interna de Codex mediante suscripción | No | No se debe inferir sin documentación o prueba |
 | Orden exacto del contexto interno de Codex | No | No está expuesto públicamente con ese detalle |
 
-El objetivo didáctico es que una persona pueda trazar cada pieza sin confundir el patrón de Context Engineering con una capacidad concreta de un producto.
+El objetivo didáctico es que una persona pueda aplicar selección de contexto en Codex sin confundir el patrón de Context Engineering con una capacidad concreta de la API.
 
 ## Fuentes oficiales consultadas
 
