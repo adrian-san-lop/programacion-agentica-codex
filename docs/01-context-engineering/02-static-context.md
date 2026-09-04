@@ -67,9 +67,5 @@ pero eso no significa que el contenido completo de `config.toml` se envíe al LL
 
 ---
 
-
-
----
-
 [← Anterior](01-context-window.md) · [Índice](../../README.md) · [Siguiente →](03-dynamic-context.md)
 

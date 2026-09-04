@@ -68,9 +68,5 @@ No se asume que `/commit` exista como comando slash universal en Codex. La forma
 
 ---
 
-
-
----
-
 [← Anterior](02-skills.md) · [Índice](../../README.md) · [Siguiente →](../03-tools/00-que-es-una-tool.md)
 

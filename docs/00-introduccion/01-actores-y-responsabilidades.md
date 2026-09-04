@@ -26,7 +26,4 @@ La separación es conceptual: un producto concreto puede agrupar varias de estas
 Si estos términos se confunden, consulta [Conceptos que no deben confundirse](02-conceptos-que-no-deben-confundirse.md) antes de continuar.
 ---
 
-
----
-
 [← Anterior](00-que-es-un-agente.md) · [Índice](../../README.md) · [Siguiente →](02-conceptos-que-no-deben-confundirse.md)

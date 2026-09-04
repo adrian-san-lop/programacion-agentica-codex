@@ -86,9 +86,5 @@ Cuando el catálogo crece, las definiciones pueden contribuir al **context rot**
 
 ---
 
-
-
----
-
 [← Anterior](02-mediacion-de-tools.md) · [Índice](../../README.md) · [Siguiente →](04-tool-retrieval.md)
 

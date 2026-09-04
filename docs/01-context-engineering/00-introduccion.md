@@ -22,7 +22,4 @@ La ventana de contexto marca el límite técnico, pero no garantiza que todo lo 
 El resto de este capítulo explica esas piezas, cómo recuperar contexto paso a paso y cómo afectan al coste y la reutilización. Los capítulos de Componentes, Tools e Integraciones muestran cómo se aplican en un agente real.
 ---
 
-
----
-
 [← Anterior](../00-introduccion/02-conceptos-que-no-deben-confundirse.md) · [Índice](../../README.md) · [Siguiente →](01-context-window.md)

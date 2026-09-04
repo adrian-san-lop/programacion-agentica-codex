@@ -59,11 +59,6 @@ execute_dax(...)
 
 ---
 
----
-
-
----
-
 ## Filesystem Retrieval no significa pasar sólo nombres
 
 Una simplificación peligrosa sería:
