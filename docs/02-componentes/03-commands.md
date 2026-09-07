@@ -70,5 +70,13 @@ No se asume que `/commit` exista como comando slash universal en Codex. La forma
 
 ---
 
+## Nuestra historia y comprobación
+
+Puedes iniciar la revisión escribiendo «Analiza Sales YTD. No modifiques nada». No necesitas inventar un comando con barra para cada tarea.
+
+**¿Un Command, una Skill y una Tool son tres nombres de lo mismo?**
+
+No. El Command inicia una acción o flujo disponible en el cliente; la Skill describe un procedimiento; la Tool ejecuta una operación. La petición en lenguaje natural también puede iniciar el trabajo.
+
 [← Anterior](02-skills.md) · [Índice](../../README.md) · [Siguiente →](../03-tools/00-que-es-una-tool.md)
 

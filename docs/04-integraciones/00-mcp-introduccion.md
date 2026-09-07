@@ -120,5 +120,13 @@ Runtime   → decide cómo incorporar y ejecutar esa capacidad
 ---
 
 
+## Nuestra historia y comprobación
+
+Para analizar Sales YTD, el servidor puede ofrecer una capacidad para consultar medidas. El runtime coordina la llamada que propone el modelo y el resultado vuelve al ciclo. El nombre concreto de la Tool depende del servidor instalado.
+
+**¿Instalar un servidor autoriza a modificar cualquier modelo?**
+
+No. Configuración, autenticación, permisos y alcance de la tarea siguen siendo necesarios.
+
 [← Anterior](../03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](01-configuracion.md)
 

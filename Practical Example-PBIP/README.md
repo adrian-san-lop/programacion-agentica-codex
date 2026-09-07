@@ -1,12 +1,12 @@
 # Practical Example: PBIP Agent Workspace
 
-Context and operating template for using Codex alongside a Power BI project in PBIP format.
+Optional material for the future practical phase: a context and operating template for the Codex extension in VS Code, authenticated through the course's ChatGPT Business subscription.
 
-> This folder does not contain a `.pbip` file or the native `.Report` and `.SemanticModel` folders. Place it in the root folder that contains the real Power BI project.
+> This folder does not contain a `.pbip` file or the native `.Report` and `.SemanticModel` folders. Its contents are intended to sit alongside the real project, after reviewing any existing files.
 
 ## Usage
 
-1. Copy this folder, or its contents, to the PBIP project root.
+1. When the course reaches this phase, copy the contents to a test PBIP project root. Review collisions first; do not overwrite existing instructions or documentation. `AGENTS.md`, `docs/`, `skills/`, and `scripts/` should sit alongside the `.pbip` file.
 2. Open the project root in VS Code.
 3. Open `AGENTS.md` and complete the project-specific model details.
 4. Review `docs/semantic-model.md` and `docs/dax-rules.md`.

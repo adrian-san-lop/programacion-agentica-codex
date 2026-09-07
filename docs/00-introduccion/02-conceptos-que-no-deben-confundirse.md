@@ -54,11 +54,9 @@ Skill     → workflow reutilizable con pasos y validaciones
 
 `AGENTS.md` debería indicar dónde encontrar la información, no contener toda la información. La documentación explica; la Skill prescribe cómo actuar en una tarea repetible.
 
-## MCP, API, Tool y Tool Retrieval
+## MCP, Tool y Tool Retrieval
 
-Una **API** es una interfaz que permite comunicarse con un servicio.
-
-Una **Tool** es una operación concreta que el agente puede solicitar, normalmente envolviendo una API, una consulta, un script o una capacidad local.
+Una **Tool** es una operación concreta que el agente puede solicitar, como ejecutar una consulta, un script o una capacidad local.
 
 **MCP** es un protocolo para descubrir y exponer capacidades —entre ellas Tools— a un cliente compatible.
 

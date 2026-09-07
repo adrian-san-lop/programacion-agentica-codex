@@ -31,4 +31,12 @@ La persona mantiene la responsabilidad de definir el objetivo, revisar las propu
 
 ---
 
+## Nuestra historia y comprobación
+
+Una persona puede pedir revisar Sales YTD y otra revisar la propuesta. Si se delega parte del análisis a un subagente, necesita el objetivo y la restricción de sólo lectura, y su resultado debe revisarse.
+
+**¿Delegar transfiere la responsabilidad de aceptar un cambio?**
+
+No. La coordinación puede repartirse, pero la persona mantiene la decisión sobre los cambios relevantes.
+
 [← Anterior](../04-integraciones/03-mcp-vs-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](01-personas-agentes-y-responsabilidades.md)

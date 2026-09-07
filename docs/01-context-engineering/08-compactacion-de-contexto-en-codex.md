@@ -1,6 +1,6 @@
 # Compactación de contexto en Codex
 
-Este capítulo explica la compactación de contexto en Codex utilizado mediante una suscripción de ChatGPT Business, especialmente desde la extensión de VS Code y la CLI. No es una guía para programar con la API de OpenAI.
+Este capítulo explica cómo continuar una tarea larga con Codex en VS Code mediante una suscripción de ChatGPT Business.
 
 ## Qué es el contexto
 
@@ -65,7 +65,7 @@ Para el curso, lo importante es entender la función del umbral, no memorizar un
 
 ## Compactación manual
 
-La documentación actual de comandos de Codex incluye `/compact` en la CLI y en la interfaz IDE. Su finalidad es resumir el chat visible para liberar contexto y continuar con los puntos importantes.
+La documentación de comandos de Codex incluye `/compact` en la interfaz IDE. Su finalidad es resumir el chat visible para liberar contexto y continuar con los puntos importantes.
 
 Tiene sentido valorar la compactación cuando:
 
@@ -121,18 +121,17 @@ Prompt Caching
   → reutilización de trabajo sobre prefijos repetidos
 ```
 
-La compactación cambia parte del contenido histórico. Por inferencia, eso puede afectar a la coincidencia de prefijos de una caché, pero no permite afirmar que toda la caché se invalide ni calcular un coste universal para cada compactación. El comportamiento depende del producto, el modelo y la ejecución concreta.
+No hace falta optimizar la caché para usar compactación. Lo importante es conservar las decisiones, restricciones y evidencias necesarias para continuar.
 
 ## Qué sabemos y qué no debemos inferir
 
 | Tipo de afirmación | Formulación adecuada |
 |---|---|
 | Documentada | Codex ofrece `/compact` y dispone de un umbral configurable de compactación automática. |
-| Observada en implementación | El código público puede mostrar rutas de compactación y preparación del contexto. |
-| Inferida | Una compactación puede cambiar el prefijo que se reutiliza en peticiones posteriores. |
+| Por comprobar en la sesión | Qué detalles conserva el resumen de esta tarea. |
 | No establecida | No debemos afirmar qué modelo interno resume siempre ni que exista un subagente específico. |
 
-El código público ayuda a estudiar mecanismos, pero no garantiza que cada detalle interno sea idéntico en todas las versiones o superficies de Codex.
+Comprueba qué comandos ofrece tu versión de la extensión. Una referencia de producto no garantiza que cada detalle sea idéntico en todas las instalaciones.
 
 ## Idea principal
 
@@ -148,7 +147,6 @@ Para trabajar de forma fiable:
 
 ## Fuentes
 
-- [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/)
 - [Developer commands](https://learn.chatgpt.com/docs/developer-commands?surface=ide)
 - [Configuration Reference](https://learn.chatgpt.com/docs/config-file/config-reference)
 - [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)

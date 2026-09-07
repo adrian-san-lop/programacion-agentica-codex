@@ -4,11 +4,11 @@
 
 Maintain beginner-friendly documentation about agentic programming with the Codex extension for VS Code, using Power BI and Fabric as practical context.
 
-This course explores Codex through a ChatGPT subscription. We do not use the OpenAI API as a hands-on environment; the API is only mentioned for comparison when it helps distinguish a general agentic pattern from a Codex-specific capability.
+The learning environment is the Codex extension for VS Code, authenticated through a ChatGPT Business subscription. Exclude OpenAI API documentation, examples, parameters, endpoints, pricing and links, including comparisons and optional appendices.
 
-This documentation is not about the OpenAI API, ChatGPT SDKs, or application development with OpenAI APIs. Its purpose is to teach the fundamentals of agentic programming and put them into practice using Codex in VS Code.
+Teach an experienced data scientist and Power BI practitioner with no agentic background to understand, guide and evaluate Codex. Do not teach how to build a replacement runtime or optimize hidden infrastructure.
 
-The documentation should enable a complete beginner to understand the core concepts and progressively build a small practical example using what has been learned.
+Prioritize conceptual understanding now. Use a shared read-only Sales YTD review story; introduce actual Power BI/Fabric practice only when the course reaches that phase. Preserve provisional notes as capture material, not authoritative content.
 
 ## Navigation and progressive disclosure
 
@@ -30,7 +30,7 @@ The documentation should enable a complete beginner to understand the core conce
 | Collaboration and subagents | `docs/05-trabajo-en-equipo/00-introduccion.md` |
 | Power BI and Fabric | `docs/06-ejemplos/01-power-bi-fabric.md` |
 
-When answering, define unfamiliar terms, cite the files consulted, and distinguish general patterns, Codex behavior, API comparisons, observations and inferences. Do not modify files unless explicitly asked.
+When answering, define unfamiliar terms, cite the files consulted, and distinguish general patterns, Codex behavior, observations and inferences. Do not modify files unless explicitly asked.
 
 ## Editing rules
 
@@ -42,6 +42,7 @@ When answering, define unfamiliar terms, cite the files consulted, and distingui
 6. Validate local links and runnable examples after changes.
 7. Keep Skills and operational instructions concise.
 8. Persist important project knowledge and decisions in repository files rather than relying only on conversation context.
+9. Separate essential reading from optional mechanisms. Add short comprehension checks with answers and distinguish observable evidence from inference.
 
 ## Git workflow
 

@@ -1,6 +1,6 @@
 # Programación agéntica
 
-Documentación sobre los conceptos, componentes y patrones utilizados para diseñar agentes basados en modelos de lenguaje.
+Documentación para entender cómo funciona un agente, orientar su trabajo y evaluar sus resultados utilizando Codex en VS Code.
 
 - [Roadmap y temas pendientes](ROADMAP.md)
 
@@ -8,13 +8,23 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 ## Alcance del curso
 
-Este curso enseña los fundamentos de la programación agéntica mediante la extensión de Codex para VS Code, usando Power BI y Microsoft Fabric como contexto práctico. No construimos aquí una aplicación con la API de OpenAI ni con un SDK: cuando la API aparece, se utiliza sólo para comparar un patrón general con el funcionamiento concreto de Codex.
+El objetivo es que un data scientist con experiencia en programación y Power BI, pero sin conocimientos de programación agéntica, aprenda a comprender, orientar y supervisar un agente.
 
-No necesitas una API key para ejecutar el ejemplo mínimo. Sí conviene tener Python y VS Code instalados para seguir la parte práctica; la conexión con Power BI o Fabric se presenta como una integración posterior y depende de las Tools y del entorno disponibles.
+Trabajamos con la extensión de Codex para VS Code y una suscripción de ChatGPT Business. Quedan fuera la documentación, los ejemplos y las referencias de la API de OpenAI. No construimos nuestro propio runtime.
+
+La fase actual es conceptual. Power BI y Fabric proporcionan ejemplos familiares; no necesitas tener una integración funcionando. El ejemplo Python y la plantilla PBIP son materiales para después, no requisitos para entender los fundamentos.
 
 ## Ruta recomendada
 
-Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la plantilla PBIP para relacionar los conceptos con un proyecto real. Los primeros capítulos explican el modelo mental; los últimos muestran cómo coordinar contexto, Skills, Tools y validación.
+La numeración y los enlaces conservan el recorrido completo. En una primera lectura:
+
+- **Esencial:** introducción, contexto y recuperación, componentes, Tools y sus límites, MCP y responsabilidad humana.
+- **Ampliación opcional:** caching, mediación, definiciones upfront, Tool Search y estrategia híbrida. Sus capítulos indican qué idea conservar sin estudiar infraestructura.
+- **Fase posterior:** ejecutar la simulación Python y aplicar la plantilla PBIP cuando el curso llegue a la práctica.
+
+La misma historia une los bloques: «Analiza la medida Sales YTD y explica si hay algún problema. No modifiques nada». Lee las preguntas de comprobación y sus respuestas antes de continuar.
+
+### Recorrido completo
 
 1. [Qué es un agente](docs/00-introduccion/00-que-es-un-agente.md)
 2. [Actores y responsabilidades](docs/00-introduccion/01-actores-y-responsabilidades.md)

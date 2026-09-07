@@ -15,9 +15,9 @@ VS Code
 
 Codex actúa como cliente MCP y la extensión de Power BI proporciona el servidor y sus Tools. No es necesario registrar manualmente cada Tool.
 
-## Configuración recomendada
+## Preparación para la fase práctica
 
-En el flujo utilizado originalmente por este proyecto, la extensión instala el servidor y Codex lo incorpora a su runtime sin registrar manualmente cada Tool. Esto no significa que Codex carezca de configuración de MCP en archivos: la documentación oficial también permite configurar servidores mediante `~/.codex/config.toml` o un `.codex/config.toml` con alcance de proyecto. `.vscode/mcp.json` no debe presentarse como el formato estándar de configuración de Codex sin verificar la extensión concreta.
+Instalar el servidor y conectarlo a Codex son pasos distintos. No damos por comprobada una conexión automática por tener ambas extensiones instaladas. Codex admite configuración MCP en `~/.codex/config.toml` y, en proyectos de confianza, `.codex/config.toml`. La conexión concreta de Power BI debe verificarse cuando llegue la práctica; no es un requisito de los fundamentos.
 
 El procedimiento es:
 
@@ -25,8 +25,8 @@ El procedimiento es:
 2. Instalar la extensión **Power BI Modeling MCP Server** de Microsoft.
 3. Reiniciar VS Code si la extensión no aparece inmediatamente.
 4. Abrir el panel de Codex.
-5. Comprobar en la configuración o en la lista de Tools de Codex que aparece `powerbi-modeling-mcp`.
-6. Iniciar una conversación y solicitar una conexión al modelo.
+5. Comprobar si el servidor de Power BI está configurado y conectado en Codex. Si falta, seguir las instrucciones del servidor y la configuración MCP de Codex; no inventar rutas o comandos.
+6. Verificar las capacidades realmente disponibles e iniciar una consulta de sólo lectura.
 
 La extensión de Codex es la interfaz del agente; la extensión de Power BI es la integración que expone el servidor MCP. No hay que confundir la instalación de una extensión con la configuración manual de un cliente MCP externo.
 
@@ -50,7 +50,7 @@ Para trabajar con la definición del proyecto y no con la instancia viva de Powe
 Conéctate al proyecto PBIP de este workspace e inspecciona la definición del modelo semántico.
 ```
 
-También puede utilizarse el prompt MCP `ConnectToPBIP`.
+También puede utilizarse el prompt MCP `ConnectToPBIP` si está disponible en el cliente y servidor utilizados.
 
 ### Modelo semántico de Fabric
 
@@ -86,7 +86,7 @@ La configuración puede compartirse entre la aplicación de escritorio de ChatGP
 
 ## Configuración manual
 
-Otros clientes MCP pueden requerir un archivo propio de configuración. Ese caso es distinto del flujo documentado aquí y no debe mezclarse con la configuración de Codex en VS Code. En Codex, el archivo soportado oficialmente es `config.toml`, además de la configuración desde el cliente.
+En Codex, la configuración MCP se guarda en `config.toml`. Configurar el servidor no requiere escribir una definición por cada Tool. Los detalles de instalación y autenticación se verificarán para la versión elegida en la fase práctica.
 
 La documentación oficial de Codex describe la extensión IDE como la interfaz para trabajar junto al código. Para la instalación del servidor Power BI, consulta también la [extensión oficial Power BI Modeling MCP](https://marketplace.visualstudio.com/items?itemName=analysis-services.powerbi-modeling-mcp) y el [repositorio oficial de Microsoft](https://github.com/microsoft/powerbi-modeling-mcp).
 

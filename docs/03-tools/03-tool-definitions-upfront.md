@@ -1,5 +1,7 @@
 # Tool Definitions Upfront
 
+**Ampliación opcional — patrón general.** Explica una posibilidad de diseño; no es una configuración que debas activar en Codex para seguir el curso.
+
 Estrategia que proporciona al modelo las definiciones completas de las herramientas desde el inicio.
 
 ## Estrategia A — Tool Definitions Upfront

@@ -1,6 +1,6 @@
 # Context Engineering
 
-En este curso aplicaremos estos conceptos a Codex dentro de ChatGPT mediante suscripción. Cuando aparezca la API de OpenAI será únicamente como comparación; no es el runtime que vamos a construir ni probar.
+En este curso aplicamos estos conceptos a Codex en VS Code con una suscripción de ChatGPT Business. Organizar contexto es un medio para resolver tareas fiables, no el objetivo final ni un ejercicio de construcción del runtime.
 
 El Context Engineering consiste en proporcionar al modelo la información correcta, en el momento correcto y en la cantidad correcta.
 

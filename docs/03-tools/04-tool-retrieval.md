@@ -6,7 +6,7 @@ Estrategia para descubrir y cargar únicamente las herramientas relevantes.
 
 **Tool Retrieval es una alternativa a cargar todas las Tools completas upfront.**
 
-Es una estrategia de presentación de Tools al modelo, no un protocolo de conexión. Puede aplicarse a Tools locales, APIs o Tools expuestas por un servidor MCP.
+Es una estrategia de presentación de Tools al modelo, no un protocolo de conexión. Puede aplicarse a Tools locales o Tools expuestas por un servidor MCP.
 
 ## Tres enfoques para presentar Tools
 

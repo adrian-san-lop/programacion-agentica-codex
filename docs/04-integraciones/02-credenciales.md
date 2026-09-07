@@ -11,7 +11,7 @@ Por ejemplo:
 ```text
 MCP
  ↓
-Fabric API
+Servicio de Fabric
  ↓
 Azure / Entra ID
 ```
