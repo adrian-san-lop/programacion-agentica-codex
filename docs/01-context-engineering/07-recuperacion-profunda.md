@@ -363,4 +363,4 @@ El objetivo didáctico es que una persona pueda aplicar selección de contexto e
 - [Conversation state](https://developers.openai.com/api/docs/guides/conversation-state)
 - [Compact a response](https://developers.openai.com/api/reference/java/resources/responses/methods/compact)
 
-[← Anterior](06-prompt-caching.md) · [Índice](../../README.md) · [Siguiente →](../02-componentes/00-system-prompt.md)
+[← Anterior](06-prompt-caching.md) · [Índice](../../README.md) · [Siguiente →](08-compactacion-de-contexto-en-codex.md)
