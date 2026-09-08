@@ -72,7 +72,7 @@ Cuando llegue la práctica, podremos comparar tareas equivalentes observando per
 
 ## Comprueba que lo entiendes
 
-Después del bloque de seguridad, puedes aplicar estas distinciones en la [lectura guiada de decisiones sobre Sales YTD](../04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md). No requiere una conexión real.
+Después del bloque de seguridad, puedes seguir la [revisión narrada de Sales YTD](../04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md): desde el encargo hasta la entrega, con cada consulta y su motivo explicados. No requiere una conexión real.
 
 **¿Necesito crear un catálogo propio para que Codex utilice un servidor MCP configurado?**
 

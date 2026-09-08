@@ -109,7 +109,7 @@ Cambios realizados y comprobación disponible:
 
 ## Comprueba que lo entiendes
 
-Para relacionar estos controles con las decisiones del agente, utiliza la [lectura guiada de Sales YTD](04-lectura-guiada-decisiones-sales-ytd.md): tres situaciones con respuestas razonadas, sin ejecutar herramientas.
+Para relacionar estos controles con las decisiones del agente, sigue la [revisión narrada de Sales YTD](04-lectura-guiada-decisiones-sales-ytd.md): un recorrido completo explicado y dos variaciones que muestran cómo cambia la respuesta al faltar información o aparecer una instrucción sospechosa. No se ejecutan herramientas.
 
 **¿El rechazo autoriza a intentar la misma escritura con otra herramienta?**
 

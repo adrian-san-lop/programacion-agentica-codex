@@ -66,7 +66,7 @@ Validación del paquete: 270 enlaces relativos con destino existente en 44 docum
 
 **Estado: Pendiente de prueba con el alumno.**
 
-Disponible la [lectura guiada de decisiones sobre Sales YTD](docs/04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md): evidencia suficiente, relaciones pendientes e instrucciones sospechosas. Cada situación pide elegir el siguiente paso, identificar responsabilidades y justificar una conclusión antes de consultar la respuesta. Son datos ficticios y una autoevaluación conceptual; la prueba con un alumno sigue pendiente.
+Disponible la [revisión narrada de Sales YTD](docs/04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md): sigue el encargo, las instrucciones, el procedimiento, las consultas y la respuesta final. Cada resultado explica la siguiente decisión. Dos variaciones vuelven a pasos concretos para mostrar qué cambia si fallan las relaciones o aparece una instrucción sospechosa. La explicación permanece visible y las tres preguntas finales tienen respuestas desplegables. Los datos son ficticios; la prueba con un alumno sigue pendiente.
 
 Utilizar la historia «Analiza Sales YTD. No modifiques nada» y comprobar que el lector puede explicar:
 
@@ -162,4 +162,5 @@ El éxito será una tarea fiable y revisable, no un porcentaje de ahorro de toke
 | 2026-09-08 | Incorporar seguridad y hooks desde notes.txt, línea 1146 | Cuatro capítulos conceptuales entre integraciones y colaboración; referencias oficiales de Codex; práctica y contenedores pendientes; notas originales conservadas |
 | 2026-09-08 | Aclarar quién define y ejecuta un hook | Eventos ofrecidos por Codex frente a programas propios; ejemplo de aviso con todas sus piezas antes del rechazo de escritura en Sales YTD |
 | 2026-09-08 | Corregir y aclarar fundamentos existentes | Commands, Skills, recuperación, MCP/CLI y delegación precisados; vocabulario, respuestas y pauta de encargo añadidos; lectura esencial disponible sin alterar la paginación |
-| 2026-09-08 | Conectar los conceptos mediante decisiones | Lectura guiada de Sales YTD con tres situaciones independientes, respuestas desplegables y criterios de autoevaluación; sin ejecución ni cambios en los materiales prácticos |
+| 2026-09-08 | Conectar los conceptos mediante decisiones | Primera versión de la lectura guiada con situaciones independientes; sustituida por el recorrido narrado descrito en la revisión siguiente |
+| 2026-09-08 | Rehacer la lectura como una historia paso a paso | Recorrido completo de Sales YTD con fuentes presentadas antes de concluir, dos variaciones sobre el mismo relato y preguntas finales; ruta y paginación conservadas, sin ejecutar ejemplos |
