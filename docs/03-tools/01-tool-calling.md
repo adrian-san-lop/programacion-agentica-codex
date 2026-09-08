@@ -11,25 +11,25 @@ Ejemplo:
 ```text
 Usuario:
 
-"¿Cuántas ventas tuvimos este año?"
+"Analiza la medida Sales YTD y explica si hay algún problema. No modifiques nada."
 ```
 
 El LLM puede razonar:
 
 ```text
-Necesito consultar el modelo semántico.
+Necesito consultar la expresión actual de Sales YTD.
 ```
 
 Y solicitar:
 
 ```text
-execute_dax(
-    semantic_model="Sales",
-    query="..."
+get_measure(
+    table="tabla verificada",
+    measure="Sales YTD"
 )
 ```
 
-Pero el LLM **no ejecuta realmente `execute_dax()`**.
+Pero el LLM **no ejecuta realmente `get_measure()`**. Es un nombre ilustrativo: el contrato real debe comprobarse en la Tool disponible.
 
 El flujo es:
 
@@ -38,7 +38,7 @@ LLM
  │
  │ solicita Tool Call
  ▼
-Agente / Orquestador
+Runtime / orquestador
  │
  │ valida y ejecuta
  ▼
@@ -63,7 +63,7 @@ Por tanto:
 
 > El LLM decide qué Tool quiere utilizar.
 >
-> El agente/orquestador ejecuta realmente la Tool.
+> El runtime coordina la ejecución real de la Tool.
 
 ## El ciclo completo de una Tool Call
 
@@ -79,6 +79,14 @@ Una llamada no termina cuando el modelo escribe el nombre de la Tool. El ciclo c
 Un error, un rechazo y un resultado vacío también son resultados del ciclo. No deben ocultarse ni tratarse automáticamente como una respuesta correcta. Esta idea será importante cuando estudiemos seguridad, MCP y validación.
 
 ---
+
+## Comprueba que lo entiendes
+
+**¿Un resultado vacío demuestra que la medida no existe?**
+
+No necesariamente. Hay que comprobar el modelo, el nombre, los filtros y el alcance de la consulta antes de concluirlo.
+
+[Continuar con lo esencial: Tool Retrieval →](04-tool-retrieval.md). Mediación y definiciones upfront son ampliaciones opcionales.
 
 [← Anterior](00-que-es-una-tool.md) · [Índice](../../README.md) · [Siguiente →](02-mediacion-de-tools.md)
 

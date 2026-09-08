@@ -1,6 +1,6 @@
 # Configuración de Power BI MCP para Codex en VS Code
 
-Esta guía describe el flujo utilizado en este proyecto: OpenAI Codex como agente dentro de VS Code y la extensión Microsoft Power BI Modeling MCP como servidor MCP local.
+Esta guía prepara la fase práctica futura: Codex en VS Code con la suscripción Business del curso y un servidor compatible con Power BI. No representa una conexión ya validada en esta plantilla.
 
 ## Componentes
 
@@ -13,7 +13,7 @@ VS Code
     └── servidor MCP y Tools de Power BI
 ```
 
-En el flujo previsto por esta plantilla, la extensión de Power BI proporciona el servidor y Codex lo utiliza desde su runtime sin registrar las Tools una por una. Codex también admite configuración de servidores MCP mediante `~/.codex/config.toml`, un `.codex/config.toml` de proyecto o la interfaz del cliente; `.vscode/mcp.json` no debe asumirse como formato estándar de Codex sin verificar la extensión concreta.
+Instalar el servidor no demuestra que esté conectado a Codex. Hay que verificar esa conexión por separado. Codex guarda configuración MCP en `~/.codex/config.toml` o, para proyectos de confianza, `.codex/config.toml`. No hace falta definir cada Tool manualmente: se comprueban las capacidades que expone el servidor conectado.
 
 ## Requisitos previos
 
@@ -28,7 +28,7 @@ En el flujo previsto por esta plantilla, la extensión de Power BI proporciona e
 1. Abrir la raíz real del proyecto PBIP en VS Code.
 2. Abrir el panel de Codex.
 3. Comprobar en las Tools disponibles que aparece `powerbi-modeling-mcp`.
-4. Si no aparece, reiniciar VS Code y comprobar que ambas extensiones están habilitadas.
+4. Si no aparece, comprobar la configuración del servidor en Codex y los diagnósticos. Seguir las instrucciones oficiales para la versión instalada, sin inventar rutas o comandos de arranque.
 
 ## Conectar con Power BI Desktop
 
@@ -50,7 +50,7 @@ Cuando el objetivo sea inspeccionar la definición almacenada en disco:
 Conéctate al proyecto PBIP de este workspace e inspecciona la definición del modelo semántico.
 ```
 
-El prompt MCP equivalente es `ConnectToPBIP`. Esta conexión es diferente de la instancia viva cargada por Power BI Desktop.
+El prompt MCP equivalente, si está disponible en el cliente y servidor, es `ConnectToPBIP`. Esta conexión es diferente de la instancia viva cargada por Power BI Desktop.
 
 ## Conectar con Fabric
 
@@ -58,7 +58,7 @@ El prompt MCP equivalente es `ConnectToPBIP`. Esta conexión es diferente de la 
 Conéctate al modelo semántico «Nombre del modelo» del workspace de Fabric «Nombre del workspace».
 ```
 
-La conexión requiere que la cuenta de Codex tenga acceso al workspace y al modelo correspondiente.
+La identidad utilizada por la conexión a Fabric debe tener acceso al workspace y al modelo. No hay que dar por hecho que sea la misma cuenta con la que se inicia sesión en Codex.
 
 ## Prueba de conexión
 

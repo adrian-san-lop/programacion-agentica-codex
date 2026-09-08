@@ -19,7 +19,7 @@ MCP, CLI, Skills y subagentes no son alternativas del mismo nivel:
 | `AGENTS.md` | Reglas y mapa de navegación del proyecto |
 | `docs/` | Conocimiento y documentación conceptual |
 | Skill | Workflow reutilizable |
-| Command | Forma breve de iniciar un workflow |
+| Command | Acción del cliente para controlar la sesión o iniciar un procedimiento |
 | Tool | Capacidad ejecutable |
 | MCP | Protocolo para exponer Tools externas |
 | CLI | Interfaz de comandos local |
@@ -31,4 +31,12 @@ La persona mantiene la responsabilidad de definir el objetivo, revisar las propu
 
 ---
 
-[← Anterior](../04-integraciones/03-mcp-vs-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](01-personas-agentes-y-responsabilidades.md)
+## Nuestra historia y comprobación
+
+Una persona puede pedir revisar Sales YTD y otra revisar la propuesta. Si se delega parte del análisis a un subagente, necesita el objetivo y la restricción de sólo lectura, y su resultado debe revisarse.
+
+**¿Delegar transfiere la responsabilidad de aceptar un cambio?**
+
+No. La coordinación puede repartirse, pero la persona mantiene la decisión sobre los cambios relevantes.
+
+[← Anterior](../04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md) · [Índice](../../README.md) · [Siguiente →](01-personas-agentes-y-responsabilidades.md)

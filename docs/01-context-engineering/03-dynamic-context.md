@@ -45,22 +45,20 @@ Resultados obtenidos mediante Tools proporcionadas por servidores MCP.
 Por ejemplo:
 
 ```text
-LLM
+Modelo solicita consultar el esquema
  ↓
-get_semantic_model_schema()
+Runtime comprueba y coordina
  ↓
-MCP Power BI
+Tool del servidor MCP consulta el modelo semántico
  ↓
-resultado
- ↓
-LLM
+Resultado vuelve al modelo a través del runtime
 ```
 
 ---
 
 ## Skills Loading
 
-Una Skill puede estar disponible en el entorno y sus instrucciones incorporarse cuando se invoca. Codex documenta ubicaciones concretas para descubrir Skills, pero el mecanismo interno exacto que decide qué metadata o contenido carga no debe darse por supuesto.
+Una Skill disponible aporta inicialmente su nombre y descripción; Codex lee las instrucciones completas al utilizarla. Esta carga progresiva está documentada, aunque no garantiza cuál se elegirá para cada tarea. [Skills en Codex](https://learn.chatgpt.com/docs/build-skills).
 
 ```text
 Usuario:
@@ -109,13 +107,17 @@ No debe darse por hecho que todos los clientes ofrecen la misma capacidad. En ca
 
 ## Carga durante la sesión
 
-El contexto dinámico se construye durante la sesión. Si se añade una Skill, un servidor o una nueva instrucción después de que el runtime haya inicializado la conversación, puede que no esté disponible en esa sesión. En ese caso hay que recargar la configuración o iniciar una nueva sesión, según el cliente.
+Conviene comprobar cada recurso por separado:
 
-Esto explica algunos fallos aparentemente inexplicables: el archivo existe, pero no forma parte del contexto ni del catálogo que el runtime cargó al iniciar.
+- **Skills:** Codex detecta automáticamente cambios y nuevas instalaciones. Si una no aparece, OpenAI recomienda reiniciar Codex. Detectarla no significa que ya haya leído sus instrucciones completas. [Detección de Skills](https://learn.chatgpt.com/docs/build-skills).
+- **Servidores MCP:** hay que comprobar su configuración, conexión y capacidades disponibles; crear un archivo documental no establece una conexión. [MCP en Codex](https://learn.chatgpt.com/docs/extend/mcp).
+- **Instrucciones de AGENTS.md:** Codex construye la cadena de instrucciones al iniciar la ejecución. No debe atribuirse a estos archivos la misma detección automática de las Skills. [Descubrimiento de instrucciones](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+
+Fuentes revisadas el 2026-09-08. La existencia de un archivo, su descubrimiento y la lectura de su contenido son comprobaciones diferentes.
 
 ---
 
-El contexto dinámico también afecta a la posibilidad de reutilizar prefijos. Consulta [Prompt Caching](06-prompt-caching.md) después de entender cómo se construye este contexto.
+El siguiente paso es entender la consulta selectiva de información. [Prompt Caching](06-prompt-caching.md) queda como ampliación opcional.
 
 [← Anterior](02-static-context.md) · [Índice](../../README.md) · [Siguiente →](04-progressive-disclosure.md)
 

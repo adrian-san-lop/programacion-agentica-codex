@@ -1,241 +1,74 @@
 # Contexto y Tool Retrieval en Codex mediante suscripción
 
-Este documento analiza Codex como producto utilizado mediante una suscripción, por ejemplo desde la extensión IDE o la aplicación de escritorio. No describe cómo construir una aplicación con la API de OpenAI.
+Trabajamos en la extensión de Codex para VS Code, autenticada mediante nuestra suscripción de ChatGPT Business. Entender el Agent Loop no exige reconstruir el mensaje interno del producto.
 
-La distinción es importante: en una aplicación API el desarrollador construye la petición y puede declarar `tools`, `tool_search` y `defer_loading`. En Codex mediante suscripción, el producto controla internamente el runtime que prepara el contexto y ejecuta las capacidades.
+## Qué controlamos
 
-## Qué controlamos y qué controla Codex
+| Persona | Codex y el entorno |
+|---|---|
+| Objetivo, límites y criterios de aceptación | Coordinación del Agent Loop |
+| Instrucciones en `AGENTS.md` | Incorporación de instrucciones según ámbito |
+| Procedimientos mediante Skills | Descubrimiento y uso de Skills |
+| Archivos y fuentes que señalamos | Lecturas y preparación del contexto |
+| Integraciones y preferencias permitidas | Capacidades efectivas y políticas de ejecución |
+| Revisión y autorización de cambios | Ejecución o rechazo conforme a los controles |
 
-El modelo mental correcto es:
+Puedes elegir las opciones que exponga tu cliente, dentro de las políticas de tu organización. Esto no equivale a controlar el orden exacto de todo el contexto, el system prompt interno ni la implementación de caching o recuperación.
 
-```text
-Usuario
-  ↓
-Codex mediante suscripción
-  ├── instrucciones internas
-  ├── contexto de la tarea
-  ├── Tools y servidores conectados
-  ├── permisos y aprobaciones
-  ├── Agent Loop
-  └── ejecución en el entorno
-       ↓
-      modelo
-```
+## Instrucciones y contexto del IDE
 
-Nosotros podemos aportar o configurar:
+`AGENTS.md` aporta instrucciones persistentes del proyecto; no es el system prompt interno. Codex combina instrucciones según el ámbito documentado. [Referencia oficial de AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
 
-- instrucciones del proyecto mediante `AGENTS.md`;
-- Skills y sus procedimientos;
-- servidores MCP y su configuración;
-- permisos y preferencias disponibles en el cliente;
-- archivos, selección y contexto del workspace;
-- la petición y las restricciones de la tarea.
+También puedes aportar archivos y selecciones desde el editor. No deduzcas por ello que se ha leído o indexado todo el repositorio. [Extensión IDE](https://learn.chatgpt.com/docs/codex/ide).
 
-Codex mantiene bajo control del producto:
+## Skills: progressive disclosure documentado
 
-- el system prompt interno completo;
-- el orden exacto de todos los mensajes que recibe el modelo;
-- la implementación concreta del Agent Loop;
-- la selección interna de modelos y Tools en cada ejecución;
-- los mecanismos internos de caching, compaction y retrieval.
+OpenAI documenta que Codex parte de nombre y descripción de las Skills, con su ruta en el catálogo inicial, y lee el `SKILL.md` completo cuando decide utilizar una. Puede seleccionarse explícitamente o por correspondencia con la tarea. [Skills en Codex](https://learn.chatgpt.com/docs/build-skills).
 
-Por tanto, una configuración del workspace puede influir en el comportamiento, pero no equivale a controlar toda la petición que Codex envía al modelo.
+Esto sí permite explicar una carga progresiva concreta. No permite afirmar qué Skill elegirá siempre para cada frase ni equipararla al mecanismo de descubrimiento de Tools.
 
-## ¿Existe un system prompt configurable?
+## MCP: conexión, no estrategia de búsqueda
 
-Codex utiliza instrucciones internas del producto, pero el usuario no dispone de una interfaz para sustituirlas o inspeccionarlas completamente.
+Un servidor MCP expone capacidades externas. Configurarlo permite a Codex conectarse; el acceso efectivo depende de permisos y autenticación. Las instrucciones del servidor orientan el uso de sus herramientas, sin sustituir las reglas del proyecto. [MCP en Codex](https://learn.chatgpt.com/docs/extend/mcp).
 
-`AGENTS.md` es una superficie documentada para aportar instrucciones y contexto del proyecto. Codex descubre estos archivos, los combina siguiendo el ámbito y la precedencia establecidos y los incorpora a la cadena de instrucciones. La documentación oficial indica que esta carga se realiza al iniciar una ejecución y que existe un límite de tamaño configurable.
+Que una consulta MCP funcione no demuestra si el modelo recibió todas las definiciones al inicio o si recuperó una selección después.
 
-```text
-System prompt interno de Codex
-        +
-AGENTS.md global y del proyecto
-        +
-Skills, configuración y contexto de la tarea
-        +
-Petición del usuario
-```
+## Tool Retrieval: qué podemos afirmar
 
-La representación anterior es conceptual. No conocemos el formato exacto ni el orden completo de todos los elementos internos.
+Como patrón general, consiste en recuperar definiciones pertinentes en lugar de cargar todas desde el principio.
 
-La consecuencia práctica es:
+Para atribuir un mecanismo concreto a Codex necesitamos documentación específica o una observación acotada a la sesión. No trasladamos mecanismos de otros productos ni inventamos controles del workspace.
 
-```text
-AGENTS.md → instrucciones persistentes que podemos mantener
-System prompt → instrucciones internas del producto que no controlamos
-```
+En nuestra historia, lo necesario es comprobar que hay una capacidad autorizada para leer Sales YTD. No necesitamos demostrar la arquitectura interna de su descubrimiento.
 
-No debemos escribir en la documentación que `AGENTS.md` “es el system prompt”. Es más preciso decir que Codex lo incorpora como instrucciones de proyecto dentro de su contexto de ejecución.
+## Observación frente a inferencia
 
-## Qué sabemos sobre `AGENTS.md`
+| Evidencia visible | Conclusión prudente |
+|---|---|
+| Lectura de un archivo | Su contenido se ha consultado, dentro del alcance visible |
+| Llamada MCP con resultado | Esa capacidad se ha utilizado |
+| Skill aplicada | Se ha utilizado su procedimiento; puede revisarse si se siguió |
+| Herramienta de búsqueda en una traza | Esa búsqueda ocurrió; no describe por sí sola todas las Tools |
+| Contexto libre después de varias preguntas | Ese es el indicador observado, no una prueba de ahorro atribuible a la documentación |
 
-La documentación oficial de Codex confirma que:
+Pedir al agente que describa su funcionamiento no sustituye a la evidencia. Su explicación también debe contrastarse.
 
-- Codex lee `AGENTS.md` antes de trabajar.
-- Puede existir orientación global y orientación específica del proyecto.
-- Los archivos más cercanos al directorio de trabajo aparecen después y pueden prevalecer sobre instrucciones anteriores.
-- Se puede utilizar `AGENTS.override.md` para sustituir el archivo equivalente en un ámbito.
-- Codex deja de buscar al llegar al directorio de trabajo actual.
-- La cadena tiene un límite de tamaño, 32 KiB por defecto según la documentación consultada.
+## Continuidad de la tarea
 
-Esto sí nos permite documentar un mecanismo concreto de contexto estático en Codex. No nos permite inferir cómo se cargan todas las Tools ni cómo se construye el system prompt interno.
+El historial ayuda durante la conversación. Las decisiones importantes deben conservarse en archivos cuando se autorice su escritura. No dependemos de una memoria automática entre sesiones.
 
-## Qué sabemos sobre Skills
+La [compactación](../01-context-engineering/08-compactacion-de-contexto-en-codex.md) permite reducir contexto activo y continuar; no borra archivos ni garantiza conservar cada detalle.
 
-Las Skills son una forma de aportar procedimientos especializados a Codex. Por ejemplo, una Skill puede indicar cómo revisar una medida DAX, qué documentación consultar y qué validaciones realizar.
+## Comprueba que lo entiendes
 
-En el plano del curso podemos afirmar:
+**¿El procedimiento de una Skill puede obligar a habilitar una Tool inexistente?**
 
-```text
-Skill → instrucciones y workflow reutilizable
-Tool  → capacidad ejecutable
-```
+No. Aporta instrucciones, no capacidades ni permisos.
 
-Codex busca Skills locales en ubicaciones documentadas, entre ellas `.agents/skills/` dentro del repositorio, y puede detectar cambios en ellas. Si una actualización no aparece, la documentación oficial recomienda reiniciar Codex. Esto no significa que una carpeta arbitraria llamada `skills/` se auto-descubra por ese nombre.
+**¿Podemos enseñar progressive disclosure sin conocer el prompt interno completo?**
 
-Cuando se invoca una Skill, sus instrucciones pueden incorporarse al contexto. No debemos presentar como hecho el mecanismo interno exacto —por ejemplo, qué metadata entra inicialmente, cuándo se lee el archivo completo o cómo se calcula la relevancia— salvo que el producto lo documente explícitamente o lo comprobemos en una versión concreta.
+Sí. Podemos explicar y revisar la consulta selectiva de documentos y la carga documentada de Skills, distinguiéndolas de lo que no observamos.
 
-## Qué sabemos sobre MCP
-
-MCP conecta Codex con Tools y contexto externos. Un servidor MCP puede proporcionar Tools y también instrucciones generales del servidor.
-
-```text
-Codex
-  ↓
-cliente MCP
-  ↓
-servidor MCP
-  ├── instrucciones del servidor
-  └── Tools
-```
-
-La documentación oficial indica que la aplicación de escritorio de ChatGPT, Codex CLI y la extensión IDE pueden compartir la configuración MCP del mismo host. También documenta servidores STDIO, servidores Streamable HTTP y el uso del campo `instructions` del servidor.
-
-Esto responde a la pregunta “¿cómo conecta Codex capacidades externas?”, pero no necesariamente a la pregunta “¿cómo decide qué definiciones de Tools ve el modelo en cada turno?”.
-
-## Memoria, contexto del IDE y permisos
-
-Estas capas también participan en el contexto, pero no son equivalentes a Tool Retrieval:
-
-```text
-Memoria       → recupera información útil de trabajos anteriores
-Contexto IDE  → aporta archivos abiertos, selecciones o conversaciones recientes
-Permisos      → limita qué operaciones puede ejecutar el runtime
-Tool Retrieval → decide qué definiciones de Tools presenta el runtime
-```
-
-Las memorias locales de Codex son una capa independiente y no deben sustituir a las reglas obligatorias de `AGENTS.md`. Su disponibilidad y controles dependen del cliente y de la configuración del host.
-
-Los permisos y aprobaciones son controles del runtime. Determinan si Codex puede leer, escribir, ejecutar comandos o acceder a recursos, pero no son un mecanismo para enseñar al modelo cómo funciona una Tool.
-
-La extensión IDE puede incorporar al prompt archivos abiertos, selecciones y conversaciones recientes. Ese contexto explícito procede de la interacción del usuario con el editor; no debe confundirse con que Codex haya indexado automáticamente todo el repositorio.
-
-## Subagentes
-
-Los subagentes son otra forma de Progressive Disclosure y aislamiento de contexto: se delega una tarea acotada a un agente especializado y el principal recibe su resultado. En las versiones locales actuales de Codex, la delegación puede solicitarse explícitamente o venir indicada por `AGENTS.md` o una Skill. Los subagentes heredan la política de permisos del agente principal y pueden consumir más tokens al ejecutar su propio trabajo.
-
-## Tool Retrieval: patrón frente a implementación
-
-`Tool Retrieval` puede significar dos cosas distintas:
-
-### Patrón general
-
-Evitar cargar todas las definiciones completas desde el principio y recuperar sólo las relevantes.
-
-```text
-Catálogo ligero
-    ↓
-necesidad detectada
-    ↓
-definición de la Tool
-    ↓
-Tool Call
-```
-
-Este patrón es útil para razonar sobre context engineering y context rot.
-
-### Tool Search configurable en la API
-
-La documentación de la API expone un mecanismo llamado `tool_search`. La aplicación debe declararlo y marcar Tools o servidores MCP para diferir su carga mediante `defer_loading`.
-
-```text
-Aplicación API
-  ├── tools
-  ├── tool_search
-  └── defer_loading
-```
-
-Eso es una capacidad de la API. No demuestra por sí solo que Codex mediante suscripción utilice el mismo mecanismo ni que el usuario pueda configurarlo desde el workspace.
-
-### Mecanismo interno de Codex
-
-En Codex mediante suscripción, la documentación pública consultada no especifica de forma completa:
-
-- si todas las definiciones MCP se envían upfront;
-- si se utiliza un catálogo ligero interno;
-- si existe un `tool_search` interno equivalente;
-- si se utiliza Filesystem Retrieval para Tools;
-- cuándo se incorporan Skills completas al contexto;
-- qué parte del proceso ocurre en el runtime y qué parte en el proveedor.
-
-La formulación correcta es:
-
-> Codex dispone de Tools, Skills y MCP, pero no debemos atribuirle automáticamente el mecanismo de Tool Search de la API ni el Filesystem Retrieval de Cursor. Esos mecanismos deben tratarse como implementaciones distintas hasta disponer de verificación específica.
-
-## Qué podemos observar
-
-Aunque el contexto interno completo no sea visible, podemos reunir evidencias sobre el comportamiento del runtime:
-
-| Observación | Qué permite afirmar | Qué no permite afirmar |
-|---|---|---|
-| Una Tool aparece en el cliente | Está disponible para esa sesión o entorno | Que todas las Tools se hayan cargado en el modelo |
-| Codex utiliza una Tool MCP | El runtime pudo descubrirla y ejecutarla | Que use Tool Search para descubrirla |
-| Codex lee un `AGENTS.md` | Ese archivo forma parte de las instrucciones aplicadas | Que sea el system prompt completo |
-| Una Skill se aplica a una tarea | El runtime pudo utilizarla | El momento exacto en que se cargó |
-| Reiniciar hace visible una configuración | La inicialización volvió a detectar el recurso | El mecanismo interno exacto de inicialización |
-
-Esta separación entre observación e inferencia es esencial para no documentar como hechos detalles internos que no podemos verificar.
-
-## Cómo investigar sin confundir productos
-
-Para una versión concreta de Codex, registrar:
-
-1. Cliente utilizado: escritorio, IDE o CLI.
-2. Versión del cliente y fecha de comprobación.
-3. Modelo seleccionado, si el cliente lo muestra.
-4. Tools y servidores MCP visibles antes de iniciar la tarea.
-5. Qué ocurre al añadir o modificar un `AGENTS.md`, Skill o servidor.
-6. Si el recurso aparece después de reiniciar el cliente o la extensión.
-7. Qué Tool utiliza Codex ante una tarea que requiere varias capacidades.
-8. Qué parte es visible en la interfaz y qué parte es una inferencia.
-
-No debe intentarse deducir el contenido del system prompt interno a partir de una única respuesta del modelo. Una respuesta demuestra comportamiento observado, no la arquitectura completa que lo produjo.
-
-## Resumen
-
-```text
-Codex mediante suscripción
-    → runtime gestionado por Codex
-    → Tools y MCP disponibles según configuración
-    → AGENTS.md como instrucciones de proyecto
-    → Skills como workflows especializados
-    → memoria, contexto IDE y permisos como capas independientes
-    → system prompt interno no editable ni completamente visible
-    → Tool Retrieval interno no documentado con el detalle de la API
-```
-
-Para este curso, la conclusión teórica es suficiente: podemos estudiar el Agent Loop y el Context Engineering usando Codex como runtime real, pero debemos separar siempre lo que configura el usuario, lo que documenta OpenAI y lo que sólo podemos observar experimentalmente.
-
-## Fuentes oficiales consultadas
-
-- [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
-- [Crear y descubrir Skills](https://learn.chatgpt.com/es-419/docs/build-skills)
-- [Memorias en Codex](https://learn.chatgpt.com/es-419/docs/customization/memories)
-- [Subagentes](https://learn.chatgpt.com/es-419/docs/agent-configuration/subagents)
-- [Extensión IDE de Codex](https://developers.openai.com/codex/ide)
-- [Permisos en Codex](https://learn.chatgpt.com/es-419/docs/permissions)
-- [Model Context Protocol en Codex](https://learn.chatgpt.com/docs/extend/mcp)
-- [Tool search en la API de OpenAI](https://developers.openai.com/api/docs/guides/tools-tool-search)
+---
 
 [← Anterior](09-guia-practica-tools-en-codex.md) · [Índice](../../README.md) · [Siguiente →](../04-integraciones/00-mcp-introduccion.md)

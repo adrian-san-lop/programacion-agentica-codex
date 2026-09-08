@@ -48,16 +48,19 @@ CLI no es una Skill. La Skill explica al agente cuándo y cómo utilizarlo; la T
 
 ```text
 Command
-  └── inicia un workflow solicitado por el usuario
+  └── controla la sesión o inicia un procedimiento
 
 Skill
   └── define reglas, pasos, validaciones y criterios de salida
 
-MCP / CLI
-  └── ejecutan las operaciones concretas
+Tool del servidor MCP
+  └── ejecuta la operación solicitada mediante el protocolo MCP
+
+Tool de terminal
+  └── ejecuta el programa de línea de comandos
 ```
 
-Por ejemplo, `/commit` puede iniciar el workflow, una Skill de Git puede exigir revisión y validación, y la CLI puede ejecutar `git diff` o `git commit`.
+Por ejemplo, una petición de revisión puede iniciar un procedimiento de Git. La Skill indica qué comprobar y la Tool de terminal ejecuta `git diff`. Un atajo personalizado como `/commit` sólo sería otra entrada si el cliente lo ofreciera; no lo presuponemos disponible en Codex.
 
 Una Skill DAX puede combinar MCP y CLI:
 
@@ -79,6 +82,8 @@ La separación importante no es elegir uno para todo, sino asignar cada operaci�
 
 ---
 
-Esta separación también facilita el trabajo en equipo: MCP resuelve la integración externa y CLI las operaciones del repositorio. Consulta [Flujo Git y pull requests](../05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md).
+La distribución Power BI mediante MCP y Git mediante CLI es ilustrativa del curso, no una división obligatoria: un servidor puede ofrecer operaciones Git y un programa de terminal puede consultar un servicio externo. Las capacidades reales dependen de las herramientas y programas disponibles. Consulta [Flujo Git y pull requests](../05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md).
+
+[Continuar con lo esencial: guía de lectura de una tarea →](09-guia-practica-tools-en-codex.md). La estrategia híbrida es opcional.
 
 [← Anterior](06-tool-search.md) · [Índice](../../README.md) · [Siguiente →](08-estrategia-hibrida.md)

@@ -1,5 +1,7 @@
 # Tool Definitions Upfront
 
+**Ampliación opcional — patrón general.** Explica una posibilidad de diseño; no es una configuración que debas activar en Codex para seguir el curso.
+
 Estrategia que proporciona al modelo las definiciones completas de las herramientas desde el inicio.
 
 ## Estrategia A — Tool Definitions Upfront
@@ -85,6 +87,8 @@ Este es el enfoque tradicional: el runtime proporciona al modelo las definicione
 Cuando el catálogo crece, las definiciones pueden contribuir al **context rot**: ocupan contexto aunque no sean relevantes para la tarea actual y pueden dificultar la selección correcta de una Tool.
 
 ---
+
+[Continuar con lo esencial: Tool Retrieval →](04-tool-retrieval.md).
 
 [← Anterior](02-mediacion-de-tools.md) · [Índice](../../README.md) · [Siguiente →](04-tool-retrieval.md)
 

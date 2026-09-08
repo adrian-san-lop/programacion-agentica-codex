@@ -1,5 +1,7 @@
 # Estrategia híbrida de Tools
 
+**Ampliación opcional — patrón general.** Explica una posibilidad de diseño; no es una configuración que debas activar en Codex para seguir el curso.
+
 Las herramientas frecuentes pueden cargarse upfront y las especializadas bajo demanda.
 
 ## Estrategia híbrida
@@ -77,7 +79,7 @@ LLM
  ↓
 Tool Call
  ↓
-Agente / Orquestador
+Runtime / orquestador
  ↓
 valida
  ↓
@@ -135,7 +137,7 @@ La representación correcta es:
                        TOOL CALL
                            │
                            ▼
-                  AGENTE / ORQUESTADOR
+                  RUNTIME / ORQUESTADOR
                            │
                            ▼
                          TOOL
@@ -161,6 +163,8 @@ La representación correcta es:
 
 ---
 
+
+[Continuar con lo esencial: guía de lectura de una tarea →](09-guia-practica-tools-en-codex.md).
 
 [← Anterior](07-mcp-vs-cli.md) · [Índice](../../README.md) · [Siguiente →](09-guia-practica-tools-en-codex.md)
 

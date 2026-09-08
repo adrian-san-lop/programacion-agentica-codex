@@ -1,6 +1,6 @@
 # Ejemplo mínimo de Agent Loop
 
-Antes de utilizar MCP o Power BI, conviene observar el ciclo básico con una Tool local. El ejemplo funciona con Python y no necesita API key ni dependencias externas.
+**Material opcional para la fase práctica.** Esta simulación Python permite observar el ciclo con una Tool local y sin dependencias externas. No es un agente real ni un requisito para seguir los fundamentos.
 
 Código: [`examples/minimal-agent-loop/agent.py`](../../examples/minimal-agent-loop/agent.py).
 
@@ -40,7 +40,7 @@ Resultado de la Tool vuelve al contexto
 Modelo genera la respuesta final
 ```
 
-La función `model` representa al modelo. En una aplicación real se sustituiría por una llamada al proveedor elegido. El runtime está representado por `run_agent` y es quien valida y ejecuta la Tool.
+La función `model` simula la decisión con reglas fijas: no interpreta libremente lo que escribe el usuario. No vamos a conectarla a un proveedor; al pasar a la práctica utilizaremos Codex. `run_agent` representa de forma didáctica al runtime que valida y ejecuta la Tool.
 
 La función `calculate` es la Tool. Su contrato está reflejado en `validate_tool_call`, que rechaza Tools u operaciones no permitidas antes de ejecutarlas.
 

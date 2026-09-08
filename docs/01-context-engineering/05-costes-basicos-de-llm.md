@@ -1,80 +1,44 @@
-# Costes básicos al usar LLMs
+# Contexto, consumo y límites de uso
 
-En este curso usamos Codex dentro de ChatGPT mediante suscripción. Las fórmulas de tokens y las referencias de la API sirven para entender conceptos, pero no representan automáticamente una factura ni un contador visible de nuestra suscripción.
+Una respuesta breve puede requerir muchas lecturas y consultas. Su longitud no representa todo el trabajo de Codex.
 
-Los LLMs procesan texto en **tokens**. En una interacción hay que distinguir, como mínimo, entre los tokens que entran al modelo y los que genera como respuesta.
+## Lo esencial
 
-## Input y output
+En el curso usamos Codex en VS Code con una suscripción de ChatGPT Business. Para interpretar el uso, separa:
 
-Los **input tokens** no son solo el texto que escribe el usuario. Pueden incluir:
+| Indicador | Qué significa | Qué no demuestra |
+|---|---|---|
+| Contexto ocupado | Información activa respecto a la ventana disponible | Todo el consumo acumulado |
+| Consumo durante la tarea | Trabajo realizado en sus distintas interacciones | Sólo la longitud de la respuesta final |
+| Cupo del plan | Uso disponible según los límites que muestre el producto | Espacio restante del contexto |
 
-- instrucciones del sistema;
-- definiciones de Tools;
-- Skills e `AGENTS.md`;
-- historial relevante;
-- archivos leídos;
-- resultados de Tools;
-- la petición actual.
+No todos los clientes muestran el mismo detalle. Registra el nombre del indicador y el momento de lectura; no conviertas porcentajes de contexto en dinero.
 
-Los **output tokens** son los que genera el modelo. En un agente, una sola petición puede provocar varias interacciones internas: búsquedas, lecturas, llamadas a Tools, validaciones, errores y reintentos.
+## Nuestra historia
 
-```text
-Input
-  → contexto + petición
+Analizar Sales YTD puede requerir leer instrucciones, reglas DAX, la medida y sus relaciones. Cada resultado puede incorporarse al contexto aunque la respuesta final ocupe cinco líneas.
 
-Output
-  → respuesta o Tool Call
-```
+Puedes reducir exploración innecesaria indicando la medida exacta y dónde están las reglas. No conviene reducir información imprescindible sólo para que baje el indicador.
 
-## Cálculo conceptual
+## Qué comprobar
 
-Los precios reales dependen del modelo, proveedor, producto y modalidad de uso. Para entender la fórmula podemos utilizar precios ficticios:
+- ¿Consultó archivos pertinentes?
+- ¿Repitió búsquedas que ya estaban resueltas?
+- ¿Obtuvo suficiente evidencia?
+- ¿Qué indicador de uso mostraba el cliente antes y después?
 
-```text
-Input:  1 $ por 1M tokens
-Output: 5 $ por 1M tokens
-```
+Una sola conversación con mucho contexto libre no demuestra que una organización de documentos sea mejor. Para comparar, usa tareas equivalentes y revisa también la calidad y las fuentes; la variación entre sesiones impide atribuir todo el cambio a una sola causa.
 
-Si una petición contiene 14.008 input tokens y genera 7 output tokens:
+## Comprueba que lo entiendes
 
-```text
-Coste de input:
-14.008 / 1.000.000 × 1 $ = 0,014008 $
+**¿Un 85 % de contexto libre significa un 85 % del cupo Business disponible?**
 
-Coste de output:
-7 / 1.000.000 × 5 $ = 0,000035 $
-```
+No. Son indicadores distintos. Comprueba la etiqueta de cada uno.
 
-Es un ejemplo pedagógico, no una tarifa real ni una estimación del coste de Codex mediante suscripción.
-
-## El contexto se repite
-
-En una conversación posterior, la respuesta anterior puede formar parte del input necesario para entender la nueva petición:
-
-```text
-Turno 1:
-petición → input
-respuesta → output
-
-Turno 2:
-contexto anterior + nueva petición → input
-nueva respuesta → output
-```
-
-Los output tokens no se vuelven a contar como output, pero parte de esa información puede pasar a formar parte del input de turnos posteriores.
-
-## Codex no es lo mismo que la API
-
-Cuando Codex se utiliza mediante un plan de ChatGPT, la interfaz puede mostrar uso, límites o créditos disponibles. Si la interfaz ofrece `/status`, puede utilizarse para consultar el estado de la sesión o sus límites.
-
-Eso no equivale necesariamente a una factura monetaria por token. En una aplicación propia mediante API, input, cached input y output pueden tener categorías y tarifas separadas. Consulta siempre la información oficial del producto y del modelo utilizado.
-
-La documentación oficial distingue entre input, output, cached input y límites de uso en productos que los exponen. En Codex mediante suscripción debemos utilizar los límites y el consumo que muestre el propio cliente, sin inferir una tarifa por token. [Understanding and counting tokens](https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens).
-
-## Idea que debemos conservar
-
-El tamaño de la respuesta visible no representa todo el trabajo del agente. Para controlar consumo y calidad hay que reducir contexto innecesario, evitar exploración repetida y cargar solo la información relevante.
+La [información oficial de uso de Codex](https://learn.chatgpt.com/docs/pricing) es la referencia para los límites vigentes; este curso no fija tarifas ni porcentajes universales.
 
 ---
+
+[Continuar con lo esencial: recuperación de contexto →](07-recuperacion-profunda.md). El capítulo siguiente sobre caching es opcional.
 
 [← Anterior](04-progressive-disclosure.md) · [Índice](../../README.md) · [Siguiente →](06-prompt-caching.md)

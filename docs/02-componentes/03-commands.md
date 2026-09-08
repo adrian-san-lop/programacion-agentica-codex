@@ -1,14 +1,26 @@
 # Commands
 
-Atajos reutilizables para lanzar prompts o workflows predefinidos.
+Acciones del cliente para controlar la sesión o iniciar un procedimiento.
 
 ## Definición
 
-Los **Commands** son atajos reutilizables que permiten lanzar prompts o workflows predefinidos.
+Un **Command** es una acción disponible en el cliente. Puede controlar la sesión o iniciar un flujo de trabajo. Un **prompt** es la petición o instrucción que dirigimos al agente; no todos los comandos se limitan a insertar uno.
 
 Son una funcionalidad dependiente del cliente/agente.
 
-Por ejemplo:
+## Comandos de Codex en la extensión IDE
+
+| Comando | Función |
+|---|---|
+| `/status` | Muestra el identificador de la conversación, uso de contexto y límites de uso |
+| `/compact` | Compacta el contexto de la conversación actual |
+| `/mcp` | Abre el estado de los servidores MCP conectados |
+
+Son acciones del producto; no requieren iniciar una Skill. La lista disponible se consulta escribiendo `/` en el cuadro de mensaje. [Comandos oficiales de la extensión IDE](https://learn.chatgpt.com/docs/developer-commands?surface=ide), revisados el 2026-09-08.
+
+## Atajos personalizados: ejemplo conceptual
+
+Un cliente o una integración podría ofrecer un atajo como:
 
 ```text
 /commit
@@ -24,11 +36,10 @@ Create a commit following Conventional Commits.
 Do not include unrelated files.
 ```
 
-Otros ejemplos:
+Otros nombres ilustrativos de atajos personalizados, cuya existencia habría que comprobar:
 
 ```text
 /commit
-/review
 /test
 /deploy
 ```
@@ -45,7 +56,7 @@ estándar universal
 
 Cada agente o herramienta puede implementarlos de forma diferente.
 
-En este curso, un Command es sólo la puerta de entrada a un workflow. No sustituye al razonamiento del agente, no es una Tool y no garantiza que el workflow se ejecute sin validaciones o aprobaciones.
+Un comando que inicia un procedimiento no sustituye al razonamiento del agente ni garantiza su ejecución sin validaciones o aprobaciones. Un comando de sesión puede actuar directamente sobre el cliente. Ninguno es sinónimo de Skill o Tool.
 
 ## Workflow Git del repositorio
 
@@ -69,6 +80,14 @@ La opción `-All` equivale a seleccionar todos los cambios actuales, incluidas l
 No se asume que `/commit` exista como comando slash universal en Codex. La forma portable es pedir explícitamente a Codex que use la Skill o ejecutar el script. Así el conocimiento del proceso y la ejecución quedan documentados y versionados en el propio repositorio.
 
 ---
+
+## Nuestra historia y comprobación
+
+Puedes iniciar la revisión escribiendo «Analiza Sales YTD. No modifiques nada». No necesitas inventar un comando con barra para cada tarea.
+
+**¿Un Command, una Skill y una Tool son tres nombres de lo mismo?**
+
+No. El Command controla la sesión o inicia una acción disponible en el cliente; la Skill describe un procedimiento; la Tool ejecuta una operación. La petición en lenguaje natural también puede iniciar el trabajo.
 
 [← Anterior](02-skills.md) · [Índice](../../README.md) · [Siguiente →](../03-tools/00-que-es-una-tool.md)
 
