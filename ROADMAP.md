@@ -79,7 +79,7 @@ Pendiente para la fase práctica:
 
 - Registrar versión de la extensión, Windows nativo o WSL2 y políticas efectivas del entorno Business.
 - Verificar por separado permisos locales e identidad de la conexión MCP a Power BI/Fabric.
-- Preparar un hook pequeño en PowerShell con datos ficticios; comprobar carga, confianza, filtro y salida efectiva.
+- El capítulo de hooks muestra configuración, entrada, script PowerShell y salida de un aviso de inicio. Queda pendiente adaptar e instalar el ejemplo en un entorno de prueba y comprobar carga, confianza, filtro y salida efectiva en la extensión.
 - Probar un caso admitido, un rechazo y un fallo del programa, observando si la operación se ejecuta.
 - Revisar vías alternativas y límites de cobertura antes de atribuir protección al control.
 - Investigar Docker Sandbox y Dev Containers por separado sólo si el curso necesita aislamiento adicional; montajes, acceso a instrucciones globales y compatibilidad con Power BI siguen sin validar.
@@ -142,3 +142,4 @@ El éxito será una tarea fiable y revisable, no un porcentaje de ahorro de toke
 | 2026-09-03 | Crear seguimiento desde notas | Roadmap inicial |
 | 2026-09-07 | Alinear el objetivo con Codex en VS Code mediante Business | Exclusión de contenido de la API; fundamentos y ampliaciones separados; caso conceptual compartido y comprobaciones de comprensión |
 | 2026-09-08 | Incorporar seguridad y hooks desde notes.txt, línea 1146 | Cuatro capítulos conceptuales entre integraciones y colaboración; referencias oficiales de Codex; práctica y contenedores pendientes; notas originales conservadas |
+| 2026-09-08 | Aclarar quién define y ejecuta un hook | Eventos ofrecidos por Codex frente a programas propios; ejemplo de aviso con todas sus piezas antes del rechazo de escritura en Sales YTD |

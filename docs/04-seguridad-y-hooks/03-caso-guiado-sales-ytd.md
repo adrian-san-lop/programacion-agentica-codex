@@ -10,6 +10,20 @@ El resultado esperado es una explicación con fuentes y límites. Si falta la ex
 
 Supongamos dos capacidades ilustrativas, `consultar_medida` y `modificar_medida`, y una política de revisión que rechaza la segunda en las llamadas cubiertas. Los nombres reales se comprobarían en el servidor instalado.
 
+## Del aviso a una comprobación
+
+En el capítulo anterior conectamos `SessionStart` con un script que devolvía un aviso. Ahora conectamos `PreToolUse` con un programa que revisa una operación antes de ejecutarla.
+
+| Pieza | Qué usaríamos en esta historia |
+|---|---|
+| Evento ofrecido por Codex | `PreToolUse` |
+| Configuración que prepararíamos | Seleccionar las dos capacidades ficticias y ejecutar nuestro programa |
+| Programa propio | `revisar-operacion.ps1`, con la regla de sólo lectura |
+| Datos entregados por Codex | Nombre de la Tool y argumentos |
+| Resultado del programa | Rechazar la modificación o no rechazar desde este control |
+
+`revisar-operacion.ps1` es un nombre elegido para explicar el caso, no una función predefinida de OpenAI. La política tampoco se instala automáticamente por escribir «no modifiques nada» en el prompt. Seguimos una configuración hipotética activa y revisada.
+
 ## Recorrido
 
 | Paso | Qué sucede | Qué revisamos |
@@ -26,6 +40,18 @@ El paso 5 representa un desvío posible que queremos comprender. Un agente que s
 
 ## Lógica conceptual del control
 
+Supongamos que Codex entrega este extracto de evento. Los nombres y argumentos de las herramientas son ficticios:
+
+```json
+{
+  "hook_event_name": "PreToolUse",
+  "tool_name": "modificar_medida",
+  "tool_input": { "measure": "Sales YTD" }
+}
+```
+
+Nuestro programa lee esos campos y aplica la regla que hemos escrito:
+
 ```text
 Recibir la llamada cubierta por el evento
 Comprobar que corresponde a la política de revisión
@@ -33,8 +59,26 @@ Si solicita la capacidad ficticia modificar_medida:
     devolver un rechazo explícito con su motivo
 En otro caso:
     no rechazar desde este control
-    mantener los demás permisos y políticas
+mantener los demás permisos y políticas
 ```
+
+Al detectar `modificar_medida`, el programa devuelve esta salida admitida por Codex:
+
+```json
+{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "Esta revisión sólo permite consultar la medida."
+  }
+}
+```
+
+La regla de nuestro programa produce el rechazo. Codex interpreta `deny` e impide esa llamada cubierta. El modelo recibe el motivo y puede explicar la propuesta sin ejecutarla. [Resultado de PreToolUse](https://learn.chatgpt.com/docs/hooks#pretooluse).
+
+Si la llamada es `consultar_medida`, el programa puede terminar correctamente sin salida: este hook no la rechaza y siguen aplicándose los demás controles. Esto no concede un permiso de acceso que la conexión no tenga.
+
+En este evento, devolver `permissionDecision: "ask"` no solicita aprobación: actualmente es una salida no admitida que puede provocar un fallo y dejar continuar la llamada. Por eso el caso enseña un rechazo explícito, con un resultado definido. [Contrato del evento](https://learn.chatgpt.com/docs/hooks#pretooluse).
 
 Esta lógica ilustra el alcance de una comprobación. No busca palabras en un comando ni garantiza cubrir todas las vías de escritura. Otra Tool, un script o una integración diferente exigirían revisar su cobertura y sus permisos.
 
