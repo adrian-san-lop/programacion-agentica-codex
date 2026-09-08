@@ -109,6 +109,8 @@ Cambios realizados y comprobación disponible:
 
 ## Comprueba que lo entiendes
 
+Para relacionar estos controles con las decisiones del agente, utiliza la [lectura guiada de Sales YTD](04-lectura-guiada-decisiones-sales-ytd.md): tres situaciones con respuestas razonadas, sin ejecutar herramientas.
+
 **¿El rechazo autoriza a intentar la misma escritura con otra herramienta?**
 
 No. El encargo sigue siendo de sólo lectura.

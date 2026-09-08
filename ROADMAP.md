@@ -66,6 +66,8 @@ Validación del paquete: 270 enlaces relativos con destino existente en 44 docum
 
 **Estado: Pendiente de prueba con el alumno.**
 
+Disponible la [lectura guiada de decisiones sobre Sales YTD](docs/04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md): evidencia suficiente, relaciones pendientes e instrucciones sospechosas. Cada situación pide elegir el siguiente paso, identificar responsabilidades y justificar una conclusión antes de consultar la respuesta. Son datos ficticios y una autoevaluación conceptual; la prueba con un alumno sigue pendiente.
+
 Utilizar la historia «Analiza Sales YTD. No modifiques nada» y comprobar que el lector puede explicar:
 
 - qué información falta y dónde buscarla;
@@ -160,3 +162,4 @@ El éxito será una tarea fiable y revisable, no un porcentaje de ahorro de toke
 | 2026-09-08 | Incorporar seguridad y hooks desde notes.txt, línea 1146 | Cuatro capítulos conceptuales entre integraciones y colaboración; referencias oficiales de Codex; práctica y contenedores pendientes; notas originales conservadas |
 | 2026-09-08 | Aclarar quién define y ejecuta un hook | Eventos ofrecidos por Codex frente a programas propios; ejemplo de aviso con todas sus piezas antes del rechazo de escritura en Sales YTD |
 | 2026-09-08 | Corregir y aclarar fundamentos existentes | Commands, Skills, recuperación, MCP/CLI y delegación precisados; vocabulario, respuestas y pauta de encargo añadidos; lectura esencial disponible sin alterar la paginación |
+| 2026-09-08 | Conectar los conceptos mediante decisiones | Lectura guiada de Sales YTD con tres situaciones independientes, respuestas desplegables y criterios de autoevaluación; sin ejecución ni cambios en los materiales prácticos |

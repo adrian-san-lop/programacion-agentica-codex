@@ -72,6 +72,8 @@ Cuando llegue la práctica, podremos comparar tareas equivalentes observando per
 
 ## Comprueba que lo entiendes
 
+Después del bloque de seguridad, puedes aplicar estas distinciones en la [lectura guiada de decisiones sobre Sales YTD](../04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md). No requiere una conexión real.
+
 **¿Necesito crear un catálogo propio para que Codex utilice un servidor MCP configurado?**
 
 No. El servidor expone sus capacidades. Un catálogo documental puede explicarlas, pero no es la conexión.

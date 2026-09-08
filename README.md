@@ -128,6 +128,7 @@ Los bloques con prefijo `04` se leen en este orden: integraciones → seguridad 
 - [Permisos, sandbox y secretos](docs/04-seguridad-y-hooks/01-permisos-sandbox-y-secretos.md)
 - [Hooks en Codex](docs/04-seguridad-y-hooks/02-hooks-en-codex.md)
 - [Caso guiado: Sales YTD con controles](docs/04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md)
+- [Lectura guiada de decisiones: Sales YTD](docs/04-seguridad-y-hooks/04-lectura-guiada-decisiones-sales-ytd.md) — autoevaluación conceptual con respuestas; sin ejecutar herramientas.
 
 ### Trabajo en equipo
 
