@@ -40,6 +40,8 @@ Las notas históricas pueden contener referencias fuera de alcance o afirmacione
 | Frontera de control | Cubierto | [Codex por suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md): qué configura la persona y qué no puede deducirse |
 | MCP | Parcial | [Introducción](docs/04-integraciones/00-mcp-introduccion.md); conexión real de Power BI pendiente de validar en la fase práctica |
 | Colaboración y Git | Cubierto como base | [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md) |
+| Seguridad y secretos | Cubierto como base conceptual | [Seguridad](docs/04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md) y [permisos](docs/04-seguridad-y-hooks/01-permisos-sandbox-y-secretos.md); comprobar el entorno real en la práctica |
+| Hooks | Cubierto conceptualmente; práctica pendiente | [Eventos y límites](docs/04-seguridad-y-hooks/02-hooks-en-codex.md) y [Sales YTD](docs/04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md); no hay hooks instalados por este material |
 | Subagentes | Parcial | [Delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md); ampliar cuándo no delegar y cómo revisar resultados |
 | Simulación Python | Material opcional disponible | [Ejemplo](docs/06-ejemplos/00-agent-loop-minimo.md); sólo ilustra la mecánica, no interpreta lenguaje libre |
 | Power BI / Fabric | Futuro — fase práctica | [Plantilla y recorrido](docs/06-ejemplos/01-power-bi-fabric.md); no hay una integración completa validada |
@@ -71,7 +73,16 @@ No reconstruir una petición interna ni exigir puntuaciones de relevancia. Un in
 
 **Estado: Parcial.**
 
-Consolidar ejemplos de contenido no confiable, permisos, lectura frente a escritura y protección de secretos.
+La base conceptual está en [seguridad y hooks](docs/04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md): instrucciones no confiables, controles, secretos, límites del sandbox y rechazo de operaciones.
+
+Pendiente para la fase práctica:
+
+- Registrar versión de la extensión, Windows nativo o WSL2 y políticas efectivas del entorno Business.
+- Verificar por separado permisos locales e identidad de la conexión MCP a Power BI/Fabric.
+- El capítulo de hooks muestra configuración, entrada, script PowerShell y salida de un aviso de inicio. Queda pendiente adaptar e instalar el ejemplo en un entorno de prueba y comprobar carga, confianza, filtro y salida efectiva en la extensión.
+- Probar un caso admitido, un rechazo y un fallo del programa, observando si la operación se ejecuta.
+- Revisar vías alternativas y límites de cobertura antes de atribuir protección al control.
+- Investigar Docker Sandbox y Dev Containers por separado sólo si el curso necesita aislamiento adicional; montajes, acceso a instrucciones globales y compatibilidad con Power BI siguen sin validar.
 
 Más adelante, preparar un conjunto pequeño de tareas con criterios de aceptación: respuesta correcta, evidencia suficiente, restricciones respetadas y límites declarados. Registrar regresiones al cambiar instrucciones o Skills.
 
@@ -86,8 +97,12 @@ Más adelante, preparar un conjunto pequeño de tareas con criterios de aceptaci
 | MCP | [MCP](https://learn.chatgpt.com/docs/extend/mcp) | Registrar servidor, cuenta, destino y operaciones reales |
 | Compactación | [Comandos IDE](https://learn.chatgpt.com/docs/developer-commands?surface=ide) | Observar continuidad y límites del resumen |
 | Tool Retrieval | [Límites de lo observable](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) | No atribuir una estrategia interna sin evidencia específica |
+| Permisos y sandbox | [Permisos oficiales](https://learn.chatgpt.com/docs/permissions) | Validar política y alcance efectivos en nuestra extensión |
+| Hooks | [Hooks oficiales](https://learn.chatgpt.com/docs/hooks) | Comprobar disponibilidad, confianza, cobertura y fallos por evento |
 
 Fecha de revisión de estas fuentes: 2026-09-07. Entorno objetivo: extensión IDE de Codex para VS Code, suscripción Business. Esta revisión documental no sustituye una prueba local con Power BI.
+
+Las fuentes de seguridad, permisos y hooks se revisaron el 2026-09-08 al incorporar las notas desde la línea 1146. Su descripción documental no acredita una ejecución en la instalación del alumno.
 
 Para nuevas comprobaciones registrar versión, fecha, configuración relevante, acción visible, resultado y fuente. No usar comportamientos de otros clientes como evidencia de Codex.
 
@@ -101,7 +116,7 @@ Cuando aparezcan en el curso:
 - definir el contexto y criterio de entrega del subagente;
 - revisar coordinación y resultados;
 - distinguir planificación, análisis e implementación según los modos realmente disponibles;
-- introducir hooks sólo si ayudan a comprender controles alrededor del Agent Loop.
+- ampliar los [fundamentos de hooks](docs/04-seguridad-y-hooks/02-hooks-en-codex.md) cuando otros eventos ayuden a una tarea del curso.
 
 No asumir nombres ni capacidades idénticos entre productos.
 
@@ -126,3 +141,5 @@ El éxito será una tarea fiable y revisable, no un porcentaje de ahorro de toke
 |---|---|---|
 | 2026-09-03 | Crear seguimiento desde notas | Roadmap inicial |
 | 2026-09-07 | Alinear el objetivo con Codex en VS Code mediante Business | Exclusión de contenido de la API; fundamentos y ampliaciones separados; caso conceptual compartido y comprobaciones de comprensión |
+| 2026-09-08 | Incorporar seguridad y hooks desde notes.txt, línea 1146 | Cuatro capítulos conceptuales entre integraciones y colaboración; referencias oficiales de Codex; práctica y contenedores pendientes; notas originales conservadas |
+| 2026-09-08 | Aclarar quién define y ejecuta un hook | Eventos ofrecidos por Codex frente a programas propios; ejemplo de aviso con todas sus piezas antes del rechazo de escritura en Sales YTD |

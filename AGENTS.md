@@ -27,6 +27,8 @@ Prioritize conceptual understanding now. Use a shared read-only Sales YTD review
 | Tools, retrieval and Tool Calling | `docs/03-tools/00-que-es-una-tool.md` |
 | Codex subscription behavior | `docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md` |
 | MCP and integrations | `docs/04-integraciones/00-mcp-introduccion.md` |
+| Security, permissions, sandbox and secrets | `docs/04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md` |
+| Hooks and lifecycle controls | `docs/04-seguridad-y-hooks/02-hooks-en-codex.md` |
 | Collaboration and subagents | `docs/05-trabajo-en-equipo/00-introduccion.md` |
 | Power BI and Fabric | `docs/06-ejemplos/01-power-bi-fabric.md` |
 

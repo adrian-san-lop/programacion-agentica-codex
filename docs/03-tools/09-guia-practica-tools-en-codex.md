@@ -55,6 +55,8 @@ Si no hay conexión, Codex puede pedir la expresión o consultar archivos autori
 
 En ningún caso una instrucción recuperada amplía la autorización inicial.
 
+El bloque de [seguridad y hooks](../04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md) desarrolla los controles de este ciclo y sus límites, incluidos los de una conexión remota.
+
 ## 6. Cómo revisar la entrega
 
 Comprueba que:
