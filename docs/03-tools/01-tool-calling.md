@@ -86,5 +86,7 @@ Un error, un rechazo y un resultado vacío también son resultados del ciclo. No
 
 No necesariamente. Hay que comprobar el modelo, el nombre, los filtros y el alcance de la consulta antes de concluirlo.
 
+[Continuar con lo esencial: Tool Retrieval →](04-tool-retrieval.md). Mediación y definiciones upfront son ampliaciones opcionales.
+
 [← Anterior](00-que-es-una-tool.md) · [Índice](../../README.md) · [Siguiente →](02-mediacion-de-tools.md)
 

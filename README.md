@@ -24,6 +24,8 @@ La numeración y los enlaces conservan el recorrido completo. En una primera lec
 
 La misma historia une los bloques: «Analiza la medida Sales YTD y explica si hay algún problema. No modifiques nada». Lee las preguntas de comprobación y sus respuestas antes de continuar.
 
+Los enlaces **Continuar con lo esencial** permiten saltar las ampliaciones opcionales sin cambiar el orden del recorrido completo. Los enlaces **Anterior** y **Siguiente** conservan la paginación de todos los capítulos.
+
 Los bloques con prefijo `04` se leen en este orden: integraciones → seguridad y hooks → trabajo en equipo (`05`). Conservamos las rutas anteriores; los enlaces de navegación recogen esta ampliación. La configuración real de hooks y el estudio de contenedores quedan para una fase posterior.
 
 ### Recorrido completo

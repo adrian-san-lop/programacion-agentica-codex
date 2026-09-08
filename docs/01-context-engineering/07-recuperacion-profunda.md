@@ -39,6 +39,8 @@ Esto es una secuencia explicativa, no una promesa del orden interno exacto de Co
 
 ## 4. Cómo orientarlo con una petición
 
+Aplicamos la pauta de la introducción: **objetivo → fuentes → restricciones → entrega → criterio de finalización**. La petición concreta qué revisar y cómo reconocer una entrega suficiente.
+
 ```text
 Analiza la medida Sales YTD y explica si hay algún problema.
 No modifiques nada.
@@ -50,6 +52,7 @@ Si no puedes obtenerlas, indícalo y no inventes su contenido.
 
 Separa hallazgos comprobados, hipótesis y datos pendientes.
 Indica las fuentes utilizadas.
+Termina cuando puedas responder con evidencia suficiente o explicar qué dato impide concluir.
 ```
 
 No hace falta repetir todo el proyecto en el mensaje. Una referencia clara a un archivo puede ser suficiente para orientarlo.

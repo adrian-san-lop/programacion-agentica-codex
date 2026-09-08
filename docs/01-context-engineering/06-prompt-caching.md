@@ -39,4 +39,6 @@ No. La Skill aporta un procedimiento; caching es un mecanismo distinto. Puedes c
 
 ---
 
+[Continuar con lo esencial: recuperación de contexto →](07-recuperacion-profunda.md).
+
 [← Anterior](05-costes-basicos-de-llm.md) · [Índice](../../README.md) · [Siguiente →](07-recuperacion-profunda.md)

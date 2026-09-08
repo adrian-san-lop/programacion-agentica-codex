@@ -8,7 +8,7 @@ En Codex conviene distinguir la carpeta donde el repositorio guarda sus workflow
 Concepto o referencia → docs/
 Workflow repetible    → Skill
 Regla del proyecto    → AGENTS.md
-Acción breve           → Command
+Control de sesión o entrada a un procedimiento → Command
 ```
 
 Para decidir dónde mantener una Skill:
