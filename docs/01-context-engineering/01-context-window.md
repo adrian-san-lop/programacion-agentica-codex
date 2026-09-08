@@ -123,7 +123,7 @@ Tool Retrieval
 
 Datos
       ↓
-MCP / APIs / Database
+Tools / sistemas externos / bases de datos
 
 Memoria
       ↓

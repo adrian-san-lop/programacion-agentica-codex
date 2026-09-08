@@ -3,17 +3,19 @@
 Un agente se entiende mejor si se separan sus responsabilidades. El modelo propone razonamientos y acciones; el runtime controla el contexto y la ejecución.
 
 ```text
-Usuario
+Persona: objetivo y límites
   ↓
-Runtime / orquestador
-  ├── construye el contexto
-  ├── proporciona Tools al LLM
-  ├── valida y ejecuta Tool Calls
-  └── devuelve resultados
-       ↓
-      LLM
-       ↓
-  Tool / API / MCP Server / filesystem
+Runtime: contexto e instrucciones
+  ↓
+Modelo: propone una Tool Call
+  ↓
+Runtime: comprueba permisos y coordina
+  ↓
+Tool: ejecuta o devuelve un error
+  ↓
+Runtime: devuelve el resultado
+  ↓
+Modelo: siguiente consulta, respuesta o petición de ayuda
 ```
 
 - **LLM**: interpreta la petición, razona y propone la siguiente acción.

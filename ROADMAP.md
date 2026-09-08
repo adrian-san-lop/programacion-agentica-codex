@@ -1,320 +1,128 @@
 # Roadmap de programación agéntica
 
-Este documento sirve para controlar qué conceptos del curso ya están documentados y qué temas quedan pendientes. No pretende sustituir a `docs/notes.txt`: las notas son el espacio de captura y este roadmap es el espacio de seguimiento.
+## Objetivo y alcance
 
-## Cómo utilizarlo
+Ayudar a un data scientist con experiencia en programación y Power BI, pero sin experiencia agéntica, a comprender, orientar y evaluar Codex en VS Code con una suscripción de ChatGPT Business.
 
-Cuando aparezca una idea nueva:
+La fase actual es conceptual. Power BI y Fabric aportan contexto familiar; la integración real llegará cuando el curso alcance la práctica.
 
-1. Anotarla primero en [`docs/notes.txt`](docs/notes.txt), manteniendo el contexto, enlaces y dudas originales.
-2. Añadirla a la tabla de pendientes de este documento si requiere investigación o una nueva explicación.
-3. Cuando se convierta en documentación estable, enlazar el documento resultante y cambiar su estado a `Cubierto`.
-4. Si la documentación sólo cubre una parte, mantenerla como `Parcial` y describir qué falta.
+Quedan fuera la documentación de la API de OpenAI, sus ejemplos, parámetros, endpoints, precios y enlaces, también como comparaciones o ampliaciones. No construiremos otro runtime ni conectaremos la simulación Python a un proveedor.
 
-Las notas pueden ser desordenadas o provisionales. Antes de convertirlas en documentación hay que contrastar las afirmaciones dependientes del producto, del runtime o de la versión utilizada.
+## Cómo incorporar nuevas notas
+
+1. Capturar dudas y contenido del curso en [notes.txt](docs/notes.txt).
+2. Comprobar si ayuda a entender al agente, orientar a Codex o evaluar su trabajo.
+3. Separar patrón general, capacidad documentada de Codex, observación local e inferencia.
+4. Verificar las afirmaciones de producto con documentación oficial de Codex.
+5. Incorporar sólo lo que encaje en la fase del curso y actualizar este roadmap.
+
+Las notas históricas pueden contener referencias fuera de alcance o afirmaciones aún no verificadas. Se conservan como material de captura, no como instrucciones para añadirlas al temario.
 
 ## Estados
 
-- `Cubierto`: existe documentación suficiente y enlazada.
-- `Parcial`: existe una primera explicación, pero falta profundidad, ejemplos o verificación.
-- `Pendiente`: el tema está identificado, pero todavía no tiene documentación suficiente.
-- `Investigación`: requiere contrastar fuentes o comprobar el comportamiento real del runtime.
-- `Futuro`: útil para una fase posterior del curso.
+- **Cubierto:** explicación disponible; no implica validación práctica.
+- **Parcial:** hay una base, pero faltan aspectos concretos.
+- **Pendiente:** aún no desarrollado.
+- **Futuro:** reservado para otra fase.
+- **Investigación:** necesita evidencia de producto o de la instalación.
 
 ## Situación actual
 
-| Área | Estado | Documentación relacionada | Próximo paso |
-|---|---|---|---|
-| Qué es un agente y Agent Loop | Cubierto | [`docs/00-introduccion/00-que-es-un-agente.md`](docs/00-introduccion/00-que-es-un-agente.md) | Reforzar objetivo, observación, decisión, acción, resultado y condición de parada con un ejemplo conceptual antes de pasar a código |
-| Actores y responsabilidades | Cubierto | [`docs/00-introduccion/01-actores-y-responsabilidades.md`](docs/00-introduccion/01-actores-y-responsabilidades.md) | Mantener la separación entre LLM, runtime y agente |
-| Conceptos que se confunden | Cubierto | [`docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md`](docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md) | Crear un glosario acumulativo y revisar que cada término se introduzca antes de reutilizarlo |
-| Context Engineering | Cubierto | [`docs/01-context-engineering/`](docs/01-context-engineering/00-introduccion.md) · [`Contexto y recuperación en profundidad`](docs/01-context-engineering/07-recuperacion-profunda.md) | Mejorar el puente entre contexto estático/dinámico y una sesión real de Codex; dejar RAG y la implementación de índices como ampliación futura |
-| Costes y Prompt Caching | Parcial | [`docs/01-context-engineering/05-costes-basicos-de-llm.md`](docs/01-context-engineering/05-costes-basicos-de-llm.md) · [`docs/01-context-engineering/06-prompt-caching.md`](docs/01-context-engineering/06-prompt-caching.md) | Separar con más claridad coste conceptual, límites de suscripción y precios de API; mantener Prompt Caching como optimización avanzada |
-| Componentes del agente | Cubierto | [`docs/02-componentes/`](docs/02-componentes/00-system-prompt.md) | Añadir un recorrido conceptual único que muestre cómo se combinan System Prompt, `AGENTS.md`, Skill, Tool y Command en Codex |
-| Tools y Tool Calling | Cubierto | [`docs/03-tools/`](docs/03-tools/00-que-es-una-tool.md) | Explicar el ciclo conceptual completo —catálogo, contrato, llamada, validación, resultado, error y decisión siguiente— antes de abordar una implementación |
-| MCP, contexto y Tool Retrieval en Codex | Parcial | [`docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md`](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) · [`docs/04-integraciones/`](docs/04-integraciones/00-mcp-introduccion.md) | Mantener la documentación alineada con cambios del producto |
-| Trabajo en equipo y Git | Cubierto | [`docs/05-trabajo-en-equipo/`](docs/05-trabajo-en-equipo/00-introduccion.md) | Mantenerlo separado de la teoría del agente |
-| Ejemplo mínimo de Agent Loop | Cubierto | [`docs/06-ejemplos/00-agent-loop-minimo.md`](docs/06-ejemplos/00-agent-loop-minimo.md) | Mantenerlo como base ejecutable e independiente |
-| Ejemplo Power BI / Fabric | Parcial | [`docs/06-ejemplos/01-power-bi-fabric.md`](docs/06-ejemplos/01-power-bi-fabric.md) | Desarrollar el ejemplo práctico paso a paso |
+| Bloque | Estado | Evidencia y siguiente paso |
+|---|---|---|
+| Objetivo y Agent Loop | Cubierto | [Introducción](docs/00-introduccion/00-que-es-un-agente.md): script frente a agente, responsabilidades y condiciones de parada |
+| Vocabulario | Cubierto como base | [Conceptos](docs/00-introduccion/02-conceptos-que-no-deben-confundirse.md): revisar comprensión con un lector principiante |
+| Contexto y recuperación | Cubierto como base conceptual | [Recuperación](docs/01-context-engineering/07-recuperacion-profunda.md): pertinencia, vigencia, suficiencia y fuentes contradictorias |
+| Consumo y caching | Cubierto al nivel necesario | [Uso](docs/01-context-engineering/05-costes-basicos-de-llm.md) y [caching opcional](docs/01-context-engineering/06-prompt-caching.md); sin ejercicios de infraestructura |
+| Compactación | Cubierto conceptualmente | [Continuidad de la sesión](docs/01-context-engineering/08-compactacion-de-contexto-en-codex.md): validar en la práctica sin dar por preservado cada detalle |
+| Instrucciones y Skills | Cubierto como base | [Componentes](docs/02-componentes/00-system-prompt.md): reglas, procedimiento y conocimiento separados |
+| Tools y errores | Cubierto como base | [Guía conceptual](docs/03-tools/09-guia-practica-tools-en-codex.md): una descripción no crea una Tool |
+| Frontera de control | Cubierto | [Codex por suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md): qué configura la persona y qué no puede deducirse |
+| MCP | Parcial | [Introducción](docs/04-integraciones/00-mcp-introduccion.md); conexión real de Power BI pendiente de validar en la fase práctica |
+| Colaboración y Git | Cubierto como base | [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md) |
+| Subagentes | Parcial | [Delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md); ampliar cuándo no delegar y cómo revisar resultados |
+| Simulación Python | Material opcional disponible | [Ejemplo](docs/06-ejemplos/00-agent-loop-minimo.md); sólo ilustra la mecánica, no interpreta lenguaje libre |
+| Power BI / Fabric | Futuro — fase práctica | [Plantilla y recorrido](docs/06-ejemplos/01-power-bi-fabric.md); no hay una integración completa validada |
 
-## Mejoras de la fase actual: fundamentos y claridad
+## 1. Validar la comprensión antes de ampliar
 
-La fase actual del curso no pretende todavía enseñar a construir una integración completa. Su objetivo es que una persona con experiencia en Power BI, pero sin experiencia previa en programación agéntica, pueda explicar qué ocurre en una tarea y por qué interviene cada componente.
+**Estado: Pendiente de prueba con el alumno.**
 
-Estas mejoras tienen prioridad antes de ampliar la práctica:
+Utilizar la historia «Analiza Sales YTD. No modifiques nada» y comprobar que el lector puede explicar:
 
-### A. Consolidar el modelo mental básico
+- qué información falta y dónde buscarla;
+- quién propone, quién coordina y quién ejecuta;
+- por qué una Skill no sustituye a una Tool;
+- qué hacer si faltan datos o hay un rechazo;
+- por qué una propuesta no autoriza una escritura;
+- cuándo hay suficiente evidencia para terminar.
 
-**Estado:** Pendiente
+Si hay dudas, mejorar la explicación antes de añadir términos.
 
-Revisar los primeros capítulos para que el lector pueda seguir una única historia conceptual desde una petición hasta una respuesta final:
+## 2. Recuperación de contexto en una sesión observable
 
-```text
-objetivo
-  → observación del contexto
-  → decisión del modelo
-  → validación del runtime
-  → acción mediante una Tool
-  → resultado
-  → nueva decisión o finalización
-```
+**Estado: Futuro — validación práctica.**
 
-La explicación debe distinguir siempre entre:
+Comparar tareas equivalentes en Codex observando fuentes consultadas, repeticiones, información faltante, errores y calidad final. Registrar tiempo e indicadores de uso sólo cuando el cliente los muestre.
 
-- el objetivo de la persona;
-- la propuesta del modelo;
-- la decisión autorizada por el runtime;
-- la acción ejecutada en el entorno;
-- la evidencia que devuelve la acción;
-- la condición que permite terminar.
+No reconstruir una petición interna ni exigir puntuaciones de relevancia. Un indicador bajo de contexto no demuestra, por sí solo, una mejor recuperación.
 
-Antes de introducir código, conviene añadir recapitulaciones conceptuales breves y preguntas de comprobación que no requieran configurar herramientas.
+## 3. Seguridad y evaluación
 
-### B. Crear un glosario progresivo y una terminología estable
+**Estado: Parcial.**
 
-**Estado:** Pendiente
+Consolidar ejemplos de contenido no confiable, permisos, lectura frente a escritura y protección de secretos.
 
-Mantener una tabla central, enlazada desde los capítulos, para introducir cada término con:
+Más adelante, preparar un conjunto pequeño de tareas con criterios de aceptación: respuesta correcta, evidencia suficiente, restricciones respetadas y límites declarados. Registrar regresiones al cambiar instrucciones o Skills.
 
-- definición sencilla en castellano;
-- término original en inglés entre paréntesis cuando sea útil;
-- ejemplo dentro de Codex en VS Code;
-- diferencia frente al concepto más cercano;
-- indicación de si es un patrón general o una capacidad concreta de Codex.
+## 4. Capacidades de Codex que requieren mantenimiento
 
-Como mínimo, el glosario debe cubrir: modelo, LLM, runtime, agente, Agent Loop, contexto, Tool, Tool Call, Tool result, Skill, Command, `AGENTS.md`, MCP, cliente, host, servidor, catálogo, contrato, retrieval, memoria, permisos y aprobación.
+**Estado: Investigación continua, no requisito para empezar.**
 
-No introducir siglas o términos avanzados —por ejemplo RAG, gateway, embedding, TTL o JSON Schema— sin una definición y una razón para que el principiante los necesite en ese punto.
+| Capacidad | Base de consulta | Comprobación pendiente |
+|---|---|---|
+| Instrucciones | [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md) | Mantener ámbitos y precedencia al cambiar el producto |
+| Skills | [Build skills](https://learn.chatgpt.com/docs/build-skills) | Verificar disponibilidad y selección en la instalación |
+| MCP | [MCP](https://learn.chatgpt.com/docs/extend/mcp) | Registrar servidor, cuenta, destino y operaciones reales |
+| Compactación | [Comandos IDE](https://learn.chatgpt.com/docs/developer-commands?surface=ide) | Observar continuidad y límites del resumen |
+| Tool Retrieval | [Límites de lo observable](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md) | No atribuir una estrategia interna sin evidencia específica |
 
-### C. Hacer explícita la frontera entre teoría general y Codex
+Fecha de revisión de estas fuentes: 2026-09-07. Entorno objetivo: extensión IDE de Codex para VS Code, suscripción Business. Esta revisión documental no sustituye una prueba local con Power BI.
 
-**Estado:** Parcial
+Para nuevas comprobaciones registrar versión, fecha, configuración relevante, acción visible, resultado y fuente. No usar comportamientos de otros clientes como evidencia de Codex.
 
-Cada capítulo que mencione API, MCP, retrieval, memoria, caché o permisos debe indicar qué afirmación pertenece a:
+## 5. Delegación y modos de trabajo
 
-1. el patrón general de los sistemas agénticos;
-2. una aplicación propia que use una API;
-3. Codex como producto utilizado mediante suscripción;
-4. la extensión de Codex dentro de VS Code.
+**Estado: Parcial / pendiente según el tema.**
 
-La documentación debe conservar una etiqueta o fórmula reconocible, por ejemplo `Patrón general`, `En Codex`, `Comparación con la API` y `No documentado públicamente`. Así se evita que una explicación de la API se interprete como una instrucción de configuración para el curso.
+Cuando aparezcan en el curso:
 
-### D. Mejorar el puente entre Context Engineering y una sesión de Codex
+- explicar cuándo una tarea puede aislarse para delegar y cuándo no;
+- definir el contexto y criterio de entrega del subagente;
+- revisar coordinación y resultados;
+- distinguir planificación, análisis e implementación según los modos realmente disponibles;
+- introducir hooks sólo si ayudan a comprender controles alrededor del Agent Loop.
 
-**Estado:** Parcial
+No asumir nombres ni capacidades idénticos entre productos.
 
-Los capítulos de contexto explican bien las piezas, pero deben terminar con una misma plantilla de lectura:
+## 6. Práctica Power BI / Fabric
 
-```text
-Qué información estaba disponible al inicio
-Qué información apareció durante la tarea
-Quién decidió incorporarla
-Qué parte controlaba la persona
-Qué parte gestionaba Codex
-Qué no podemos observar directamente
-```
+**Estado: Futuro.**
 
-Esto permitirá conectar `AGENTS.md`, Skills, archivos abiertos, resultados de Tools, memoria, permisos y compaction sin presentarlos como sinónimos ni afirmar que todo entra literalmente en el prompt.
+Cuando llegue el momento:
 
-### E. Completar el modelo conceptual de Tools y MCP
+1. Preparar el proyecto PBIP y completar los datos de la plantilla.
+2. Verificar la conexión y las capacidades reales en Codex.
+3. Revisar Sales YTD en sólo lectura.
+4. Contrastar las conclusiones con el modelo.
+5. Solicitar una modificación acotada sólo si se desea.
+6. Validar resultados, revisar cambios y registrar decisiones.
 
-**Estado:** Parcial
+El éxito será una tarea fiable y revisable, no un porcentaje de ahorro de tokens.
 
-Antes de la fase práctica, aclarar con diagramas y ejemplos no ejecutables:
+## Registro de actualizaciones
 
-- catálogo frente a contrato frente a invocación;
-- Tool local frente a Tool proporcionada por MCP;
-- cliente MCP, host y servidor MCP;
-- Tool, Resource, Prompt e instrucciones del servidor;
-- descubrimiento de una capacidad frente a autorización para ejecutarla;
-- resultado correcto frente a error, rechazo y timeout;
-- operación de lectura frente a operación con efectos secundarios.
-
-El lector debe poder responder “qué es MCP” sin confundirlo con una Tool concreta, una API, una Skill o un mecanismo de búsqueda de Tools.
-
-### F. Introducir seguridad como propiedad del modelo mental
-
-**Estado:** Parcial
-
-La seguridad no debe aparecer sólo como una ampliación de diseño. En los fundamentos debe quedar claro que:
-
-- el modelo propone, pero no concede permisos;
-- el runtime valida la llamada y aplica políticas;
-- la persona conserva la responsabilidad sobre aprobaciones y cambios relevantes;
-- el contenido recuperado puede ser incorrecto o malicioso;
-- leer una instrucción no autoriza a escribir, borrar, publicar o exfiltrar datos.
-
-Este bloque debe ser conceptual y no requiere todavía implementar controles.
-
-### G. Reordenar la carga cognitiva sin cambiar la ruta conceptual
-
-**Estado:** Pendiente
-
-Mantener el orden general del README, pero revisar cada capítulo con esta secuencia:
-
-1. idea en una frase;
-2. vocabulario mínimo;
-3. diagrama o ejemplo de Power BI/Fabric;
-4. explicación del mecanismo;
-5. qué ocurre en Codex;
-6. qué no debe inferirse;
-7. resumen y pregunta de comprobación;
-8. enlace al siguiente concepto.
-
-Los capítulos sobre Prompt Caching, Tool Retrieval, mediación y recuperación profunda deben conservarse, pero presentarse como capas posteriores del modelo mental, no como requisitos para entender primero qué es un agente.
-
-### H. Mantener una matriz de verificación de producto
-
-**Estado:** Investigación
-
-Para las afirmaciones que puedan cambiar, registrar en el roadmap o en una nota de mantenimiento:
-
-- cliente: extensión IDE de Codex para VS Code;
-- modalidad: suscripción de ChatGPT;
-- fecha de comprobación;
-- comportamiento observado;
-- fuente oficial;
-- diferencia entre hecho documentado, observación local e inferencia.
-
-La matriz debe cubrir especialmente `AGENTS.md`, Skills, MCP, permisos, subagentes, memoria, compaction y Tool Retrieval. No usar documentación de Cursor, Claude Code o de la API como evidencia directa del comportamiento de Codex.
-
-## Pendientes prioritarios
-
-### 1. Del concepto a la implementación
-
-**Estado:** Futuro — fase práctica
-
-El [ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md) muestra el ciclo, los mensajes, la validación, una Tool y la condición de finalización. Sigue pendiente ampliar con una implementación conectada a un modelo real y explicar:
-
-- el bucle principal;
-- los mensajes y roles de una petición;
-- una definición con JSON Schema;
-- la validación de argumentos;
-- los resultados y errores de una Tool;
-- los reintentos, timeouts y límites de iteraciones;
-- la respuesta final y la cancelación.
-
-### 2. Diseño seguro de Tools
-
-**Estado:** Futuro — fase práctica, después de consolidar la seguridad conceptual
-
-Ampliar los documentos actuales con idempotencia, efectos secundarios, permisos, operaciones de solo lectura frente a escritura, aprobación humana, límites de argumentos y tratamiento de datos sensibles.
-
-### 3. Contexto y recuperación en profundidad
-
-**Estado:** Cubierto como base teórica; pendiente de validación con un modelo real
-
-La documentación [Contexto y recuperación en profundidad](docs/01-context-engineering/07-recuperacion-profunda.md) desarrolla, con un ejemplo DAX conceptual y trazable:
-
-- cómo se construye una petición real al modelo;
-- cómo se selecciona y ordena el contexto recuperado;
-- diferencias entre búsqueda por texto, búsqueda semántica e índices;
-- caché, compresión, resumen y caducidad del contexto;
-- memoria de sesión frente a memoria persistente;
-- cómo medir coste, latencia y calidad de la recuperación.
-
-La ejecución real y la comparación mediante un dataset de evaluación quedan reservadas para la fase práctica.
-
-### 4. Contexto y Tool Retrieval en Codex mediante suscripción
-
-**Estado:** Investigación
-
-La documentación específica de Codex está en [Contexto y Tool Retrieval en Codex mediante suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md). Las notas contienen además observaciones sobre Cursor y Claude Code. Hay que separar tres niveles antes de documentar más:
-
-1. el patrón general de retrieval;
-2. la implementación concreta de Cursor o Claude;
-3. las capacidades realmente disponibles en Codex para esta instalación.
-
-No trasladar porcentajes de ahorro de otros productos a Codex sin una medición comparable.
-
-### 5. MCP con más detalle
-
-**Estado:** Parcial
-
-Documentar, cuando sea necesario para el curso, la relación entre host, cliente y servidor MCP, el ciclo de conexión, el descubrimiento de capacidades, Tools, Resources, Prompts e instrucciones del servidor, transportes, autenticación y límites de la integración concreta de Power BI.
-
-### 6. Subagentes y sistemas multiagente
-
-**Estado:** Parcial
-
-Ampliar la introducción actual con patrones de delegación, aislamiento de contexto, handoff, paralelismo, coordinación, herencia de permisos, coste, criterios para no delegar y validación de resultados del subagente.
-
-### 7. Evaluación, observabilidad y fiabilidad
-
-**Estado:** Pendiente
-
-Añadir cómo evaluar un agente más allá de que produzca una respuesta:
-
-- tasa de éxito de tareas;
-- Tool Calls inválidas;
-- calidad de los argumentos;
-- latencia y coste;
-- trazas y auditoría;
-- regresiones al cambiar prompts, Skills o Tools;
-- datasets y casos de prueba;
-- revisión humana de operaciones de riesgo.
-
-### 8. Seguridad específica de agentes
-
-**Estado:** Parcial
-
-Profundizar en prompt injection, instrucciones no confiables recuperadas del workspace, exfiltración de secretos, escalada de permisos, herramientas destructivas, aislamiento del entorno y límites de red o filesystem.
-
-### 9. Ejemplo práctico de Power BI / Fabric
-
-**Estado:** Futuro — fase práctica
-
-Construir el ejemplo cuando el curso llegue a la parte práctica:
-
-```text
-Tarea DAX
-  ↓
-AGENTS.md
-  ↓
-Skill especializada
-  ↓
-documentación del modelo
-  ↓
-Tool MCP de inspección
-  ↓
-análisis y propuesta
-  ↓
-aprobación
-  ↓
-modificación y validación
-```
-
-Debe distinguir siempre qué ocurre en el modelo, qué hace el runtime y qué capacidad proporciona el MCP.
-
-### 10. Modos de trabajo, hooks y flujo completo
-
-**Estado:** Pendiente
-
-Incorporar los temas del curso que todavía no tienen un capítulo específico en esta documentación:
-
-- diferencias entre modos de trabajo como Ask, Plan, Agent y Debug, sin asumir que todos los clientes los denominan igual;
-- hooks y controles deterministas alrededor del Agent Loop;
-- recorrido desde una tarea o issue hasta el plan, la implementación, las pruebas y la entrega a producción;
-- relación entre Progressive Disclosure, Skills, MCP, documentación y subagentes en ese recorrido.
-
-## Temas que pueden aparecer en nuevas notas
-
-Al actualizar `docs/notes.txt`, revisar si aparecen conceptos de estas familias:
-
-- planificación, descomposición y selección de acciones;
-- memoria y estado;
-- evaluación y tracing;
-- seguridad y gobernanza;
-- arquitecturas multiagente;
-- streaming, concurrencia y eventos;
-- costes, latencia y caching;
-- modelos, SDKs y APIs concretas;
-- despliegue, versionado y operación en producción.
-
-No todos deben entrar automáticamente en el curso. Antes de añadir un tema hay que comprobar si ayuda al objetivo actual, si depende de una tecnología concreta y en qué capítulo encaja.
-
-## Registro de actualizaciones desde `notes.txt`
-
-| Fecha | Tema detectado | Acción | Documento resultante |
-|---|---|---|---|
-| 2026-09-03 | Roadmap inicial a partir de la revisión de la documentación existente | Crear este roadmap y definir el flujo notes → documentación | — |
+| Fecha | Decisión | Resultado |
+|---|---|---|
+| 2026-09-03 | Crear seguimiento desde notas | Roadmap inicial |
+| 2026-09-07 | Alinear el objetivo con Codex en VS Code mediante Business | Exclusión de contenido de la API; fundamentos y ampliaciones separados; caso conceptual compartido y comprobaciones de comprensión |

@@ -45,22 +45,20 @@ Resultados obtenidos mediante Tools proporcionadas por servidores MCP.
 Por ejemplo:
 
 ```text
-LLM
+Modelo solicita consultar el esquema
  ↓
-get_semantic_model_schema()
+Runtime comprueba y coordina
  ↓
-MCP Power BI
+Tool del servidor MCP consulta el modelo semántico
  ↓
-resultado
- ↓
-LLM
+Resultado vuelve al modelo a través del runtime
 ```
 
 ---
 
 ## Skills Loading
 
-Una Skill puede estar disponible en el entorno y sus instrucciones incorporarse cuando se invoca. Codex documenta ubicaciones concretas para descubrir Skills, pero el mecanismo interno exacto que decide qué metadata o contenido carga no debe darse por supuesto.
+Una Skill disponible aporta inicialmente su nombre y descripción; Codex lee las instrucciones completas al utilizarla. Esta carga progresiva está documentada, aunque no garantiza cuál se elegirá para cada tarea. [Skills en Codex](https://learn.chatgpt.com/docs/build-skills).
 
 ```text
 Usuario:
@@ -115,7 +113,7 @@ Esto explica algunos fallos aparentemente inexplicables: el archivo existe, pero
 
 ---
 
-El contexto dinámico también afecta a la posibilidad de reutilizar prefijos. Consulta [Prompt Caching](06-prompt-caching.md) después de entender cómo se construye este contexto.
+El siguiente paso es entender la consulta selectiva de información. [Prompt Caching](06-prompt-caching.md) queda como ampliación opcional.
 
 [← Anterior](02-static-context.md) · [Índice](../../README.md) · [Siguiente →](04-progressive-disclosure.md)
 

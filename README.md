@@ -1,6 +1,6 @@
 # Programación agéntica
 
-Documentación sobre los conceptos, componentes y patrones utilizados para diseñar agentes basados en modelos de lenguaje.
+Documentación para entender cómo funciona un agente, orientar su trabajo y evaluar sus resultados utilizando Codex en VS Code.
 
 - [Roadmap y temas pendientes](ROADMAP.md)
 
@@ -8,13 +8,23 @@ Documentación sobre los conceptos, componentes y patrones utilizados para dise�
 
 ## Alcance del curso
 
-Este curso enseña los fundamentos de la programación agéntica mediante la extensión de Codex para VS Code, usando Power BI y Microsoft Fabric como contexto práctico. No construimos aquí una aplicación con la API de OpenAI ni con un SDK: cuando la API aparece, se utiliza sólo para comparar un patrón general con el funcionamiento concreto de Codex.
+El objetivo es que un data scientist con experiencia en programación y Power BI, pero sin conocimientos de programación agéntica, aprenda a comprender, orientar y supervisar un agente.
 
-No necesitas una API key para ejecutar el ejemplo mínimo. Sí conviene tener Python y VS Code instalados para seguir la parte práctica; la conexión con Power BI o Fabric se presenta como una integración posterior y depende de las Tools y del entorno disponibles.
+Trabajamos con la extensión de Codex para VS Code y una suscripción de ChatGPT Business. Quedan fuera la documentación, los ejemplos y las referencias de la API de OpenAI. No construimos nuestro propio runtime.
+
+La fase actual es conceptual. Power BI y Fabric proporcionan ejemplos familiares; no necesitas tener una integración funcionando. El ejemplo Python y la plantilla PBIP son materiales para después, no requisitos para entender los fundamentos.
 
 ## Ruta recomendada
 
-Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la plantilla PBIP para relacionar los conceptos con un proyecto real. Los primeros capítulos explican el modelo mental; los últimos muestran cómo coordinar contexto, Skills, Tools y validación.
+La numeración y los enlaces conservan el recorrido completo. En una primera lectura:
+
+- **Esencial:** introducción, contexto y recuperación, componentes, Tools y sus límites, MCP y responsabilidad humana.
+- **Ampliación opcional:** caching, mediación, definiciones upfront, Tool Search y estrategia híbrida. Sus capítulos indican qué idea conservar sin estudiar infraestructura.
+- **Fase posterior:** ejecutar la simulación Python y aplicar la plantilla PBIP cuando el curso llegue a la práctica.
+
+La misma historia une los bloques: «Analiza la medida Sales YTD y explica si hay algún problema. No modifiques nada». Lee las preguntas de comprobación y sus respuestas antes de continuar.
+
+### Recorrido completo
 
 1. [Qué es un agente](docs/00-introduccion/00-que-es-un-agente.md)
 2. [Actores y responsabilidades](docs/00-introduccion/01-actores-y-responsabilidades.md)
@@ -27,33 +37,34 @@ Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la pl
 9. [Costes básicos de LLM](docs/01-context-engineering/05-costes-basicos-de-llm.md)
 10. [Prompt Caching](docs/01-context-engineering/06-prompt-caching.md)
 11. [Contexto y recuperación en profundidad](docs/01-context-engineering/07-recuperacion-profunda.md)
-12. [System Prompt](docs/02-componentes/00-system-prompt.md)
-13. [AGENTS.md](docs/02-componentes/01-agents-md.md)
-14. [Skills](docs/02-componentes/02-skills.md)
-15. [Commands](docs/02-componentes/03-commands.md)
-16. [Qué es una Tool](docs/03-tools/00-que-es-una-tool.md)
-17. [Tool Calling](docs/03-tools/01-tool-calling.md)
-18. [Mediación de Tools, proxies y gateways](docs/03-tools/02-mediacion-de-tools.md)
-19. [Tool Definitions Upfront](docs/03-tools/03-tool-definitions-upfront.md)
-20. [Tool Retrieval](docs/03-tools/04-tool-retrieval.md)
-21. [Filesystem Retrieval](docs/03-tools/05-filesystem-retrieval.md)
-22. [Tool Search](docs/03-tools/06-tool-search.md)
-23. [MCP vs CLI](docs/03-tools/07-mcp-vs-cli.md)
-24. [Estrategia híbrida](docs/03-tools/08-estrategia-hibrida.md)
-25. [Guía práctica de Tools en Codex para VS Code](docs/03-tools/09-guia-practica-tools-en-codex.md)
-26. [Contexto y Tool Retrieval en Codex mediante suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md)
-27. [MCP — Model Context Protocol](docs/04-integraciones/00-mcp-introduccion.md)
-28. [Configuración de MCP](docs/04-integraciones/01-configuracion.md)
-29. [MCP y credenciales](docs/04-integraciones/02-credenciales.md)
-30. [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
-31. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
-32. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
-33. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
-34. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
-35. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
-36. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
-37. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
-38. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
+12. [Compactación de contexto en Codex](docs/01-context-engineering/08-compactacion-de-contexto-en-codex.md)
+13. [System Prompt](docs/02-componentes/00-system-prompt.md)
+14. [AGENTS.md](docs/02-componentes/01-agents-md.md)
+15. [Skills](docs/02-componentes/02-skills.md)
+16. [Commands](docs/02-componentes/03-commands.md)
+17. [Qué es una Tool](docs/03-tools/00-que-es-una-tool.md)
+18. [Tool Calling](docs/03-tools/01-tool-calling.md)
+19. [Mediación de Tools, proxies y gateways](docs/03-tools/02-mediacion-de-tools.md)
+20. [Tool Definitions Upfront](docs/03-tools/03-tool-definitions-upfront.md)
+21. [Tool Retrieval](docs/03-tools/04-tool-retrieval.md)
+22. [Filesystem Retrieval](docs/03-tools/05-filesystem-retrieval.md)
+23. [Tool Search](docs/03-tools/06-tool-search.md)
+24. [MCP vs CLI](docs/03-tools/07-mcp-vs-cli.md)
+25. [Estrategia híbrida](docs/03-tools/08-estrategia-hibrida.md)
+26. [Guía práctica de Tools en Codex para VS Code](docs/03-tools/09-guia-practica-tools-en-codex.md)
+27. [Contexto y Tool Retrieval en Codex mediante suscripción](docs/03-tools/10-codex-suscripcion-contexto-y-tool-retrieval.md)
+28. [MCP — Model Context Protocol](docs/04-integraciones/00-mcp-introduccion.md)
+29. [Configuración de MCP](docs/04-integraciones/01-configuracion.md)
+30. [MCP y credenciales](docs/04-integraciones/02-credenciales.md)
+31. [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
+32. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
+33. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
+34. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
+35. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
+36. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
+37. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
+38. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
+39. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
 
 ## Índice completo
 
@@ -73,6 +84,7 @@ Lee los documentos en orden. Después ejecuta el ejemplo mínimo y utiliza la pl
 - [Costes básicos de LLM](docs/01-context-engineering/05-costes-basicos-de-llm.md)
 - [Prompt Caching](docs/01-context-engineering/06-prompt-caching.md)
 - [Contexto y recuperación en profundidad](docs/01-context-engineering/07-recuperacion-profunda.md)
+- [Compactación de contexto en Codex](docs/01-context-engineering/08-compactacion-de-contexto-en-codex.md)
 
 ### Componentes del agente
 

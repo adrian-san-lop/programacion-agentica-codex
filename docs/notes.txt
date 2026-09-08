@@ -1124,3 +1124,46 @@ No asumir que:
 - persistencia;
 
 funcionan igual entre proveedores.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cuando si y cuando no compactar contexto:
+
+Compacctar: cuando se consumen todos los tokens de contexto de una conversación, se abre una nueva conversación y le pasamos el resumen de la anterior. Eso es autocompactar.
+El curso solo habla de claude y cursor. NO de CODEX necesito que investigues sobre esto en la documentación oficial. NO API.
+Ejemplo: 
+        Limite de contexto: 200K tokens. 
+        Migra de python a typescripts ==> Conversacion de 150k tokens. 
+        Delegamos en el agente: tiene el prompt y cuando ve que llegamos al limite el propio agente inyecta un prompt como si fuera role de usuario.
+
+CODEX: Invoca un nuevo agente y le pasa toda la conversación donde le dice: resumeme. Ese nuevo agente tiene un nuevo prompt diferente e invalida la cache. Por tanto es más caro compactar en codex. 
+
+CUANDO NO COMPACTAR: cuando sea cuestion meramente de optimizar costes porque realmente estamos incurriendo en un mayor coste al querer consultar cosas que ya habiamos consultado. Al compactarlo deja de tenerlo seguramente. 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SEGURIDAD Y HOOKS
+
+No hacer SI a todo. 
+
+Tener el fichero export limpio, sin ninguna variable de entorno, secretos, tokens, etc...
+
+A veces si necesitas tener secretos y para ello tenemos alias y te pide usuario y contraseña por ejemplo con bitwarden. 
+e sparar darle visibilidad a las variables de entorno a los siguientes pasos. 
+
+Hay leaks en más carpetas como la carpeta ssh que tienen secretos y hacer commits firmados a nuestro nombre, etc...
+
+Seguridad determinista:
+Entra en juego el concepto de SANDBOX, lo metemos dentro de esta "cajita" y ya no puede salir. SOlo puede jecutar comandos dentro de esa carpetas y llamadas http donde yo le haya dejado. Este sandbox hace un mapping de la carpeta donde se ha abierto. 
+¿Codex-chatgpt que sandbox utiliza? con windows sta subsystem. 
+
+Existe también dockersandbox y deja para codex. Busca información sobre esto. Te levanta una mini máquina virtual para ejecutar el agente ahi dentro. 
+¿Como se configura esto para nuestro caso de codex por subsripción? No puede entrar a configuraciones globales, solo a lo local. 
+No puede por defecto mapear los agents.md, skills.md que están en la raiz. 
+
+HOOKS para bloquear comandos sensibles.
+Docu oficial de OpenAI: https://learn.chatgpt.com/docs/hooks#__codexlocalizedvalueprops__codextranslations-u0209-hooks
+¿Qué son los hooks? Es un ancla al ciclo de vida de la interaccionan con agentes. 
+Estos nos abren la puerta cuando se puede ejecutar bash. 
+Investiga cosas sobre hooks y dame fundamentos y algun ejemplo para nuestro caso. El curso de codely lo habla demasiado por encima y sobre código de bash. 

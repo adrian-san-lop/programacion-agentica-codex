@@ -4,7 +4,7 @@ Recorrido guiado para diseñar un agente especializado en proyectos PBIP, DAX y 
 
 ## Ejemplo Power BI / Fabric
 
-Supongamos que estamos creando un agente propio para trabajar con proyectos `.pbip`.
+Supongamos que organizamos un workspace para orientar a Codex en un proyecto `.pbip`. No estamos creando un runtime propio.
 
 Tenemos:
 
@@ -33,7 +33,7 @@ Power BI Agent
 El usuario solicita:
 
 ```text
-"Optimiza la medida Sales YTD."
+"Analiza la medida Sales YTD. No modifiques nada."
 ```
 
 El flujo podría ser:
@@ -82,7 +82,7 @@ LLM
 propone optimización
 ```
 
-Aquí tenemos **Progressive Disclosure en varios niveles**:
+Aquí podemos explicar la consulta progresiva de Skills y documentos. La selección de una Tool disponible es otro paso, pero no demuestra cómo Codex carga internamente sus definiciones:
 
 ```text
 AGENTS.md
@@ -95,19 +95,19 @@ AGENTS.md
    │       ↓
    │     Practical Example-PBIP/docs/dax-rules.md
    │
-   └── Tool Retrieval
+   └── Consulta mediante Tools disponibles
            ↓
        get_measure
        get_model_schema
 ```
 
-No cargamos todo desde el principio.
+La intención es consultar sólo lo necesario; el diagrama no describe un mecanismo interno de Tool Retrieval.
 
 La plantilla que acompaña a este repositorio está en [`Practical Example-PBIP`](../../Practical Example-PBIP/README.md). Contiene un `AGENTS.md`, documentación específica, Skills, catálogo de Tools y un script de validación para practicar este flujo sobre un proyecto PBIP real.
 
-## Cómo practicar el recorrido completo
+## Cómo practicar el recorrido completo — fase posterior
 
-1. Copia `Practical Example-PBIP` en la carpeta raíz de un proyecto PBIP y ábrela en VS Code. La carpeta debe quedar junto al archivo `.pbip`, no sustituirlo.
+1. Cuando llegue la práctica, copia el contenido de `Practical Example-PBIP` a la raíz de un proyecto PBIP de prueba, revisando antes posibles colisiones. `AGENTS.md`, `docs/`, `skills/` y `scripts/` deben quedar junto al archivo `.pbip`, sin sobrescribir instrucciones o archivos existentes.
 2. Lee `AGENTS.md`: indica el objetivo, la estructura, las reglas y el procedimiento de trabajo.
 3. Para una tarea DAX, consulta explícitamente `skills/dax/SKILL.md` en esta plantilla; si quieres auto-descubrimiento local de Codex, coloca la Skill bajo `.agents/skills/`.
 4. Inspecciona el modelo mediante las Tools disponibles; si proceden de Power BI, Codex las utiliza a través del MCP configurado en VS Code.
