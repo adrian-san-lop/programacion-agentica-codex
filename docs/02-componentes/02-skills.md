@@ -69,6 +69,28 @@ Una Skill puede recomendar `get_measure` antes de `update_measure`, pero no se c
 
 ---
 
+## Qué contiene un SKILL.md
+
+Este ejemplo documental muestra el mínimo de una Skill de revisión; no la instala ni conecta Power BI:
+
+```md
+---
+name: revisar-dax
+description: Revisar medidas DAX en sólo lectura cuando se solicite explicar su comportamiento o posibles problemas. No usar para modificar ni publicar modelos.
+---
+
+1. Identifica la medida y consulta las reglas del proyecto.
+2. Obtén su expresión y las relaciones necesarias mediante fuentes autorizadas.
+3. Separa hallazgos, hipótesis y datos pendientes; cita la evidencia.
+4. No modifiques archivos ni el modelo. Si falta información, declara el límite.
+```
+
+El encabezado entre `---` contiene metadatos: `name` identifica la Skill y `description` explica cuándo utilizarla. Ambos son obligatorios. La descripción ayuda a la selección por tarea; el cuerpo explica el procedimiento.
+
+La carpeta puede incluir `scripts/` con programas, `references/` con documentación y `assets/` con plantillas o recursos. Son opcionales: una Skill puede contener sólo instrucciones. Un script incluido necesita una herramienta que lo ejecute y los permisos correspondientes.
+
+En Codex puedes mencionar una Skill con `$` o pedir su uso explícitamente; también puede seleccionarse por correspondencia con su descripción. [Estructura y uso oficiales de Skills](https://learn.chatgpt.com/docs/build-skills), revisados el 2026-09-08.
+
 ## Skills y Progressive Disclosure
 
 No necesariamente queremos cargar todas las Skills completas desde el principio.

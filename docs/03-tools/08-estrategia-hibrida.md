@@ -164,5 +164,7 @@ La representación correcta es:
 ---
 
 
+[Continuar con lo esencial: guía de lectura de una tarea →](09-guia-practica-tools-en-codex.md).
+
 [← Anterior](07-mcp-vs-cli.md) · [Índice](../../README.md) · [Siguiente →](09-guia-practica-tools-en-codex.md)
 

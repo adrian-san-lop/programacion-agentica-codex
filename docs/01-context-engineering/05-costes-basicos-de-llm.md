@@ -39,4 +39,6 @@ La [información oficial de uso de Codex](https://learn.chatgpt.com/docs/pricing
 
 ---
 
+[Continuar con lo esencial: recuperación de contexto →](07-recuperacion-profunda.md). El capítulo siguiente sobre caching es opcional.
+
 [← Anterior](04-progressive-disclosure.md) · [Índice](../../README.md) · [Siguiente →](06-prompt-caching.md)

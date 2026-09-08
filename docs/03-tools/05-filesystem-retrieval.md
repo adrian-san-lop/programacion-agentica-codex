@@ -42,5 +42,7 @@ No. Es documentación. La consulta requiere una Tool real y una conexión autori
 
 ---
 
+[Continuar con lo esencial: MCP y CLI →](07-mcp-vs-cli.md). Tool Search es una ampliación opcional.
+
 [← Anterior](04-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](06-tool-search.md)
 

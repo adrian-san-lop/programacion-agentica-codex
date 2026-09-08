@@ -42,9 +42,25 @@ Las notas históricas pueden contener referencias fuera de alcance o afirmacione
 | Colaboración y Git | Cubierto como base | [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md) |
 | Seguridad y secretos | Cubierto como base conceptual | [Seguridad](docs/04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md) y [permisos](docs/04-seguridad-y-hooks/01-permisos-sandbox-y-secretos.md); comprobar el entorno real en la práctica |
 | Hooks | Cubierto conceptualmente; práctica pendiente | [Eventos y límites](docs/04-seguridad-y-hooks/02-hooks-en-codex.md) y [Sales YTD](docs/04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md); no hay hooks instalados por este material |
-| Subagentes | Parcial | [Delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md); ampliar cuándo no delegar y cómo revisar resultados |
+| Subagentes | Cubierto como base conceptual | [Delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md): cuándo repartir tareas, cuándo evitarlo y cómo revisar evidencia; validación práctica posterior |
 | Simulación Python | Material opcional disponible | [Ejemplo](docs/06-ejemplos/00-agent-loop-minimo.md); sólo ilustra la mecánica, no interpreta lenguaje libre |
 | Power BI / Fabric | Futuro — fase práctica | [Plantilla y recorrido](docs/06-ejemplos/01-power-bi-fabric.md); no hay una integración completa validada |
+
+## Aclaraciones de fundamentos — 2026-09-08
+
+Se han precisado Commands, estructura y detección de Skills, documentación frente a contrato ejecutable, MCP y CLI, y criterios de delegación. La introducción incorpora vocabulario y la pauta objetivo → fuentes → restricciones → entrega → criterio de finalización. Las preguntas del glosario tienen respuestas y los enlaces de lectura esencial permiten saltar las ampliaciones sin alterar la paginación.
+
+Referencias de producto contrastadas para este paquete:
+
+- [Comandos de la extensión IDE](https://learn.chatgpt.com/docs/developer-commands?surface=ide): control de sesión y acciones disponibles.
+- [Skills](https://learn.chatgpt.com/docs/build-skills): metadatos mínimos, recursos opcionales, selección y detección de cambios.
+- [MCP](https://learn.chatgpt.com/docs/extend/mcp): configuración y capacidades; no prueba una estrategia universal de recuperación.
+- [AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md): descubrimiento de instrucciones al iniciar la ejecución.
+- [Subagentes](https://learn.chatgpt.com/docs/agent-configuration/subagents): trabajo independiente, coordinación y revisión.
+
+Esta revisión es documental. No acredita que el alumno domine los conceptos ni que los ejemplos estén activados en su extensión. Las notas provisionales y los materiales prácticos se conservan sin cambios.
+
+Validación del paquete: 270 enlaces relativos con destino existente en 44 documentos; los 62 enlaces de paginación de los capítulos modificados se conservan. Se comprueban los nueve saltos de lectura esencial, el JSON ilustrativo y los metadatos YAML de la Skill. No hay anclas locales en los enlaces revisados. La comprobación de ejemplos es de estructura y sintaxis, sin ejecutar operaciones Git ni conectar Power BI desde los ejemplos.
 
 ## 1. Validar la comprensión antes de ampliar
 
@@ -112,9 +128,9 @@ Para nuevas comprobaciones registrar versión, fecha, configuración relevante, 
 
 Cuando aparezcan en el curso:
 
-- explicar cuándo una tarea puede aislarse para delegar y cuándo no;
-- definir el contexto y criterio de entrega del subagente;
-- revisar coordinación y resultados;
+- comprobar en la práctica los criterios ya explicados para aislar una tarea y decidir cuándo no delegar;
+- aplicar el encargo con contexto, restricciones, criterio de entrega y evidencia;
+- contrastar la coordinación y los resultados con las fuentes;
 - distinguir planificación, análisis e implementación según los modos realmente disponibles;
 - ampliar los [fundamentos de hooks](docs/04-seguridad-y-hooks/02-hooks-en-codex.md) cuando otros eventos ayuden a una tarea del curso.
 
@@ -143,3 +159,4 @@ El éxito será una tarea fiable y revisable, no un porcentaje de ahorro de toke
 | 2026-09-07 | Alinear el objetivo con Codex en VS Code mediante Business | Exclusión de contenido de la API; fundamentos y ampliaciones separados; caso conceptual compartido y comprobaciones de comprensión |
 | 2026-09-08 | Incorporar seguridad y hooks desde notes.txt, línea 1146 | Cuatro capítulos conceptuales entre integraciones y colaboración; referencias oficiales de Codex; práctica y contenedores pendientes; notas originales conservadas |
 | 2026-09-08 | Aclarar quién define y ejecuta un hook | Eventos ofrecidos por Codex frente a programas propios; ejemplo de aviso con todas sus piezas antes del rechazo de escritura en Sales YTD |
+| 2026-09-08 | Corregir y aclarar fundamentos existentes | Commands, Skills, recuperación, MCP/CLI y delegación precisados; vocabulario, respuestas y pauta de encargo añadidos; lectura esencial disponible sin alterar la paginación |

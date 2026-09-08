@@ -32,12 +32,12 @@ La frontera no depende de que exista una interfaz de chat. Depende de si el sist
 |---|---|---|
 | Tool | Capacidad ejecutable con argumentos | Obtener una medida o ejecutar DAX |
 | Skill | Procedimiento y reglas para resolver una clase de tareas | Revisar una medida DAX de forma segura |
-| Command | Atajo para iniciar un workflow | `/commit` o una petición equivalente |
+| Command | Acción del cliente para controlar la sesión o iniciar un procedimiento | `/status` para consultar el estado en Codex |
 
-Una Skill no es una Tool: explica cómo trabajar y qué validar, pero no ejecuta por sí misma. Un Command tampoco contiene necesariamente todo el conocimiento del proceso; normalmente inicia un workflow cuya lógica está en una Skill.
+Una Skill no es una Tool: explica cómo trabajar y qué validar, pero no ejecuta por sí misma. Un Command puede controlar la sesión sin utilizar una Skill. Si inicia un procedimiento, éste puede estar descrito en una Skill. Los ejemplos de producto se detallan con su fuente oficial en [Commands](../02-componentes/03-commands.md).
 
 ```text
-Command → inicia el workflow
+Command → controla la sesión o inicia un procedimiento
 Skill   → explica el procedimiento
 Tool    → ejecuta una acción concreta
 ```
@@ -68,7 +68,7 @@ Tool           → qué operación concreta puede ejecutarse
 Tool Retrieval → qué operación se muestra al modelo ahora
 ```
 
-Un servidor MCP puede exponer muchas Tools y el runtime puede presentarlas todas upfront o recuperar sólo las relevantes. MCP no implica automáticamente Retrieval.
+Un servidor MCP puede exponer muchas Tools y el runtime puede presentarlas todas **upfront** —desde el inicio— o recuperar sólo las relevantes. MCP no implica automáticamente Retrieval.
 
 ## Glosario mínimo
 
@@ -83,7 +83,7 @@ Un servidor MCP puede exponer muchas Tools y el runtime puede presentarlas todas
 | Tool Call | Solicitud estructurada para utilizar una Tool. |
 | Tool result | Resultado que la Tool devuelve al runtime y que puede volver al contexto. |
 | Skill | Procedimiento especializado con instrucciones y validaciones. |
-| Command | Atajo o petición que inicia un workflow. |
+| Command | Acción del cliente para controlar la sesión o iniciar un procedimiento. |
 | MCP | Protocolo para conectar un cliente con servidores que exponen capacidades. |
 | Retrieval | Recuperación selectiva de información o definiciones relevantes. |
 | Permiso | Regla que limita qué puede leer, escribir o ejecutar el runtime. |
@@ -124,7 +124,7 @@ El modelo decide.
 El runtime controla y ejecuta.
 Las Tools hacen acciones.
 Las Skills explican workflows.
-Los Commands los inician.
+Los Commands controlan la sesión o inician procedimientos.
 MCP conecta capacidades.
 Tool Retrieval decide cuáles presentar.
 AGENTS.md orienta.
@@ -141,5 +141,12 @@ Antes de continuar, intenta contestar sin mirar el texto:
 2. ¿Por qué una Skill no es una Tool?
 3. ¿Qué aporta MCP que no aporta una Tool concreta?
 4. ¿Por qué descubrir una capacidad no significa tener permiso para ejecutarla?
+
+**Respuestas:**
+
+1. El modelo propone acciones o respuestas; el runtime reúne contexto, coordina las herramientas y aplica controles.
+2. La Skill aporta un procedimiento. La Tool es la capacidad ejecutable que puede utilizarse para seguirlo.
+3. MCP define cómo se conecta un cliente con un servidor que expone capacidades; una Tool es una operación concreta.
+4. La disponibilidad técnica y la autorización son distintas: siguen aplicándose los permisos y el alcance del encargo.
 
 [← Anterior](01-actores-y-responsabilidades.md) · [Índice](../../README.md) · [Siguiente →](../01-context-engineering/00-introduccion.md)

@@ -19,7 +19,7 @@ MCP, CLI, Skills y subagentes no son alternativas del mismo nivel:
 | `AGENTS.md` | Reglas y mapa de navegación del proyecto |
 | `docs/` | Conocimiento y documentación conceptual |
 | Skill | Workflow reutilizable |
-| Command | Forma breve de iniciar un workflow |
+| Command | Acción del cliente para controlar la sesión o iniciar un procedimiento |
 | Tool | Capacidad ejecutable |
 | MCP | Protocolo para exponer Tools externas |
 | CLI | Interfaz de comandos local |

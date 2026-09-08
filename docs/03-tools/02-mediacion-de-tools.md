@@ -54,4 +54,6 @@ No. Un procedimiento describe cómo trabajar; no concede permisos.
 
 ---
 
+[Continuar con lo esencial: Tool Retrieval →](04-tool-retrieval.md).
+
 [← Anterior](01-tool-calling.md) · [Índice](../../README.md) · [Siguiente →](03-tool-definitions-upfront.md)

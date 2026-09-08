@@ -40,4 +40,6 @@ No. Demuestra que pudo utilizarla; el mecanismo de descubrimiento requiere evide
 
 ---
 
+[Continuar con lo esencial: MCP y CLI →](07-mcp-vs-cli.md).
+
 [← Anterior](05-filesystem-retrieval.md) · [Índice](../../README.md) · [Siguiente →](07-mcp-vs-cli.md)

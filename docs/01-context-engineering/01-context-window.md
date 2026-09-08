@@ -4,7 +4,9 @@ La capacidad técnica de contexto no equivale a relevancia efectiva.
 
 ## Context Window
 
-La **ventana de contexto** representa cuánta información puede manejar el modelo dentro de una inferencia.
+La **ventana de contexto** representa cuánta información puede manejar el modelo dentro de una **inferencia**, es decir, una ejecución del modelo para producir una respuesta o proponer una acción.
+
+Su capacidad se expresa en **tokens**: unidades en las que se representa el texto, como palabras, partes de palabras o signos. No equivalen a un número fijo de palabras. Las cifras siguientes son ilustrativas, no capacidades garantizadas de un modelo de Codex.
 
 Puede contener:
 
@@ -64,7 +66,7 @@ Mejor resultado
 
 Sus causas habituales son:
 
-- Muchos schemas de Tools que no participan en la tarea.
+- Muchos esquemas o **schemas** de Tools que no participan en la tarea. Un esquema describe la estructura de los datos admitidos, incluidos sus campos y tipos.
 - Resultados extensos de llamadas anteriores.
 - Documentación duplicada o contradictoria.
 - Historial que conserva detalles que ya no son relevantes.

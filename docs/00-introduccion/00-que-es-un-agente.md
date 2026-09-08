@@ -14,6 +14,10 @@ En un script, tú defines de antemano la lógica, incluidas sus condiciones y bu
 
 Lo agéntico no es simplemente conversar ni generar código: es cerrar el ciclo entre decisión, acción y resultado. Tampoco significa autonomía sin límites.
 
+## Vocabulario para empezar
+
+Un **modelo de lenguaje o LLM** (Large Language Model) procesa lenguaje y genera respuestas. Un **prompt** es la petición o instrucción que recibe. Un **flujo de trabajo o workflow** es una secuencia de pasos para resolver una tarea. El **workspace** es la carpeta o entorno de trabajo del proyecto.
+
 ## Tres piezas
 
 - **Modelo o LLM:** interpreta la tarea y propone la siguiente acción o respuesta.
@@ -62,6 +66,24 @@ El ciclo puede terminar porque:
 - se alcanza un límite o la persona cancela.
 
 En nuestra historia, terminar bien significa explicar los hallazgos con evidencia o declarar qué falta. No significa modificar la medida ni demostrar a toda costa que hay un error.
+
+## Cómo formular un encargo
+
+Esta pauta del curso ayuda a orientar y evaluar el trabajo:
+
+```text
+Objetivo → fuentes → restricciones → entrega → criterio de finalización
+```
+
+| Pieza | En la revisión de Sales YTD |
+|---|---|
+| Objetivo | Explicar el comportamiento y posibles problemas de la medida |
+| Fuentes | Expresión actual, reglas DAX y relaciones necesarias |
+| Restricciones | Sólo lectura; no inventar datos que falten |
+| Entrega | Hallazgos con fuentes, hipótesis y límites del análisis |
+| Criterio de finalización | Hay evidencia suficiente para responder o se identifica qué impide concluir |
+
+El criterio de finalización permite reconocer cuándo terminar; no exige encontrar un error. El capítulo de [recuperación](../01-context-engineering/07-recuperacion-profunda.md) desarrolla cómo seleccionar las fuentes.
 
 ## Comprueba que lo entiendes
 

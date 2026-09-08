@@ -25,10 +25,10 @@ Una Tool suele tener:
 - Nombre.
 - Descripción.
 - Parámetros de entrada.
-- Schema de dichos parámetros.
+- Esquema o **schema** de dichos parámetros: campos, tipos y restricciones admitidos.
 - Opcionalmente, descripción de su resultado.
 
-Ejemplo conceptual:
+Ejemplo conceptual simplificado, no un contrato listo para registrar una Tool ni un JSON Schema formal:
 
 ```json
 {

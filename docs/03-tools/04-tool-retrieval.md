@@ -1,130 +1,66 @@
 # Tool Retrieval
 
-Estrategia para descubrir y cargar únicamente las herramientas relevantes.
+**Patrón general.** Recuperar las definiciones pertinentes de herramientas permite presentar capacidades bajo demanda. No describe una estrategia universal de Codex ni un selector que debamos configurar para seguir el curso.
 
-## Estrategia B — Tool Retrieval
+## Qué se recupera
 
-**Tool Retrieval es una alternativa a cargar todas las Tools completas upfront.**
+Una definición de Tool describe su nombre, argumentos y restricciones. El runtime debe disponer de una capacidad ejecutable y proporcionar un contrato suficiente para que el modelo pueda solicitarla.
 
-Es una estrategia de presentación de Tools al modelo, no un protocolo de conexión. Puede aplicarse a Tools locales o Tools expuestas por un servidor MCP.
+Hay tres comprobaciones distintas:
 
-## Tres enfoques para presentar Tools
-
-La evolución habitual puede resumirse así:
-
-| Enfoque | Qué recibe inicialmente el modelo | Coste principal |
+| Comprobación | Qué demuestra | Qué no demuestra |
 |---|---|---|
-| Tradicional / upfront | Todas las definiciones completas y sus schemas | Mucho contexto estático y más ruido |
-| Filesystem Retrieval | Catálogo o nombres recuperables desde archivos | Requiere búsqueda y lectura durante la sesión |
-| Tool Search | Catálogo consultable por el runtime o proveedor | Añade una fase de búsqueda y depende del runtime |
+| Leer documentación de una capacidad | Conocemos lo que el documento describe | Que exista una Tool con ese contrato en la sesión |
+| Disponer de una Tool y su contrato real | La capacidad está expuesta y sabemos cómo solicitarla | Que esté autorizada para esta tarea |
+| Comprobar permisos y alcance | La operación está permitida dentro del encargo | Que su resultado vaya a ser correcto |
 
-El objetivo común es evitar que todas las definiciones compitan por la atención del modelo en cada tarea.
+Crear o leer `tools/get-measure.md` no registra una Tool. Si la documentación discrepa del contrato disponible, hay que aclarar la diferencia; no inventar una llamada.
 
-El objetivo es proporcionar inicialmente suficiente información para descubrir qué capacidades existen, pero sin cargar necesariamente todas sus definiciones completas.
+## Dos patrones de presentación
 
-Conceptualmente:
+**Upfront** significa «desde el inicio». Esta comparación explica posibilidades de diseño, no una evolución obligatoria:
 
-```text
-Petición inicial
-│
-├── System Prompt
-├── AGENTS.md
-├── índice ligero de capacidades
-└── User Prompt
-```
+| Patrón | Qué recibe el modelo | Contrapartida |
+|---|---|---|
+| Definiciones upfront | Las definiciones completas previstas por el runtime desde el inicio | Ocupan contexto aunque algunas no ayuden a la tarea |
+| Recuperación bajo demanda | Información para descubrir capacidades y después los contratos pertinentes | Añade una fase de búsqueda o carga |
 
-Por ejemplo:
+Ambos pueden coexistir. **Tool Search** es una forma de buscar capacidades en un catálogo; **Filesystem Retrieval** recupera información desde archivos. Leer archivos sobre herramientas puede ayudar a entenderlas, pero no demuestra que su definición ejecutable se haya cargado bajo demanda.
 
-```text
-Capacidades:
+## Nuestra historia
 
-- consultar modelos semánticos
-- consultar medidas
-- ejecutar DAX
-- modificar medidas
-- consultar relaciones
-- trabajar con tablas
-```
-
-El usuario pregunta:
+Para revisar Sales YTD, un recorrido ilustrativo podría ser:
 
 ```text
-"¿Cuántas ventas tuvimos este año?"
+Necesidad: consultar la expresión actual
+  → descubrir una capacidad de consulta
+  → obtener su contrato real, si está disponible
+  → proponer una llamada con los argumentos adecuados
+  → runtime y sistema conectado aplican sus controles
+  → herramienta devuelve un resultado o error
+  → modelo decide cómo continuar
 ```
 
-El LLM determina:
+Si falta la capacidad, el agente debe declarar el límite o utilizar otra fuente autorizada. Un nombre encontrado en un documento no basta.
 
-```text
-Necesito ejecutar una consulta DAX.
-```
+## Qué podemos afirmar sobre Codex
 
-Entonces:
+La documentación de MCP explica cómo configurar servidores y sus capacidades. Que una Tool MCP funcione no prueba si Codex presentó su definición desde el inicio o la recuperó después. [MCP en Codex](https://learn.chatgpt.com/docs/extend/mcp), revisado el 2026-09-08.
 
-```text
-Necesidad
-   ↓
-Tool Retrieval
-   ↓
-encuentra execute_dax
-   ↓
-recupera definición completa
-   ↓
-nombre
-+
-descripción
-+
-JSON Schema
-```
+Para el curso basta con comprobar la capacidad disponible, su contrato y el alcance autorizado. La [frontera entre control y observación](10-codex-suscripcion-contexto-y-tool-retrieval.md) desarrolla esta distinción.
 
-Ahora el LLM conoce suficiente información para solicitar:
+## Comprueba que lo entiendes
 
-```text
-execute_dax(...)
-```
+**¿Leer el contrato descrito en un Markdown habilita una herramienta?**
 
-Esto permite pasar parte del contexto de:
+No. El entorno debe exponer una capacidad ejecutable con su contrato real. Después siguen aplicándose permisos y restricciones.
 
-```text
-Static Context
-```
+**¿Recuperar menos definiciones garantiza una respuesta mejor?**
 
-a:
+No. Puede reducir contexto inicial, pero también añade búsqueda y puede dejar fuera información necesaria. Hay que evaluar el resultado y las fuentes.
 
-```text
-Dynamic Context
-```
+Consulta [Contexto, consumo y límites de uso](../01-context-engineering/05-costes-basicos-de-llm.md) para relacionar esas búsquedas con el trabajo realizado.
 
 ---
-
-## Comparación de enfoques
-
-Upfront, Filesystem Retrieval y Tool Search son estrategias diferentes para resolver el mismo problema. Pueden coexistir en una arquitectura híbrida.
-
-```text
-              ¿Cómo conoce el LLM las Tools?
-                         │
-              ┌──────────┼──────────┐
-              │          │          │
-              ▼          ▼          ▼
-           Upfront   Filesystem   Tool Search
-              │       Retrieval       │
-              │          │            │
-              └──────────┼────────────┘
-                         ▼
-                LLM conoce la Tool
-                         │
-                         ▼
-                     Tool Call
-                         │
-                         ▼
-                    Agent Loop
-```
-
-Después de cualquiera de ellas, el flujo es el mismo: el modelo recibe la definición necesaria, genera un Tool Call y el runtime lo valida y ejecuta.
-
----
-
-Retrieval puede reducir el contexto inicial, pero añade búsquedas y lecturas. Estos trade-offs forman parte del consumo de una interacción; consulta [Costes básicos de LLM](../01-context-engineering/05-costes-basicos-de-llm.md).
 
 [← Anterior](03-tool-definitions-upfront.md) · [Índice](../../README.md) · [Siguiente →](05-filesystem-retrieval.md)
-
