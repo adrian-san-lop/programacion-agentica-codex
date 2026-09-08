@@ -44,6 +44,8 @@ El resultado vuelve al modelo a través del runtime
 
 Una capa adicional no garantiza seguridad por sí sola ni sustituye a la revisión humana.
 
+Un intermediario de comunicaciones y un [hook de Codex](../04-seguridad-y-hooks/02-hooks-en-codex.md) tienen funciones distintas: el hook se ejecuta ante un evento configurado del agente. El bloque de seguridad explica cuándo puede intervenir y qué operaciones quedan fuera de su cobertura.
+
 ## Comprueba que lo entiendes
 
 **¿Una instrucción en una Skill puede conceder acceso que el sistema rechaza?**

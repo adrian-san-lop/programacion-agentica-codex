@@ -39,4 +39,4 @@ Una persona puede pedir revisar Sales YTD y otra revisar la propuesta. Si se del
 
 No. La coordinación puede repartirse, pero la persona mantiene la decisión sobre los cambios relevantes.
 
-[← Anterior](../04-integraciones/03-mcp-vs-tool-retrieval.md) · [Índice](../../README.md) · [Siguiente →](01-personas-agentes-y-responsabilidades.md)
+[← Anterior](../04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md) · [Índice](../../README.md) · [Siguiente →](01-personas-agentes-y-responsabilidades.md)

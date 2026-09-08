@@ -18,11 +18,13 @@ La fase actual es conceptual. Power BI y Fabric proporcionan ejemplos familiares
 
 La numeración y los enlaces conservan el recorrido completo. En una primera lectura:
 
-- **Esencial:** introducción, contexto y recuperación, componentes, Tools y sus límites, MCP y responsabilidad humana.
+- **Esencial:** introducción, contexto y recuperación, componentes, Tools y sus límites, MCP, seguridad, fundamentos de hooks y responsabilidad humana.
 - **Ampliación opcional:** caching, mediación, definiciones upfront, Tool Search y estrategia híbrida. Sus capítulos indican qué idea conservar sin estudiar infraestructura.
 - **Fase posterior:** ejecutar la simulación Python y aplicar la plantilla PBIP cuando el curso llegue a la práctica.
 
 La misma historia une los bloques: «Analiza la medida Sales YTD y explica si hay algún problema. No modifiques nada». Lee las preguntas de comprobación y sus respuestas antes de continuar.
+
+Los bloques con prefijo `04` se leen en este orden: integraciones → seguridad y hooks → trabajo en equipo (`05`). Conservamos las rutas anteriores; los enlaces de navegación recogen esta ampliación. La configuración real de hooks y el estudio de contenedores quedan para una fase posterior.
 
 ### Recorrido completo
 
@@ -57,14 +59,18 @@ La misma historia une los bloques: «Analiza la medida Sales YTD y explica si ha
 29. [Configuración de MCP](docs/04-integraciones/01-configuracion.md)
 30. [MCP y credenciales](docs/04-integraciones/02-credenciales.md)
 31. [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
-32. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
-33. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
-34. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
-35. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
-36. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
-37. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
-38. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
-39. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
+32. [Seguridad en el Agent Loop](docs/04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md)
+33. [Permisos, sandbox y secretos](docs/04-seguridad-y-hooks/01-permisos-sandbox-y-secretos.md)
+34. [Hooks en Codex](docs/04-seguridad-y-hooks/02-hooks-en-codex.md)
+35. [Caso guiado: Sales YTD con controles](docs/04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md)
+36. [Trabajo en equipo](docs/05-trabajo-en-equipo/00-introduccion.md)
+37. [Personas, agentes y responsabilidades](docs/05-trabajo-en-equipo/01-personas-agentes-y-responsabilidades.md)
+38. [Monorepo y documentación](docs/05-trabajo-en-equipo/02-monorepo-y-documentacion.md)
+39. [Skills compartidas](docs/05-trabajo-en-equipo/03-skills-compartidas.md)
+40. [Subagentes y delegación](docs/05-trabajo-en-equipo/04-subagentes-y-delegacion.md)
+41. [Flujo Git y pull requests](docs/05-trabajo-en-equipo/05-flujo-git-y-pull-requests.md)
+42. [Ejemplo mínimo de Agent Loop](docs/06-ejemplos/00-agent-loop-minimo.md)
+43. [Ejemplo Power BI / Fabric](docs/06-ejemplos/01-power-bi-fabric.md)
 
 ## Índice completo
 
@@ -113,6 +119,13 @@ La misma historia une los bloques: «Analiza la medida Sales YTD y explica si ha
 - [Configuración](docs/04-integraciones/01-configuracion.md)
 - [Credenciales](docs/04-integraciones/02-credenciales.md)
 - [MCP vs Tool Retrieval](docs/04-integraciones/03-mcp-vs-tool-retrieval.md)
+
+### Seguridad y hooks
+
+- [Seguridad en el Agent Loop](docs/04-seguridad-y-hooks/00-seguridad-en-el-agent-loop.md)
+- [Permisos, sandbox y secretos](docs/04-seguridad-y-hooks/01-permisos-sandbox-y-secretos.md)
+- [Hooks en Codex](docs/04-seguridad-y-hooks/02-hooks-en-codex.md)
+- [Caso guiado: Sales YTD con controles](docs/04-seguridad-y-hooks/03-caso-guiado-sales-ytd.md)
 
 ### Trabajo en equipo
 
